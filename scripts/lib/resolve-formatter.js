@@ -148,6 +148,17 @@ function getRunnerFromPackageManager(projectRoot) {
  *   `bin`    – executable path (absolute local path or runner binary)
  *   `prefix` – extra args to prepend (e.g. ['@biomejs/biome'] when using npx)
  */
+/**
+ * Whether hooks may fetch a missing tool from the package registry.
+ *
+ * Default false: a Stop hook that silently downloads and executes a package is
+ * a supply-chain surface the user did not opt into. Set
+ * ECC_ALLOW_TOOL_DOWNLOAD=1 to restore the fetch-on-demand behavior.
+ */
+function allowToolDownload(env = process.env) {
+  return ['1', 'true', 'yes', 'on'].includes(String(env.ECC_ALLOW_TOOL_DOWNLOAD || '').trim().toLowerCase());
+}
+
 function resolveFormatterBin(projectRoot, formatter) {
   const cacheKey = `${projectRoot}:${formatter}`;
   if (binCache.has(cacheKey)) return binCache.get(cacheKey);
@@ -167,6 +178,15 @@ function resolveFormatterBin(projectRoot, formatter) {
     return result;
   }
 
+  // No local binary. The package-manager runner (npx / pnpm dlx / yarn dlx)
+  // would FETCH AND EXECUTE the formatter from the registry -- an unannounced
+  // network install triggered by a hook the user never invoked. That is opt-in
+  // here, not the default.
+  if (!allowToolDownload()) {
+    binCache.set(cacheKey, null);
+    return null;
+  }
+
   const runner = getRunnerFromPackageManager(projectRoot);
   const result = { bin: runner.bin, prefix: [...runner.prefix, pkg.pkgName] };
   binCache.set(cacheKey, result);
@@ -183,6 +203,7 @@ function clearCaches() {
 }
 
 module.exports = {
+  allowToolDownload,
   findProjectRoot,
   detectFormatter,
   resolveFormatterBin,

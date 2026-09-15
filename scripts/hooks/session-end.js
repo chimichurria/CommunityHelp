@@ -157,6 +157,10 @@ function buildSessionHeader(today, currentTime, metadata, existingContent = '') 
   ].join('\n');
 }
 
+function isLLMSummaryOptedIn(env = process.env) {
+  return ['1', 'true', 'yes', 'on'].includes(String(env.ECC_LLM_SUMMARY || '').trim().toLowerCase());
+}
+
 function mergeSessionHeader(content, today, currentTime, metadata) {
   const separatorIndex = content.indexOf(SESSION_SEPARATOR);
   if (separatorIndex === -1) {
@@ -242,9 +246,16 @@ async function main() {
   const currentTime = getTimeString();
 
   // Decide whether to call LLM for a richer summary.
+  //
+  // OPT-IN. This spawns a second `claude -p` process and sends it up to 7 KB of
+  // conversation transcript, which costs the user tokens they did not ask to
+  // spend and moves their prompt and code content into another inference call.
+  // Upstream had this on by default (opt-out); for a fork strangers install, a
+  // hook that spends money and moves transcript content has to be something you
+  // turned on. Enable with ECC_LLM_SUMMARY=1. See PRIVACY.md.
   // Triggers: context remaining < 20%, or every 50 user messages as a baseline.
   let llmSummary = null;
-  if (transcriptPath && summary && transcriptExists) {
+  if (transcriptPath && summary && transcriptExists && isLLMSummaryOptedIn()) {
     const contextPct = getContextRemainingPct(transcriptPath);
     const isContextLow = contextPct !== null && contextPct < getContextThreshold();
     const interval = parseInt(process.env.ECC_LLM_SUMMARY_INTERVAL || '50', 10);

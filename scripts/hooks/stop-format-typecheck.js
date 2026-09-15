@@ -22,7 +22,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const { findProjectRoot, detectFormatter, resolveFormatterBin } = require('../lib/resolve-formatter');
+const { findProjectRoot, detectFormatter, resolveFormatterBin, allowToolDownload } = require('../lib/resolve-formatter');
 
 const MAX_STDIN = 1024 * 1024;
 // Total ms budget reserved for all batches (leaves headroom below the 300s Stop timeout)
@@ -111,10 +111,33 @@ function findTsConfigDir(filePath) {
   return null;
 }
 
+/**
+ * Locate a tsc the project already has installed. Returns null when there is
+ * none: a bare `npx tsc` would fetch TypeScript from the registry and run it,
+ * which is not something a Stop hook should do on its own. Opt in with
+ * ECC_ALLOW_TOOL_DOWNLOAD=1.
+ */
+function resolveLocalTsc(tsConfigDir) {
+  const isWin = process.platform === 'win32';
+  const binName = isWin ? 'tsc.cmd' : 'tsc';
+  let dir = tsConfigDir;
+  const fsRoot = path.parse(dir).root;
+  let depth = 0;
+  while (dir !== fsRoot && depth < 20) {
+    const candidate = path.join(dir, 'node_modules', '.bin', binName);
+    if (fs.existsSync(candidate)) return candidate;
+    dir = path.dirname(dir);
+    depth += 1;
+  }
+  return allowToolDownload() ? (isWin ? 'npx.cmd' : 'npx') : null;
+}
+
 function typecheckBatch(tsConfigDir, editedFiles, timeoutMs) {
   const isWin = process.platform === 'win32';
-  const npxBin = isWin ? 'npx.cmd' : 'npx';
-  const args = ['tsc', '--noEmit', '--pretty', 'false'];
+  const npxBin = resolveLocalTsc(tsConfigDir);
+  if (!npxBin) return; // no local TypeScript: skip rather than download one
+  const usingRunner = path.basename(npxBin).startsWith('npx');
+  const args = usingRunner ? ['tsc', '--noEmit', '--pretty', 'false'] : ['--noEmit', '--pretty', 'false'];
   const opts = { cwd: tsConfigDir, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'], timeout: timeoutMs };
 
   let stdout = '';

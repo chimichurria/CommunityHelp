@@ -107,3 +107,12 @@ ecc2/target/
 assets/images/security/badrudi-exploit.mp4
 
 .aider*
+
+# --- CommunityHelp: local learner state must never reach a public repo ---
+# The coach and the memory vault write per-user data. None of it belongs in a
+# fork people send pull requests from. See PRIVACY.md.
+coach-state.json
+coach-events.jsonl
+learner-profile.json
+.ecc/memory/
+.insaits_audit_session.jsonl

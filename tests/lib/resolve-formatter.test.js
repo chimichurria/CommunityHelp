@@ -193,13 +193,33 @@ function runTests() {
     assert.deepStrictEqual(result.prefix, []);
   });
 
-  run('resolveFormatterBin: falls back to npx for biome', () => {
+  run('resolveFormatterBin: returns null rather than downloading biome', () => {
     const root = makeTmpDir();
     withIsolatedHome(() => {
+      clearCaches();
+      // No local binary and no opt-in: the runner fallback would fetch and
+      // execute @biomejs/biome from the registry, so we decline instead.
       const result = resolveFormatterBin(root, 'biome');
-      const expectedBin = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-      assert.strictEqual(result.bin, expectedBin);
-      assert.deepStrictEqual(result.prefix, ['@biomejs/biome']);
+      assert.strictEqual(result, null);
+    });
+  });
+
+  run('resolveFormatterBin: uses the runner for biome when downloads are opted in', () => {
+    const root = makeTmpDir();
+    withIsolatedHome(() => {
+      clearCaches();
+      const previous = process.env.ECC_ALLOW_TOOL_DOWNLOAD;
+      process.env.ECC_ALLOW_TOOL_DOWNLOAD = '1';
+      try {
+        const result = resolveFormatterBin(root, 'biome');
+        const expectedBin = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+        assert.strictEqual(result.bin, expectedBin);
+        assert.deepStrictEqual(result.prefix, ['@biomejs/biome']);
+      } finally {
+        if (previous === undefined) delete process.env.ECC_ALLOW_TOOL_DOWNLOAD;
+        else process.env.ECC_ALLOW_TOOL_DOWNLOAD = previous;
+        clearCaches();
+      }
     });
   });
 
@@ -215,13 +235,33 @@ function runTests() {
     assert.deepStrictEqual(result.prefix, []);
   });
 
-  run('resolveFormatterBin: falls back to npx for prettier', () => {
+  run('resolveFormatterBin: returns null rather than downloading prettier', () => {
     const root = makeTmpDir();
     withIsolatedHome(() => {
+      clearCaches();
+      // No local binary and no opt-in: the runner fallback would fetch and
+      // execute prettier from the registry, so we decline instead.
       const result = resolveFormatterBin(root, 'prettier');
-      const expectedBin = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-      assert.strictEqual(result.bin, expectedBin);
-      assert.deepStrictEqual(result.prefix, ['prettier']);
+      assert.strictEqual(result, null);
+    });
+  });
+
+  run('resolveFormatterBin: uses the runner for prettier when downloads are opted in', () => {
+    const root = makeTmpDir();
+    withIsolatedHome(() => {
+      clearCaches();
+      const previous = process.env.ECC_ALLOW_TOOL_DOWNLOAD;
+      process.env.ECC_ALLOW_TOOL_DOWNLOAD = '1';
+      try {
+        const result = resolveFormatterBin(root, 'prettier');
+        const expectedBin = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+        assert.strictEqual(result.bin, expectedBin);
+        assert.deepStrictEqual(result.prefix, ['prettier']);
+      } finally {
+        if (previous === undefined) delete process.env.ECC_ALLOW_TOOL_DOWNLOAD;
+        else process.env.ECC_ALLOW_TOOL_DOWNLOAD = previous;
+        clearCaches();
+      }
     });
   });
 

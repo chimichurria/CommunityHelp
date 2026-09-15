@@ -100,7 +100,7 @@
       {
         "id": "stop:format-typecheck",
         "description": "Batch format (Biome/Prettier) and typecheck (tsc) all JS/TS files edited this response — runs once at Stop instead of after every Edit",
-        "fingerprint": "9836d01e962e"
+        "fingerprint": "4a31a90bf0c1"
       },
       {
         "id": "stop:check-console-log",
