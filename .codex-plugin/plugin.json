@@ -4,6 +4,7 @@
   "description": "Harness-native ECC workflows for Codex: shared skills, production-ready MCP configs, and selective-install-aligned conventions for TDD, security scanning, code review, and autonomous development.",
   "author": {
     "name": "ChimichurrIA",
+    "email": "team@chimichurria.com",
     "url": "https://chimichurria.com"
   },
   "homepage": "https://github.com/chimichurria/CommunityHelp",

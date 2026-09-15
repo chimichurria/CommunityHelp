@@ -11,7 +11,7 @@ licensed under the MIT License.
 | Forked at commit | `8321021c` |
 | Upstream version | `2.2.1` |
 | Upstream license | MIT — see [LICENSE](LICENSE) |
-| Fork maintainer | ChimichurrIA — <https://chimichurria.com> |
+| Fork maintainer | ChimichurrIA — <https://chimichurria.com> · <team@chimichurria.com> |
 
 The original copyright notice is preserved verbatim in `LICENSE`, as the MIT
 License requires. The full upstream commit history (2,700 commits) was pushed
@@ -118,3 +118,8 @@ Stated so nobody rediscovers them as surprises:
 - **`.cursor/skills/` and `.agents/skills/` contain copies of canonical skills**
   that had already drifted upstream. Deduplicating them is real work that was
   out of scope here.
+- **`.github/workflows/reusable-release.yml` is an orphaned npm-publishing
+  template.** Nothing invokes it — a `workflow_call` workflow only runs when
+  another workflow calls it, and none does — so it cannot fire. It is left
+  intact rather than deleted because two test files cover it, and its npm shape
+  is still asserted there. The active `release.yml` publishes nothing to npm.

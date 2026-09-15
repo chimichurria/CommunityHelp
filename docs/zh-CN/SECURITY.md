@@ -12,5 +12,7 @@ Read the canonical policy instead: **[../../SECURITY.md](../../SECURITY.md)**
 Report a vulnerability here, privately:
 <https://github.com/chimichurria/CommunityHelp/security/advisories/new>
 
+Or email <team@chimichurria.com>.
+
 Do not open a public issue for a security vulnerability.
 Do not send reports about this fork to the upstream author.

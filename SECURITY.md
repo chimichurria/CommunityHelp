@@ -18,10 +18,13 @@ Security fixes land on `main`. This fork does not maintain backport release line
 
 ## Reporting a vulnerability
 
-Use **GitHub private vulnerability reporting** — it reaches the maintainer
-directly and keeps the report private until a fix ships:
+**Preferred:** GitHub private vulnerability reporting. It keeps the report
+private until a fix ships and reaches the maintainers directly:
 
 - <https://github.com/chimichurria/CommunityHelp/security/advisories/new>
+
+**Alternative:** email **<team@chimichurria.com>**. Use this if you cannot use
+GitHub's flow, or if you want to make first contact before filing details.
 
 Do **not** open a public issue for a security vulnerability.
 

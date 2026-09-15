@@ -47,6 +47,10 @@ function jobBlock(source, jobName, nextJobName) {
 console.log('\n=== Testing packed-artifact release workflows ===\n');
 
 for (const workflowPath of workflowPaths) {
+  // release.yml is this fork's active workflow and publishes nothing to npm.
+  // reusable-release.yml is an orphaned upstream template nothing invokes; its
+  // npm shape is left intact and still covered.
+  const publishesToNpm = workflowPath.includes('reusable-release');
   const source = load(workflowPath);
 
   test(`${workflowPath} packs once and exports the package name and SHA-256`, () => {
@@ -107,14 +111,16 @@ for (const workflowPath of workflowPaths) {
     assert.match(verify, /tests\/ci\/packed-artifact-lifecycle\.js/);
   });
 
-  test(`${workflowPath} fails retries when npm already has different bytes`, () => {
-    const verify = jobBlock(source, 'verify', 'lifecycle');
-    assert.match(verify, /name:\s*Verify existing npm artifact matches candidate/);
-    assert.match(verify, /if:\s*steps\.npm_publish_state\.outputs\.already_published == 'true'/);
-    assert.match(verify, /npm view "\$\{PACKAGE_NAME\}@\$\{PACKAGE_VERSION\}" dist\.integrity/);
-    assert.match(verify, /createHash\(['"]sha512['"]\)/);
-    assert.match(verify, /Existing npm artifact does not match tested candidate/);
-  });
+  if (publishesToNpm) {
+    test(`${workflowPath} fails retries when npm already has different bytes`, () => {
+      const verify = jobBlock(source, 'verify', 'lifecycle');
+      assert.match(verify, /name:\s*Verify existing npm artifact matches candidate/);
+      assert.match(verify, /if:\s*steps\.npm_publish_state\.outputs\.already_published == 'true'/);
+      assert.match(verify, /npm view "\$\{PACKAGE_NAME\}@\$\{PACKAGE_VERSION\}" dist\.integrity/);
+      assert.match(verify, /createHash\(['"]sha512['"]\)/);
+      assert.match(verify, /Existing npm artifact does not match tested candidate/);
+    });
+  }
 
   test(`${workflowPath} verifies the same tgz on Node 20 across three operating systems`, () => {
     const lifecycle = jobBlock(source, 'lifecycle', 'publish');
@@ -136,7 +142,15 @@ for (const workflowPath of workflowPaths) {
   test(`${workflowPath} blocks publishing on packed-artifact lifecycle success`, () => {
     const publish = jobBlock(source, 'publish');
 
+    // The real gate, and the one that matters for both: a release cannot be cut
+    // until the packed artifact passed its lifecycle test on all three runners.
     assert.match(publish, /needs:\s*\[verify, lifecycle\]/);
+
+    if (!publishesToNpm) {
+      assert.match(publish, /name:\s*Create GitHub Release/);
+      return;
+    }
+
     assert.match(publish, /ECC_RELEASE_PACKAGE:\s*\$\{\{ needs\.verify\.outputs\.package_file \}\}/);
     assert.match(publish, /npm publish "\.\/\$\{ECC_RELEASE_PACKAGE\}"/);
     assert.match(publish, /name:\s*Verify artifact before publish/);
