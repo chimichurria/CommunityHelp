@@ -39,8 +39,17 @@ skill-run records, both of which are unvalidated free text.
 4. Only after that, open the pull request with `gh pr create`, with the payload
    in a fenced code block in the body.
 
-5. Immediately before the `gh` call, re-run the anonymization check on the exact
-   string being sent, in case anything changed between the preview and the send.
+5. Immediately before the `gh` call, re-run the check on the exact string being
+   sent, in case anything changed between preview and send:
+
+   ```bash
+   node -e "const{assertAnonymous}=require('./scripts/lib/coach/anonymize');assertAnonymous(require('fs').readFileSync(process.argv[1],'utf8'));console.log('anonymization check passed')" /path/to/payload.json
+   ```
+
+   `assertAnonymous()` scans the serialized string rather than walking the
+   object, so a value buried in a nested field cannot slip past it, and it
+   checks both the escaped and backslash-unescaped forms so a Windows path
+   cannot hide behind JSON escaping.
 
 If the anonymization check throws, **stop**. Show the user which field tripped
 it. Do not strip the offending value and retry: a check that fires means the

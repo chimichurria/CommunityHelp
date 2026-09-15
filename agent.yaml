@@ -116,6 +116,7 @@ skills:
   - postgres-patterns
   - product-lens
   - production-scheduling
+  - ai-literacy-coach
   - prompt-optimizer
   - python-patterns
   - python-testing
@@ -169,6 +170,10 @@ commands:
   - auto-update
   - build-fix
   - checkpoint
+  - coach-contribute
+  - coach-evolve
+  - coach-mute
+  - coach-status
   - code-review
   - cost-report
   - cpp-build
@@ -227,10 +232,10 @@ commands:
   - plan-canvas
   - plan-prd
   - pm2
+  - pr
+  - project-init
   - projects
   - promote
-  - project-init
-  - pr
   - prp-commit
   - prp-implement
   - prp-plan

@@ -403,6 +403,7 @@ function runTests() {
           'baseline:hooks',
           'baseline:platform',
           'baseline:workflow',
+          'capability:ai-literacy',
         ],
         target: 'claude',
       }),

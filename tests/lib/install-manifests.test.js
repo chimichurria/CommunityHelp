@@ -282,7 +282,8 @@ function runTests() {
         'commands-core',
         'platform-configs',
         'skill-unified-memory',
-        'workflow-quality'
+        'workflow-quality',
+        'ai-literacy'
       ]
     );
     assert.ok(plan.skippedModuleIds.includes('hooks-runtime'));

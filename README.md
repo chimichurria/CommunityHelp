@@ -102,17 +102,45 @@ opt-in con confirmación explícita. Ver [PRIVACY.md](PRIVACY.md).
 
 ## What's included
 
-Access to 68 agents, 289 skills, and 99 legacy command shims, plus hooks, rules,
+Access to 68 agents, 289 skills, and 98 legacy command shims, plus hooks, rules,
 memory, continuous learning, and the AI-literacy coach.
 
 | Included         |       Count | What it gives you                                                                    |
 | ---------------- | ----------: | ------------------------------------------------------------------------------------ |
 | Agents           |   68 agents | Planning, review, build repair, security, architecture, and domain work              |
 | Skills           |  289 skills | TDD, research, security, docs, frontend, data, ML, operations, and more              |
-| Commands         | 99 commands | Convenient entry points while the catalog moves to a skills-first surface            |
+| Commands         | 98 commands | Convenient entry points while the catalog moves to a skills-first surface            |
 | Hooks and memory |     Runtime | Enforcement, session summaries, continuous learning, instincts, and context controls |
 | Rules            |   Selective | Always-loaded standards you choose by language or project                            |
 | AI-literacy coach |   Built in | Teaches prompting at submit time, bilingual, adaptive, local-only                    |
+
+## The coach, in practice
+
+Once installed, nothing else is required. Write a prompt like you normally
+would; if it is going to cost you, you get one line before it does.
+
+```text
+You:  arregla todo el codigo del proyecto
+
+      [Nota de prompting: vague-scope] Alcance sin límite. Decime qué archivo o
+      comportamiento cambiar — si no, elijo yo, y voy a elegir mal.
+      (Silenciar: /coach-mute vague-scope)
+```
+
+It does **not** fire on every prompt — at most one note, never within four
+prompts of the last, at most three an hour. And each lesson retires itself:
+five prompts in a row where the rule was relevant and you got it right, and it
+stops appearing. Slip three times later and it comes back.
+
+| Command | What it does |
+|---|---|
+| `/coach-status` | Your profile: which topics you have graduated, which are still active |
+| `/coach-mute <rule-id>` | Silence one rule without disabling the coach |
+| `/coach-evolve` | Proposes rule improvements from your local history. Proposes only |
+| `/coach-contribute` | Offers those improvements upstream, after you review the full anonymized payload and type a confirmation word |
+
+Turn it off entirely with `ECC_COACH_ENABLED=0`, or take it off the prompt path
+at zero cost with `ECC_HOOK_PROFILE=minimal`.
 
 <p align="center"><a href="#install-ecc">Jump to install ↓</a></p>
 

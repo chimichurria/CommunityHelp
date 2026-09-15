@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "totalCommands": 99,
+  "totalCommands": 98,
   "commands": [
     {
       "command": "aside",
@@ -749,17 +749,6 @@
       "path": "commands/promote.md"
     },
     {
-      "command": "prompt-optimize",
-      "description": "Analyze a draft prompt and return an optimized, ready-to-paste version. Advisory only - writes no code and runs no commands.",
-      "type": "general",
-      "primaryAgents": [],
-      "allAgents": [],
-      "skills": [
-        "ai-literacy-coach"
-      ],
-      "path": "commands/prompt-optimize.md"
-    },
-    {
       "command": "prp-commit",
       "description": "Quick commit with natural language file targeting — describe what to commit in plain English",
       "type": "testing",
@@ -1076,7 +1065,7 @@
   "statistics": {
     "byType": {
       "build": 2,
-      "general": 12,
+      "general": 11,
       "orchestration": 11,
       "planning": 2,
       "refactoring": 2,
