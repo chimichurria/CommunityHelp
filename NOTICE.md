@@ -63,8 +63,18 @@ channel.
 
 - **AI-literacy coach** — a `UserPromptSubmit` hook that teaches prompting in
   the moment, bilingual (Spanish/English), with an adaptive cadence that goes
-  quiet topic by topic as the person improves. See
+  quiet topic by topic as the person improves. Eight rules, measured marginal
+  cost of p50 ~5 ms, and 60+ tests covering privacy, cadence, fail-open
+  behavior, and latency. See
   [`skills/ai-literacy-coach/SKILL.md`](skills/ai-literacy-coach/SKILL.md).
+
+- **A `UserPromptSubmit` context-leak fix.** On that event, hook stdout is
+  injected into the model's context rather than passed through. The shared hook
+  runner echoes raw stdin on all five of its fail-open paths, so any disabled or
+  failing prompt-time hook would have dumped the whole payload -- session id and
+  transcript path included -- into the conversation on every prompt. Upstream
+  had no hook on that event, so the bug was latent there; it is fixed here and
+  pinned by a test.
 - **A published privacy posture** — [PRIVACY.md](PRIVACY.md) lists every place
   data can leave the machine, whether it is opt-in, and whether it carries user
   content. Plus a `/privacy-audit` command so anyone can check their own install
@@ -86,3 +96,25 @@ upstream.
 
 Upstream tracked its own decay in `docs/legacy-artifact-inventory.md` and
 `docs/stale-pr-salvage-ledger.md`; both are still accurate reading.
+
+---
+
+## Known inherited issues, not fixed here
+
+Stated so nobody rediscovers them as surprises:
+
+- **`schemas/hooks.schema.json` does not validate `hooks/hooks.json`.** The
+  schema requires an `id` on each entry, but Claude Code rejects unknown keys
+  there — which is exactly why `hooks/hooks.metadata.json` exists as a sidecar.
+  The schema is out of sync with the shipped design. This predates the fork
+  (upstream's own `hooks.json` fails the same check). The authoritative
+  validator is `scripts/ci/validate-hooks.js`, which passes.
+- **`src/llm/providers/openai.py` still offers `gpt-4o` and `gpt-4-turbo`.**
+  Genuinely dated, left alone: it is a non-Claude provider layer and choosing
+  replacements would be guessing.
+- **13 documentation translations are unmaintained.** Their install commands
+  were corrected so they no longer point at upstream's npm package, but their
+  content will drift from the English README. Each now says so at the top.
+- **`.cursor/skills/` and `.agents/skills/` contain copies of canonical skills**
+  that had already drifted upstream. Deduplicating them is real work that was
+  out of scope here.
