@@ -586,7 +586,6 @@
       "kind": "skills",
       "description": "Public, non-advisory prediction-market workflows and the consolidated read-only Ito baskets data skill with gated Ito API access.",
       "paths": [
-        "skills/ito-baskets",
         "skills/prediction-market-oracle-research",
         "skills/prediction-market-risk-review"
       ],
@@ -634,39 +633,6 @@
         "zed"
       ],
       "dependencies": [],
-      "defaultInstall": false,
-      "cost": "light",
-      "stability": "beta"
-    },
-    {
-      "id": "ito-compute",
-      "kind": "skills",
-      "description": "Authenticated It\u00f4 GPU inventory, RFQ, status, device revocation, and explicitly gated node-qualification workflows through the separately installed canonical CLI.",
-      "paths": [
-        "skills/ito-compute",
-        "skills/ito-inference",
-        "skills/ito-training"
-      ],
-      "targets": [
-        "claude",
-        "claude-project",
-        "cursor",
-        "antigravity",
-        "codex",
-        "gemini",
-        "opencode",
-        "codebuddy",
-        "joycode",
-        "qwen",
-        "zed",
-        "hermes",
-        "openclaw",
-        "kimi",
-        "adal"
-      ],
-      "dependencies": [
-        "platform-configs"
-      ],
       "defaultInstall": false,
       "cost": "light",
       "stability": "beta"
@@ -1176,6 +1142,30 @@
       "dependencies": [],
       "defaultInstall": false,
       "cost": "heavy",
+      "stability": "stable"
+    },
+    {
+      "id": "ai-literacy",
+      "kind": "skills",
+      "description": "AI-literacy coach: teaches prompting at submit time, bilingual, adaptive cadence, local-only state.",
+      "paths": [
+        "skills/ai-literacy-coach"
+      ],
+      "targets": [
+        "claude",
+        "claude-project",
+        "cursor",
+        "antigravity",
+        "codex",
+        "opencode",
+        "codebuddy",
+        "joycode",
+        "qwen",
+        "zed"
+      ],
+      "dependencies": [],
+      "defaultInstall": true,
+      "cost": "medium",
       "stability": "stable"
     }
   ]

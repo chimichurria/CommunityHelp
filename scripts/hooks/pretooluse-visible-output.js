@@ -22,19 +22,37 @@ function combineAdditionalContext(current, next) {
   return `${currentText}\n${nextText}`;
 }
 
-function buildPreToolUseAdditionalContext(value) {
+// Events allowed to carry additionalContext. An allowlist rather than a
+// pass-through: a typo'd event name produces output Claude Code silently
+// discards, which is the hardest kind of hook bug to notice.
+const ADDITIONAL_CONTEXT_EVENTS = Object.freeze([
+  'PreToolUse',
+  'PostToolUse',
+  'UserPromptSubmit',
+  'SessionStart',
+]);
+
+function buildAdditionalContext(hookEventName, value) {
   const additionalContext = normalizeAdditionalContext(value);
   if (!additionalContext) return '';
 
+  const event = ADDITIONAL_CONTEXT_EVENTS.includes(hookEventName) ? hookEventName : 'PreToolUse';
+
   return JSON.stringify({
     hookSpecificOutput: {
-      hookEventName: 'PreToolUse',
+      hookEventName: event,
       additionalContext,
     },
   });
 }
 
+function buildPreToolUseAdditionalContext(value) {
+  return buildAdditionalContext('PreToolUse', value);
+}
+
 module.exports = {
+  buildAdditionalContext,
+  ADDITIONAL_CONTEXT_EVENTS,
   buildPreToolUseAdditionalContext,
   combineAdditionalContext,
   normalizeAdditionalContext,

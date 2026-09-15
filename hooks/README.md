@@ -80,6 +80,38 @@ idempotent updates and safe uninstall. On Windows, the Claude config root is
 | **Desktop notify** | `Stop` | Sends macOS desktop notification with task summary (standard+) |
 | **Session end marker** | `SessionEnd` | Lifecycle marker and cleanup log |
 
+### UserPromptSubmit Hooks
+
+| Hook | Event | What It Does |
+|------|-------|-------------|
+| **AI-literacy coach** | `UserPromptSubmit` | Teaches prompting at submit time: one short bilingual note when a prompt is likely to waste a turn, with an adaptive cadence that goes quiet per topic as you improve (standard+) |
+
+**Latency, stated honestly.** Every hook here is two Node processes -- the
+inline `node -e` bootstrap plus a `run-with-flags` child -- so the floor is
+roughly 55-65 ms on macOS regardless of what the hook does. This is the only
+hook on the prompt path, so on `standard` it is new latency, not an increment
+on existing overhead.
+
+The coach's own **marginal** cost, measured in
+`tests/hooks/coach-robustness.test.js` and enforced there as a regression test:
+**p50 ~5 ms, p99 ~14 ms**, with a hard self-abort at 15 ms before any I/O. It
+performs no network I/O, spawns nothing, and reads no transcript.
+
+There is a recorded decision against prompt-time hooks in
+`scripts/hooks/evaluate-session.js:9-13`, on the grounds that
+`UserPromptSubmit` "runs every message (heavy, adds latency)". That objection is
+about transcript analysis. It still applies to anything that reads a transcript
+per message -- if you add a prompt-time hook, add it to the existing dispatcher
+rather than registering a second one, so the two-spawn toll is paid once.
+
+Set `ECC_HOOK_PROFILE=minimal` for zero prompt-path cost.
+
+> **`UserPromptSubmit` stdout is injected into the model's context**, unlike
+> `PreToolUse` where it passes the payload through. `run-with-flags.js`
+> suppresses its raw-stdin echo for this event; without that, a disabled or
+> failing hook would dump the whole payload -- session id included -- into the
+> conversation on every prompt. `tests/hooks/coach-integration.test.js` pins it.
+
 ## Customizing Hooks
 
 ### Disabling a Hook

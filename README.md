@@ -40,6 +40,8 @@
 > about CommunityHelp upstream. See [NOTICE.md](NOTICE.md) for exactly what was
 > changed and why.
 
+<!-- -->
+
 > [!WARNING]
 > **Official sources only.** There is exactly one: the GitHub repository
 > [github.com/chimichurria/CommunityHelp](https://github.com/chimichurria/CommunityHelp)
@@ -100,14 +102,14 @@ opt-in con confirmación explícita. Ver [PRIVACY.md](PRIVACY.md).
 
 ## What's included
 
-Access to 68 agents, 292 skills, and 94 legacy command shims, plus hooks, rules,
+Access to 68 agents, 289 skills, and 99 legacy command shims, plus hooks, rules,
 memory, continuous learning, and the AI-literacy coach.
 
 | Included         |       Count | What it gives you                                                                    |
 | ---------------- | ----------: | ------------------------------------------------------------------------------------ |
 | Agents           |   68 agents | Planning, review, build repair, security, architecture, and domain work              |
-| Skills           |  292 skills | TDD, research, security, docs, frontend, data, ML, operations, and more              |
-| Commands         | 94 commands | Convenient entry points while the catalog moves to a skills-first surface            |
+| Skills           |  289 skills | TDD, research, security, docs, frontend, data, ML, operations, and more              |
+| Commands         | 99 commands | Convenient entry points while the catalog moves to a skills-first surface            |
 | Hooks and memory |     Runtime | Enforcement, session summaries, continuous learning, instincts, and context controls |
 | Rules            |   Selective | Always-loaded standards you choose by language or project                            |
 | AI-literacy coach |   Built in | Teaches prompting at submit time, bilingual, adaptive, local-only                    |
@@ -1907,22 +1909,24 @@ These configs are battle-tested across multiple production applications.
 ## Community and Project
 
 <details>
-<summary><strong>Sponsors and ECC Pro</strong></summary>
+<summary><strong>Supporting this fork</strong></summary>
 
-ECC stays free because sponsors and Pro users fund the work. Sponsor logos are at the top of this README; the full roster and tiers are in [SPONSORS.md](SPONSORS.md).
+CommunityHelp is maintained by [ChimichurrIA](https://chimichurria.com) and has
+no sponsors, no paid tier, and no hosted service. If it helps you, the useful
+contributions are: a bug report, a fix, a coaching rule that caught something
+real, or a translation you are willing to keep current.
 
-ECC Pro adds private-repo analysis, PR-triggered audits, AgentShield-backed scanning, automatic push and PR checks, pooled team usage, and priority support through the hosted GitHub App.
+Upstream ECC has its own sponsors, a commercial Pro tier, and a GitHub App.
+Those fund the upstream author's work, not this fork -- support them at
+[affaan-m/ecc](https://github.com/affaan-m/ecc) if this project's foundations
+were useful to you.
 
 <table>
 <tr>
-<td width="25%" align="center"><a href="https://ecc.tools/pricing"><strong>ECC Pro</strong><br /><sub>Hosted GitHub App for private repos</sub></a></td>
-<td width="25%" align="center"><a href="https://github.com/sponsors/affaan-m"><strong>Sponsor ECC</strong><br /><sub>Fund the OSS work</sub></a></td>
-<td width="25%" align="center"><a href="https://github.com/chimichurria/CommunityHelp/discussions"><strong>Community</strong><br /><sub>Q&amp;A, ideas, and Show and Tell</sub></a></td>
-<td width="25%" align="center"><a href="https://github.com/apps/ecc-tools"><strong>GitHub App</strong><br /><sub>PR audits and hosted workflows</sub></a></td>
+<td width="50%" align="center"><a href="https://github.com/chimichurria/CommunityHelp/discussions"><strong>Community</strong><br /><sub>Q&amp;A, ideas, and Show and Tell</sub></a></td>
+<td width="50%" align="center"><a href="https://github.com/chimichurria/CommunityHelp/issues"><strong>Issues</strong><br /><sub>Bugs and feature requests</sub></a></td>
 </tr>
 </table>
-
-[Become a sponsor](https://github.com/sponsors/affaan-m) | [Sponsor tiers](SPONSORS.md) | [Sponsorship program](SPONSORING.md)
 </details>
 
 <details>

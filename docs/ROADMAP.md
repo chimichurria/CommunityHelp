@@ -7,7 +7,7 @@ planning choices.
 
 The two older planning docs stay as evidence and history:
 `docs/ECC-2.0-GA-ROADMAP.md` (2.0 milestones and control-plane deltas) and
-`docs/ECC-PRO-SECURITY-ROADMAP.md` (AgentShield and Pro conversion). This file
+the upstream Pro security roadmap, which this fork removed along with the rest of the commercial tier. This file
 is the short, current view.
 
 ## Vision

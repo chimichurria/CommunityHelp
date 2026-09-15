@@ -134,6 +134,13 @@
         "description": "Session end lifecycle marker (non-blocking)",
         "fingerprint": "23a3832480e1"
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "id": "prompt:coach",
+        "description": "AI-literacy coach: teaches prompting at submit time, bilingual, adaptive cadence, local-only state",
+        "fingerprint": "4fcad51ac5da"
+      }
     ]
   }
 }

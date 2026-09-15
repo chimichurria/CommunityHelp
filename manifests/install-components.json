@@ -203,14 +203,6 @@
       ]
     },
     {
-      "id": "capability:ito-compute",
-      "family": "capability",
-      "description": "Authenticated It\u00f4 GPU inventory, RFQ, status, device revocation, and explicitly gated node-qualification workflows through the separately installed canonical CLI.",
-      "modules": [
-        "ito-compute"
-      ]
-    },
-    {
       "id": "capability:nasiko-control-plane",
       "family": "capability",
       "description": "Experimental Nasiko CLI lifecycle bridge guidance for pinned installation, read-only status, qualified uninstall, and opt-in telemetry boundaries.",
@@ -676,6 +668,14 @@
       "description": "Ukrainian (uk-UA) translated reference docs installed to ~/.claude/docs/uk-UA/.",
       "modules": [
         "docs-uk-ua"
+      ]
+    },
+    {
+      "id": "capability:ai-literacy",
+      "family": "capability",
+      "description": "Inline prompting coach that teaches at submit time and goes quiet as you improve.",
+      "modules": [
+        "ai-literacy"
       ]
     }
   ]

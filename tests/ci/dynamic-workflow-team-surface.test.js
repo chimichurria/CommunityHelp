@@ -34,22 +34,6 @@ const SURFACES = [
       'control pane'
     ],
   },
-  {
-    path: 'docs/business/team-agent-orchestration-content-pack.md',
-    required: [
-      'Video Concepts',
-      'Article Angles',
-      'agent kanban',
-      'team orchestration',
-      'dynamic workflows',
-      'distribution'
-    ],
-    forbidden: [
-      'https://x.com/',
-      'http://x.com/',
-      'twitter.com/'
-    ],
-  },
 ];
 
 function readSurface(relativePath) {

@@ -198,7 +198,7 @@ Copy-Item -Recurse rules/typescript "$HOME/.claude/rules/"
 /plugin list communityhelp@communityhelp
 ```
 
-**完成！** 你现在可以使用 68 个代理、292 个技能和 94 个命令。
+**完成！** 你现在可以使用 68 个代理、289 个技能和 99 个命令。
 
 ### multi-* 命令需要额外配置
 
@@ -834,7 +834,7 @@ node tests/hooks/hooks.test.js
 
 本项目免费开源。赞助支持项目持续维护与功能迭代。
 
-[成为赞助者](https://github.com/sponsors/affaan-m) | [赞助档位](SPONSORS.md) | [赞助计划](SPONSORING.md)
+本分支无赞助计划。上游 ECC 的赞助请见 [affaan-m/ecc](https://github.com/affaan-m/ecc)。
 
 ---
 

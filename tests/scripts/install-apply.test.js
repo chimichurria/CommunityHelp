@@ -737,7 +737,8 @@ function runTests() {
           'commands-core',
           'platform-configs',
           'skill-unified-memory',
-          'workflow-quality'
+          'workflow-quality',
+          'ai-literacy'
         ]
       );
       assert.ok(state.resolution.skippedModules.includes('hooks-runtime'));
@@ -905,9 +906,15 @@ function runTests() {
       assert.strictEqual(settings.effortLevel, 'high', 'existing effortLevel should be preserved');
       assert.strictEqual(settings.includeCoAuthoredBy, false, 'Claude co-author attribution should be disabled by default');
       assert.deepStrictEqual(settings.env, { MY_VAR: '1' }, 'existing env should be preserved');
-      assert.deepStrictEqual(
-        settings.hooks.UserPromptSubmit,
-        [{ matcher: '*', hooks: [{ type: 'command', command: 'echo custom-submit' }] }],
+      // The coach registers a managed UserPromptSubmit entry, so this array is
+      // no longer expected to be untouched -- but the user's own hook must
+      // survive verbatim, and ours must be additive and identifiable by id.
+      assert.ok(
+        settings.hooks.UserPromptSubmit.some(
+          entry => entry.matcher === '*'
+            && entry.hooks.length === 1
+            && entry.hooks[0].command === 'echo custom-submit'
+        ),
         'unrelated existing hooks should be preserved'
       );
       assert.deepStrictEqual(

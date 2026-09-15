@@ -12,9 +12,27 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 const { isHookEnabled, isDryRun } = require('../lib/hook-flags');
-const { buildPreToolUseAdditionalContext } = require('./pretooluse-visible-output');
+const { buildAdditionalContext } = require('./pretooluse-visible-output');
 
 const MAX_STDIN = 1024 * 1024;
+
+// Events whose hook stdout is injected into the model's context rather than
+// treated as a pass-through of the payload. For these, echoing raw stdin on a
+// fail-open path would dump the entire hook payload -- session id included --
+// into the conversation on every prompt where the hook is disabled or errors.
+// Emitting nothing is the correct "no opinion" signal for them.
+const CONTEXT_INJECTING_EVENTS = new Set(['UserPromptSubmit', 'SessionStart']);
+
+function injectsStdoutAsContext(raw) {
+  if (typeof raw !== 'string' || raw.length === 0) return false;
+  try {
+    const payload = JSON.parse(raw);
+    const event = payload && (payload.hook_event_name || payload.hookEventName);
+    return CONTEXT_INJECTING_EVENTS.has(String(event));
+  } catch {
+    return false;
+  }
+}
 
 function readStdinRaw() {
   return new Promise(resolve => {
@@ -78,7 +96,10 @@ function resolveHookResult(raw, output) {
     const exitCode = Number.isInteger(output.exitCode) ? output.exitCode : 0;
 
     if (Object.prototype.hasOwnProperty.call(output, 'additionalContext')) {
-      return { stdout: buildPreToolUseAdditionalContext(output.additionalContext), exitCode };
+      // Hooks on events other than PreToolUse declare their event here; the
+      // default keeps every existing caller byte-identical.
+      const event = typeof output.hookEventName === 'string' ? output.hookEventName : 'PreToolUse';
+      return { stdout: buildAdditionalContext(event, output.additionalContext), exitCode };
     }
     if (Object.prototype.hasOwnProperty.call(output, 'stdout')) {
       return { stdout: String(output.stdout ?? ''), exitCode };
@@ -160,7 +181,8 @@ async function main() {
   // pass-through paths fail open. The hook itself still runs and receives
   // the truncated flag (run() context / ECC_HOOK_INPUT_TRUNCATED), so
   // security hooks like config-protection can still choose to block.
-  const sanitizeEcho = text => (truncated && text === raw ? '' : text);
+  const contextInjecting = injectsStdoutAsContext(raw);
+  const sanitizeEcho = text => ((truncated || contextInjecting) && text === raw ? '' : text);
   if (truncated) {
     process.stderr.write(`[Hook] stdin exceeded ${MAX_STDIN} bytes for ${hookId || 'unknown'}; suppressing pass-through (fail-open unless the hook blocks)\n`);
   }

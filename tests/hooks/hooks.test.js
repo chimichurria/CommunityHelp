@@ -1856,7 +1856,10 @@ async function runTests() {
         stdinJson,
         withPrependedPath(binDir, {
           HOME: isolatedHome,
-          USERPROFILE: isolatedHome
+          USERPROFILE: isolatedHome,
+          // Opt-in: fetching a missing formatter via npx/pnpm dlx/bunx is off
+          // by default in this fork, so the fallback path must be requested.
+          ECC_ALLOW_TOOL_DOWNLOAD: '1'
         })
       );
 
@@ -1885,7 +1888,7 @@ async function runTests() {
       createCommandShim(binDir, 'pnpm', logFile);
 
       const stdinJson = JSON.stringify({ tool_input: { file_path: filePath } });
-      const result = await runScript(path.join(scriptsDir, 'post-edit-format.js'), stdinJson, withPrependedPath(binDir, { CLAUDE_PACKAGE_MANAGER: 'pnpm' }));
+      const result = await runScript(path.join(scriptsDir, 'post-edit-format.js'), stdinJson, withPrependedPath(binDir, { CLAUDE_PACKAGE_MANAGER: 'pnpm', ECC_ALLOW_TOOL_DOWNLOAD: '1' }));
 
       assert.strictEqual(result.code, 0, 'Should exit 0 when pnpm fallback is used');
       const logEntries = readCommandLog(logFile);
@@ -1913,7 +1916,7 @@ async function runTests() {
       createCommandShim(binDir, 'bunx', logFile);
 
       const stdinJson = JSON.stringify({ tool_input: { file_path: filePath } });
-      const result = await runScript(path.join(scriptsDir, 'post-edit-format.js'), stdinJson, withPrependedPath(binDir));
+      const result = await runScript(path.join(scriptsDir, 'post-edit-format.js'), stdinJson, withPrependedPath(binDir, { ECC_ALLOW_TOOL_DOWNLOAD: '1' }));
 
       assert.strictEqual(result.code, 0, 'Should exit 0 when project config selects bun');
       const logEntries = readCommandLog(logFile);
@@ -6468,6 +6471,7 @@ Some random content without the expected ### Context to Load section
       const stdinJson = JSON.stringify({ transcript_path: transcriptPath });
       const result = await runScript(path.join(scriptsDir, 'session-end.js'), stdinJson, {
         HOME: testDir,
+        ECC_LLM_SUMMARY: '1', // opt-in: this fork defaults the LLM summary OFF
         ECC_LLM_SUMMARY_INTERVAL: '3',
         ECC_SKIP_LLM_SUMMARY: '1' // prevent actual claude -p invocation in tests
       });

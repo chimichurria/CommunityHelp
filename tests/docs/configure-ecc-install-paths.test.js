@@ -102,7 +102,7 @@ for (const relativePath of configureEccDocs) {
   test(`${relativePath} keeps provider capabilities truthful`, () => {
     const content = readConfigureEccDoc(relativePath);
 
-    assert.ok(content.includes('codex plugin add ecc@ecc --json'));
+    assert.ok(content.includes('codex plugin add communityhelp@communityhelp --json'));
     assert.ok(content.includes('Codex'));
     assert.ok(content.includes('.kimi-code'));
     assert.ok(content.includes('--target kimi'));

@@ -323,7 +323,6 @@ function runTests() {
   })) passed++; else failed++;
 
   if (test('README binds package runners to the release and avoids unaudited bootstraps', () => {
-    const version = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'package.json'))).version;
     assert.ok(
       readme.includes('git clone https://github.com/chimichurria/CommunityHelp.git'),
       'README should bind installs to this repository, not to a package registry'

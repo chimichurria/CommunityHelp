@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "totalCommands": 94,
+  "totalCommands": 99,
   "commands": [
     {
       "command": "aside",
@@ -37,6 +37,42 @@
       "allAgents": [],
       "skills": [],
       "path": "commands/checkpoint.md"
+    },
+    {
+      "command": "coach-contribute",
+      "description": "Review an anonymized improvement proposal and, only if you approve it, open a pull request upstream. The only path by which anything leaves your machine.",
+      "type": "review",
+      "primaryAgents": [],
+      "allAgents": [],
+      "skills": [],
+      "path": "commands/coach-contribute.md"
+    },
+    {
+      "command": "coach-evolve",
+      "description": "Propose improvements to coaching rules and skills from your local usage history. Proposes only - applies nothing.",
+      "type": "refactoring",
+      "primaryAgents": [],
+      "allAgents": [],
+      "skills": [],
+      "path": "commands/coach-evolve.md"
+    },
+    {
+      "command": "coach-mute",
+      "description": "Silence one coaching rule, or all of them, without disabling the coach entirely.",
+      "type": "testing",
+      "primaryAgents": [],
+      "allAgents": [],
+      "skills": [],
+      "path": "commands/coach-mute.md"
+    },
+    {
+      "command": "coach-status",
+      "description": "Show your AI-literacy profile - per-topic levels, which coaching rules are active, and which you have graduated from.",
+      "type": "general",
+      "primaryAgents": [],
+      "allAgents": [],
+      "skills": [],
+      "path": "commands/coach-status.md"
     },
     {
       "command": "code-review",
@@ -713,6 +749,17 @@
       "path": "commands/promote.md"
     },
     {
+      "command": "prompt-optimize",
+      "description": "Analyze a draft prompt and return an optimized, ready-to-paste version. Advisory only - writes no code and runs no commands.",
+      "type": "general",
+      "primaryAgents": [],
+      "allAgents": [],
+      "skills": [
+        "ai-literacy-coach"
+      ],
+      "path": "commands/prompt-optimize.md"
+    },
+    {
       "command": "prp-commit",
       "description": "Quick commit with natural language file targeting — describe what to commit in plain English",
       "type": "testing",
@@ -1029,12 +1076,12 @@
   "statistics": {
     "byType": {
       "build": 2,
-      "general": 10,
+      "general": 12,
       "orchestration": 11,
       "planning": 2,
-      "refactoring": 1,
-      "review": 15,
-      "testing": 53
+      "refactoring": 2,
+      "review": 16,
+      "testing": 54
     },
     "topAgents": [
       {
