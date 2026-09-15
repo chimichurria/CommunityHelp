@@ -34,13 +34,20 @@ test('guide requires an installer with native Antigravity 2.0 support', () => {
 });
 
 test('guide uses the published 2.2 package without stale pre-release copy', () => {
+  // This fork publishes no npm package, so there is no registry propagation to
+  // verify and no pinned package to run. `npm view ecc-universal` would query
+  // UPSTREAM's entry, which is exactly the confusion this fork has to avoid.
   assert.ok(
-    guide.includes('npm view ecc-universal version'),
-    'Guide should let operators verify registry propagation before installation'
+    !guide.includes('npm view ecc-universal'),
+    'Guide must not send operators to check upstream\'s registry entry'
   );
   assert.ok(
-    guide.includes('npx ecc-universal@2.2.0 install --profile minimal --target antigravity'),
-    'Guide should provide the pinned published-package installation path'
+    guide.includes('git clone https://github.com/chimichurria/CommunityHelp.git'),
+    'Guide should provide the clone-based installation path'
+  );
+  assert.ok(
+    guide.includes('install --profile minimal --target antigravity'),
+    'Guide should keep the antigravity install invocation'
   );
   assert.ok(
     !guide.includes('ECC 2.2.0 has not been published to npm yet'),

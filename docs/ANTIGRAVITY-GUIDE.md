@@ -10,12 +10,13 @@ below.
 
 ## Quick start
 
-Verify that 2.2.0 is readable from the registry, then run the pinned package
-from the project you want to configure:
+CommunityHelp is not published to npm, so there is no registry version to
+verify. Clone it once, then run the installer from the project you want to
+configure:
 
 ```bash
-npm view ecc-universal version
-node scripts/ecc.js install --profile minimal --target antigravity
+git clone https://github.com/chimichurria/CommunityHelp.git
+node /path/to/CommunityHelp/scripts/ecc.js install --profile minimal --target antigravity
 ```
 
 ### Source checkout alternative

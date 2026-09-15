@@ -233,6 +233,7 @@ commands:
   - plan-prd
   - pm2
   - pr
+  - privacy-audit
   - project-init
   - projects
   - promote
