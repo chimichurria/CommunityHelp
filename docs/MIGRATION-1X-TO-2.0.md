@@ -1,13 +1,13 @@
 # Migrating From ECC 1.x (everything-claude-code) To 2.0
 
-ECC 2.0 renamed the repo (`affaan-m/everything-claude-code` → `affaan-m/ECC`) and the plugin identifier (`everything-claude-code@everything-claude-code` → `ecc@ecc`). If you installed 1.x, follow this guide to upgrade cleanly. See also the [Naming + Migration Note](../README.md#naming--migration-note) in the README.
+ECC 2.0 renamed the repo (`affaan-m/everything-claude-code` → `affaan-m/ECC`) and the plugin identifier (`everything-claude-code@everything-claude-code` → `communityhelp@communityhelp`). If you installed 1.x, follow this guide to upgrade cleanly. See also the [Naming + Migration Note](../README.md#naming--migration-note) in the README.
 
 ## TL;DR
 
 ```bash
 # 1. Install 2.0
-/plugin marketplace add https://github.com/affaan-m/ECC
-/plugin install ecc@ecc
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
+/plugin install communityhelp@communityhelp
 
 # 2. Remove the old plugin
 /plugin uninstall everything-claude-code@everything-claude-code
@@ -17,7 +17,7 @@ Then remove any leftover 1.x folders (see below) and restart the session.
 
 ## "I now see two ECC plugins"
 
-Expected. `ecc@ecc` and `everything-claude-code@everything-claude-code` are treated as separate plugins by Claude Code. Uninstall the old one; keep only `ecc@ecc`. Running both duplicates skills, commands, and hook executions.
+Expected. `communityhelp@communityhelp` and `everything-claude-code@everything-claude-code` are treated as separate plugins by Claude Code. Uninstall the old one; keep only `communityhelp@communityhelp`. Running both duplicates skills, commands, and hook executions.
 
 ## Leftover folders after uninstalling 1.x
 

@@ -128,10 +128,10 @@ Comece em menos de 2 minutos:
 
 ```bash
 # Adicionar marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Instalar plugin
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### Passo 2: Instalar as Regras (Obrigatório)
@@ -174,7 +174,7 @@ npx ecc-universal install typescript
 # /plan "Adicionar autenticação de usuário"
 
 # Verificar comandos disponíveis
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **Pronto!** Você agora tem acesso a 28 agentes, 116 skills e 59 comandos.
@@ -317,10 +317,10 @@ claude --version
 
 ```bash
 # Adicionar este repositório como marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Instalar o plugin
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 Ou adicione diretamente ao seu `~/.claude/settings.json`:
@@ -336,7 +336,7 @@ Ou adicione diretamente ao seu `~/.claude/settings.json`:
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```
@@ -459,7 +459,7 @@ Regras são diretrizes sempre seguidas, organizadas em `common/` (agnóstico à 
 <summary><b>Como verificar quais agentes/comandos estão instalados?</b></summary>
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 </details>
 

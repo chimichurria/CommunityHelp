@@ -49,15 +49,15 @@
 </p>
 
 > [!WARNING]
-> **Лише офіційні джерела.** Встановлюйте ECC виключно з перевірених каналів: репозиторій GitHub [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC), пакети npm [`ecc-universal`](https://www.npmjs.com/package/ecc-universal) та [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield), [GitHub App](https://github.com/apps/ecc-tools), ідентифікатор плагіна `ecc@ecc`, та вебсайт проєкту [ecc.tools](https://ecc.tools). Сторонні перезавантаження та неофіційні дзеркала не підтримуються і не перевіряються проєктом та можуть містити шкідливе програмне забезпечення.
+> **Лише офіційні джерела.** Встановлюйте ECC виключно з перевірених каналів: репозиторій GitHub [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC), пакети npm [`ecc-universal`](https://www.npmjs.com/package/ecc-universal) та [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield), [GitHub App](https://github.com/apps/ecc-tools), ідентифікатор плагіна `communityhelp@communityhelp`, та вебсайт проєкту [ecc.tools](https://ecc.tools). Сторонні перезавантаження та неофіційні дзеркала не підтримуються і не перевіряються проєктом та можуть містити шкідливе програмне забезпечення.
 
 ## Встановлення через Claude Code
 
 Виконайте ці команди всередині Claude Code:
 
 ```text
-/plugin marketplace add https://github.com/affaan-m/ECC
-/plugin install ecc@ecc
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
+/plugin install communityhelp@communityhelp
 ```
 
 Це встановлює навички, агенти, команди та керовані плагіном хуки ECC. Якщо ви обираєте цей шлях, зупиніться на цьому. Не запускайте також повне ручне встановлення в Claude Code.
@@ -197,7 +197,7 @@ cp -R rules/typescript ~/.claude/rules/ecc/  # замініть на ваш ст
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```
@@ -206,15 +206,15 @@ cp -R rules/typescript ~/.claude/rules/ecc/  # замініть на ваш ст
 </details>
 
 <details>
-<summary><strong>Примітка щодо іменування та міграції (ecc@ecc, affaan-m/ECC, ecc-universal)</strong></summary>
+<summary><strong>Примітка щодо іменування та міграції (communityhelp@communityhelp, affaan-m/ECC, ecc-universal)</strong></summary>
 
 ECC має три публічних ідентифікатори, і вони не є взаємозамінними:
 
 - Вихідний репозиторій GitHub: `affaan-m/ECC`
-- Ідентифікатор marketplace/плагіна Claude: `ecc@ecc`
+- Ідентифікатор marketplace/плагіна Claude: `communityhelp@communityhelp`
 - Пакет npm: `ecc-universal`
 
-Це навмисно. Встановлення через marketplace/плагін Anthropic прив'язані до канонічного ідентифікатора плагіна, тому ECC використовує `ecc@ecc`, щоб зберегти назви інструментів і простори імен команд зі слешем достатньо короткими для строгих валідаторів Desktop/API. Старі публікації можуть показувати попередній довгий ідентифікатор marketplace; вважайте це лише застарілим псевдонімом. Окремо, пакет npm навмисно залишився на `ecc-universal`, тому встановлення через npm та marketplace навмисно використовують різні назви.
+Це навмисно. Встановлення через marketplace/плагін Anthropic прив'язані до канонічного ідентифікатора плагіна, тому ECC використовує `communityhelp@communityhelp`, щоб зберегти назви інструментів і простори імен команд зі слешем достатньо короткими для строгих валідаторів Desktop/API. Старі публікації можуть показувати попередній довгий ідентифікатор marketplace; вважайте це лише застарілим псевдонімом. Окремо, пакет npm навмисно залишився на `ecc-universal`, тому встановлення через npm та marketplace навмисно використовують різні назви.
 
 Релізи npm вирізаються за тегом версії, а не за кожним комітом, тому `ecc-universal` відстежує релізи (2.1, 2.2, ...), а не кожен push у `main`. Встановлюйте з git, якщо хочете найсвіжішу версію.
 
@@ -226,13 +226,13 @@ ECC має три публічних ідентифікатори, і вони �
 Поточні релізи Codex можуть встановлювати ECC як нативний плагін репо-маркетплейсу. Запис маркетплейсу використовує корінь репозиторію, тому кеш Codex отримує маніфест разом з усіма навичками, конфігурацією MCP, середовищем виконання хуків, скриптами та ресурсами, на які є посилання:
 
 ```bash
-codex plugin marketplace add affaan-m/ECC
-codex plugin add ecc@ecc
+codex plugin marketplace add chimichurria/CommunityHelp
+codex plugin add communityhelp@communityhelp
 codex plugin list --json
 node scripts/codex/check-plugin-cache.js
 ```
 
-Обидві команди додавання ідемпотентні. Щоб оновити пізніше, запустіть `codex plugin marketplace upgrade ecc`, а потім `codex plugin add ecc@ecc`. Codex зберігає стан одного увімкненого плагіна в активному `CODEX_HOME`; він не пропонує рівні `user`, `project` та `local` Claude. Його нативні хуки вимагають явного рішення про довіру і не використовують чотири профілі хуків ECC для Claude. Всередині Codex викликайте `$configure-ecc` для керованого потоку, що враховує провайдера.
+Обидві команди додавання ідемпотентні. Щоб оновити пізніше, запустіть `codex plugin marketplace upgrade ecc`, а потім `codex plugin add communityhelp@communityhelp`. Codex зберігає стан одного увімкненого плагіна в активному `CODEX_HOME`; він не пропонує рівні `user`, `project` та `local` Claude. Його нативні хуки вимагають явного рішення про довіру і не використовують чотири профілі хуків ECC для Claude. Всередині Codex викликайте `$configure-ecc` для керованого потоку, що враховує провайдера.
 
 Старіший шлях `scripts/sync-ecc-to-codex.sh` залишається окремим варіантом сумісності для користувачів, які навмисно хочуть скопійовану та злиту конфігурацію в `~/.codex`; він не потрібен для нативного плагіна. Спочатку запустіть Codex один раз, щоб `~/.codex/config.toml` існував, потім:
 
@@ -578,7 +578,7 @@ npx ecc-universal setup
 
 Yarn Classic 1 не надає `yarn dlx`; використовуйте `npx`, встановіть пакет глобально, або оновіть Yarn для тимчасового одноразового запуску після публікації 2.2.
 
-Майстер інвентаризує офіційний маркетплейс і кожен нативний рівень встановлення Claude перед внесенням змін, потім встановлює, оновлює чи безпечно переміщує `ecc@ecc` до обраного вами рівня. Повторно запускайте ту саму команду, коли хочете оновити ECC, змінити рівень чи змінити профіль хуків. Цей майстер налаштування наразі налаштовує плагін Claude Code; використовуйте мультиоболонковий майстер нижче для Codex чи Kimi Code.
+Майстер інвентаризує офіційний маркетплейс і кожен нативний рівень встановлення Claude перед внесенням змін, потім встановлює, оновлює чи безпечно переміщує `communityhelp@communityhelp` до обраного вами рівня. Повторно запускайте ту саму команду, коли хочете оновити ECC, змінити рівень чи змінити профіль хуків. Цей майстер налаштування наразі налаштовує плагін Claude Code; використовуйте мультиоболонковий майстер нижче для Codex чи Kimi Code.
 
 Щоб налаштувати більше одного кодового агента в одному переглянутому потоці, використовуйте мультиоболонковий майстер:
 
@@ -590,7 +590,7 @@ npx ecc-universal install --guided
 
 | Оболонка | Поведінка керованого встановлення |
 |---|---|
-| Claude Code | Нативний плагін `ecc@ecc` з одним рівнем `user`, `project` чи `local` та профілем хуків ECC |
+| Claude Code | Нативний плагін `communityhelp@communityhelp` з одним рівнем `user`, `project` чи `local` та профілем хуків ECC |
 | Codex | Нативний життєвий цикл маркетплейсу/плагіна Codex; перегляд і довіра хуків залишаються за Codex |
 | Kimi Code | Керовані файли проєкту під `./.kimi-code`; хуки ECC, налаштування моделі/провайдера та автентифікація не налаштовуються |
 
@@ -656,7 +656,7 @@ ECC також постачає розширені керовані адапте
 Навички — це основна поверхня процесів. Команди залишаються зручними точками входу та шимами сумісності. Перевірте, що встановлено:
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 </details>
 
@@ -1696,7 +1696,7 @@ Duplicate hooks file detected: ./hooks/hooks.json resolves to already-loaded fil
 Встановлюйте ECC лише з офіційних джерел:
 
 - Репозиторій GitHub: <https://github.com/affaan-m/ECC>
-- Плагін Claude Code: `ecc@ecc`
+- Плагін Claude Code: `communityhelp@communityhelp`
 - Пакети npm: [`ecc-universal`](https://www.npmjs.com/package/ecc-universal) та [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 - GitHub App: <https://github.com/apps/ecc-tools>
 - Вебсайт: <https://ecc.tools>

@@ -67,10 +67,10 @@
 
 ```bash
 # 新增市集
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # 安裝外掛程式
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### 第二步：安裝規則（必需）
@@ -95,7 +95,7 @@ cp -r everything-claude-code/rules/* ~/.claude/rules/
 # /plan "新增使用者認證"
 
 # 查看可用指令
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **完成！** 您現在使用 15+ 代理程式、30+ 技能和 20+ 指令。
@@ -267,10 +267,10 @@ everything-claude-code/
 
 ```bash
 # 將此儲存庫新增為市集
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # 安裝外掛程式
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 或直接新增到您的 `~/.claude/settings.json`：
@@ -286,7 +286,7 @@ everything-claude-code/
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```

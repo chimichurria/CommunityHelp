@@ -48,19 +48,19 @@ Nếu bạn đã cài chồng nhiều lần và thấy skill/hook bị trùng, x
 
 ```bash
 # Thêm marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Cài plugin
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ECC có ba định danh công khai khác nhau:
 
 - Repo GitHub: `affaan-m/everything-claude-code`
-- Plugin Claude marketplace: `ecc@ecc`
+- Plugin Claude marketplace: `communityhelp@communityhelp`
 - Gói npm: `ecc-universal`
 
-Các tên này cố ý khác nhau. Plugin Claude Code dùng `ecc@ecc`; npm vẫn dùng `ecc-universal`.
+Các tên này cố ý khác nhau. Plugin Claude Code dùng `communityhelp@communityhelp`; npm vẫn dùng `ecc-universal`.
 
 ### Copy rules nếu cần
 
@@ -173,7 +173,7 @@ ECC chỉ xoá file có trong install-state của nó. Nó không xoá file khô
 # /plan "Thêm xác thực người dùng"
 
 # Xem plugin đang cài
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 ECC hiện cung cấp hàng chục agent, hơn 200 skill và legacy command shim cho các workflow agent khác nhau. Kiểm tra README tiếng Anh để xem danh sách và hướng dẫn chi tiết nhất.

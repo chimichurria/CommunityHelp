@@ -112,10 +112,10 @@
 
 ```bash
 # 마켓플레이스 추가
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # 플러그인 설치
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### 2단계: 룰 설치 (필수)
@@ -147,7 +147,7 @@ cd everything-claude-code
 # /plan "사용자 인증 추가"
 
 # 사용 가능한 커맨드 확인
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **끝!** 이제 16개 에이전트, 65개 스킬, 40개 커맨드를 사용할 수 있습니다.
@@ -356,10 +356,10 @@ Claude Code v2.1+는 설치된 플러그인의 `hooks/hooks.json`을 **자동으
 
 ```bash
 # 마켓플레이스 추가
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # 플러그인 설치
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 또는 `~/.claude/settings.json`에 직접 추가:
@@ -375,7 +375,7 @@ Claude Code v2.1+는 설치된 플러그인의 `hooks/hooks.json`을 **자동으
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```
@@ -535,7 +535,7 @@ rules/
 <summary><b>설치된 에이전트/커맨드 확인은 어떻게 하나요?</b></summary>
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 플러그인에서 사용할 수 있는 모든 에이전트, 커맨드, 스킬을 보여줍니다.

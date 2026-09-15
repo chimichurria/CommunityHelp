@@ -103,7 +103,7 @@ Surface a Pro CTA where free users already feel value: a footer in terminal/JSON
 - **Linked:** PR #2133, PR #2307, PR #2063, PR #2273, PR #2246, PR #2312, PR #2293, issue #2316
 - **MRR angle:** Broken model IDs hard-fail the multi-model LLM layer Pro features depend on; broken plan-orchestrate install detection and Windows crashes degrade the paid UX and erode trust before users ever reach the upgrade prompt.
 
-Merge the clean, verified batch: PR #2133 (Claude provider model-ID + adaptive-thinking fix — replaces invalid IDs with claude-sonnet-4-6/haiku-4-5/opus-4-8, routes SYSTEM to top-level, omits temperature, adaptive thinking for Opus 4.7/4.8; previous default would 404/400 at the API), PR #2307 + #2063 (Windows test/UTF-8 fixes), PR #2273/#2246/#2312 (docs/workflow), PR #2293 (dependabot minor/patch). Schedule a fix for issue #2316 (plan-orchestrate still probes old paths after the ecc@ecc marketplace rename — broken install detection on a core workflow command).
+Merge the clean, verified batch: PR #2133 (Claude provider model-ID + adaptive-thinking fix — replaces invalid IDs with claude-sonnet-4-6/haiku-4-5/opus-4-8, routes SYSTEM to top-level, omits temperature, adaptive thinking for Opus 4.7/4.8; previous default would 404/400 at the API), PR #2307 + #2063 (Windows test/UTF-8 fixes), PR #2273/#2246/#2312 (docs/workflow), PR #2293 (dependabot minor/patch). Schedule a fix for issue #2316 (plan-orchestrate still probes old paths after the communityhelp@communityhelp marketplace rename — broken install detection on a core workflow command).
 
 ### Harden continuous-learning storage (path traversal + registry race)
 
@@ -305,7 +305,7 @@ Notable gaps vs us (missing today):
 | close | PR #2137 | feat: add ULTRA CODE self-evolving operator SOP |
 | needs-work | PR #2136 | Add opt-in AURA trust-check adapter (integrations/aura) |
 | merge | PR #2063 | fix(instinct-cli): pin file reads and stdout to UTF-8 on Windows |
-| merge | issue #2316 | plan-orchestrate: stale ECC install detection after marketplace rename to ecc@ecc |
+| merge | issue #2316 | plan-orchestrate: stale ECC install detection after marketplace rename to communityhelp@communityhelp |
 | triage-later | issue #2308 | feat: add dev-team, project-context, story-lifecycle community skills |
 | merge | issue #2306 | docs: Scope Decision Guide table duplicated in SKILL.md and observer.md with drift |
 | merge | issue #2305 | chore: unused 'from unittest import mock' in test\_parse\_instinct.py |

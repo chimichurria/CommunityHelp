@@ -267,10 +267,10 @@ npx ecc-universal install --profile minimal --target claude --with capability:ma
 
 ```bash
 # Agregar marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Instalar plugin
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### Nota de Nombres y Migración
@@ -278,10 +278,10 @@ npx ecc-universal install --profile minimal --target claude --with capability:ma
 ECC tiene tres identificadores públicos que no son intercambiables:
 
 - Repositorio fuente de GitHub: `affaan-m/ECC`
-- Identificador de marketplace/plugin de Claude: `ecc@ecc`
+- Identificador de marketplace/plugin de Claude: `communityhelp@communityhelp`
 - Paquete npm: `ecc-universal`
 
-Esto es intencional. Las instalaciones del marketplace/plugin de Anthropic se identifican por un identificador de plugin canónico, por lo que ECC usa `ecc@ecc` para mantener los nombres de herramientas y los espacios de nombres de comandos slash lo suficientemente cortos para los validadores estrictos de Desktop/API. Las publicaciones antiguas pueden mostrar el anterior identificador largo del marketplace; trátalo solo como un alias heredado. Por su parte, el paquete npm se mantuvo en `ecc-universal`, por lo que las instalaciones de npm y las del marketplace usan intencionalmente nombres diferentes.
+Esto es intencional. Las instalaciones del marketplace/plugin de Anthropic se identifican por un identificador de plugin canónico, por lo que ECC usa `communityhelp@communityhelp` para mantener los nombres de herramientas y los espacios de nombres de comandos slash lo suficientemente cortos para los validadores estrictos de Desktop/API. Las publicaciones antiguas pueden mostrar el anterior identificador largo del marketplace; trátalo solo como un alias heredado. Por su parte, el paquete npm se mantuvo en `ecc-universal`, por lo que las instalaciones de npm y las del marketplace usan intencionalmente nombres diferentes.
 
 ### Paso 2: Instalar Reglas Solo Si Las Necesitas
 
@@ -391,7 +391,7 @@ Si combinaste métodos, limpia en este orden:
 # /plan "Añadir autenticación de usuario"
 
 # Ver comandos disponibles
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **¡Listo!** Ahora tienes acceso a 63 agentes, 249 skills y 79 shims de comandos legados.
@@ -687,10 +687,10 @@ La forma más fácil de usar este repo — instálalo como plugin de Claude Code
 
 ```bash
 # Añadir este repo como marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Instalar el plugin
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 O añade directamente a tu `~/.claude/settings.json`:
@@ -706,7 +706,7 @@ O añade directamente a tu `~/.claude/settings.json`:
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```
@@ -936,7 +936,7 @@ skill e2e-testing                             → e2e-runner: pruebas de flujos 
 <summary><b>¿Cómo veo qué agentes/comandos están instalados?</b></summary>
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 Muestra todos los agentes, comandos y skills disponibles del plugin.

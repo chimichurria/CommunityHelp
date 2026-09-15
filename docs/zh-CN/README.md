@@ -185,7 +185,9 @@ Codex、Hermes 等 harness 之间传递上下文。常规搜索只召回 `projec
 `PATH`。请先单独安装 ECC npm 运行时：
 
 ```bash
-npm install -g ecc-universal
+# CommunityHelp is not on npm. Link the CLI from your clone:
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp && npm install --ignore-scripts && npm link
 ecc memory --help
 command -v ecc-memory-mcp
 ```
@@ -203,10 +205,10 @@ command -v ecc-memory-mcp
 
 ```bash
 # Add marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Install plugin
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### 步骤 2：安装规则（必需）
@@ -257,7 +259,7 @@ Copy-Item -Recurse rules/typescript "$HOME/.claude/rules/"
 # /plan "Add user authentication"
 
 # Check available commands
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **搞定！** 你现在可以使用 68 个智能体、292 项技能和 94 个命令了。
@@ -639,10 +641,10 @@ Claude Code v2.1+ **会自动加载** 任何已安装插件中的 `hooks/hooks.j
 
 ```bash
 # Add this repo as a marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Install the plugin
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 或者直接添加到您的 `~/.claude/settings.json`：
@@ -658,7 +660,7 @@ Claude Code v2.1+ **会自动加载** 任何已安装插件中的 `hooks/hooks.j
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```
@@ -853,7 +855,7 @@ e2e-testing 技能                              → e2e-runner: 关键用户流�
 <summary><b>如何检查已安装的代理/命令？</b></summary>
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 这会显示插件中所有可用的代理、命令和技能。

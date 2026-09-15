@@ -48,8 +48,8 @@ test('documents the separately installed ECC runtime on every exposed surface', 
     const source = read(relativePath);
     assert.match(
       source,
-      /npm install -g ecc-universal/i,
-      `${relativePath} must state how to install the required CLI runtime`
+      /git clone https:\/\/github\.com\/chimichurria\/CommunityHelp\.git/i,
+      `${relativePath} must state how to install the required CLI runtime (this fork is not on npm)`
     );
     assert.match(
       source,

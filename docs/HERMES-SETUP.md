@@ -58,7 +58,9 @@ that the agents share. Skill-only, minimal, manual, and Claude plugin installs
 do not add the Memory Vault runtime to `PATH`; install it separately first:
 
 ```bash
-npm install -g ecc-universal
+# CommunityHelp is not on npm. Link the CLI from your clone:
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp && npm install --ignore-scripts && npm link
 ecc memory --help
 command -v ecc-memory-mcp
 ```

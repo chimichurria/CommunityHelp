@@ -36,7 +36,7 @@ claude plugin list --json
 claude plugin marketplace list --json
 ```
 
-只有一个现有 `ecc@ecc` 时，将本次视为重新配置。不要把 Claude 提供商所有的
+只有一个现有 `communityhelp@communityhelp` 时，将本次视为重新配置。不要把 Claude 提供商所有的
 “Open home page”控件当作安装证据。若 setup 报告多个 ECC 范围、旧版或手动
 安装、配置损坏或 marketplace 冲突，请停止并原样报告恢复建议，不要猜测要删除哪个。
 
@@ -107,7 +107,7 @@ npx --yes --package ecc-universal ecc setup --mode claude-plugin \
 claude plugin list --json
 ```
 
-只有在所选范围中恰好存在一个已启用的 `ecc@ecc` 条目时才继续。如果
+只有在所选范围中恰好存在一个已启用的 `communityhelp@communityhelp` 条目时才继续。如果
 `$CLAUDE_PLUGIN_ROOT` 可用，把成功 setup 的 `action`（`installed`、`updated`、
 `migrated`、`resumed` 或 `already-migrated`）传给内置渲染器：
 
@@ -131,14 +131,14 @@ Hook 四档模式。Codex 原生插件支持提供商专用 Hook，但 Codex 会
 如果缺少 ECC marketplace，请添加；否则刷新快照：
 
 ```bash
-codex plugin marketplace add affaan-m/ECC
+codex plugin marketplace add chimichurria/CommunityHelp
 codex plugin marketplace upgrade ecc --json
 ```
 
 只确认一次，然后安装或幂等刷新已安装缓存，并验证：
 
 ```bash
-codex plugin add ecc@ecc --json
+codex plugin add communityhelp@communityhelp --json
 codex plugin list --json
 ```
 

@@ -108,10 +108,10 @@ ECC v2.0.0-rc.1 اس قابل استعمال پرت پر عوامی Hermes آپ�
 
 ```bash
 # مارکیٹ پلیس شامل کریں
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # پلگ ان انسٹال کریں
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### مرحلہ 2: Rules انسٹال کریں (اگر ضرورت ہو)
@@ -134,7 +134,7 @@ cp -R rules/typescript ~/.claude/rules/ecc/  # اپنی زبان منتخب کر
 /ecc:plan "یوزر تصدیق شامل کریں"
 
 # دستیاب commands چیک کریں
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **بس!** آپ کو اب 61 agents، 246 skills، اور 76 legacy command shims تک رسائی حاصل ہے۔
@@ -271,7 +271,7 @@ export ECC_SESSION_START_CONTEXT=off
 
 **میں کیسے چیک کروں کہ کون سے agents/commands انسٹال ہیں؟**
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **میری hooks کام نہیں کر رہیں / "Duplicate hooks file" errors آ رہی ہیں**

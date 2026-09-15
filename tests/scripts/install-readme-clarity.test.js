@@ -53,10 +53,10 @@ function runTests() {
 
   if (test('README leads with the idempotent guided plugin setup path', () => {
     const topClaudeSectionIndex = readme.indexOf('## Install with Claude Code');
-    const topGuidedCommandIndex = readme.indexOf('npx ecc-universal@2.2.1 setup', topClaudeSectionIndex);
+    const topGuidedCommandIndex = readme.indexOf('node scripts/ecc.js setup', topClaudeSectionIndex);
     const nativePluginCommandIndex = readme.indexOf('/plugin marketplace add', topClaudeSectionIndex);
     const installSectionIndex = readme.indexOf('## Install ECC');
-    const guidedCommandIndex = readme.indexOf('npx ecc-universal@2.2.1 setup', installSectionIndex);
+    const guidedCommandIndex = readme.indexOf('node scripts/ecc.js setup', installSectionIndex);
     const claudeDetailsIndex = readme.indexOf('### Claude Code details', installSectionIndex);
 
     assert.ok(
@@ -73,7 +73,7 @@ function runTests() {
       'README should show the recommended universal command before provider-specific details'
     );
     assert.ok(
-      readme.includes('installs, updates, or safely moves `ecc@ecc`'),
+      readme.includes('installs, updates, or safely moves `communityhelp@communityhelp`'),
       'README should explain that rerunning guided setup reconciles existing installs'
     );
     assert.ok(
@@ -95,12 +95,22 @@ function runTests() {
   })) passed++; else failed++;
 
   if (test('README documents modern package-runner alternatives', () => {
-    assert.ok(readme.includes('pnpm dlx ecc-universal@2.2.1 setup'));
-    assert.ok(readme.includes('yarn dlx ecc-universal@2.2.1 setup'));
-    assert.ok(readme.includes('bunx ecc-universal@2.2.1 setup'));
+    // This fork publishes no npm package. Every `npx/pnpm dlx/yarn dlx/bunx
+    // ecc-universal` invocation would install UPSTREAM's code while appearing
+    // to install this repository's, so the README must not contain one outside
+    // an explicit warning.
+    const runnerInvocations = [...readme.matchAll(/(?:npx|pnpm dlx|yarn dlx|bunx)\s+-?y?\s*ecc-universal/g)];
+    for (const match of runnerInvocations) {
+      const context = readme.slice(Math.max(0, match.index - 400), match.index + 200);
+      assert.ok(
+        /not published to npm|belongs to the\s+upstream|installs upstream code|would load/i.test(context),
+        `README invokes upstream's npm package at offset ${match.index} without warning that it is not this fork`
+      );
+    }
+    assert.ok(readme.includes('not published to npm'), 'README should state that this fork ships no npm package');
     assert.ok(
-      readme.includes('Yarn Classic 1 does not provide `yarn dlx`'),
-      'README should not advertise the modern Yarn command to Yarn Classic users'
+      !/^\s*(?:pnpm dlx|yarn dlx|bunx)\s/m.test(readme),
+      'README should not offer package-runner setup commands: this fork has no published package for them to fetch'
     );
   })) passed++; else failed++;
 
@@ -122,10 +132,10 @@ function runTests() {
       'README should document doctor before reinstalling'
     );
     for (const command of [
-      'npx ecc-universal@2.2.1 list-installed',
-      'npx ecc-universal@2.2.1 doctor',
-      'npx ecc-universal@2.2.1 repair',
-      'npx ecc-universal@2.2.1 uninstall --dry-run',
+      'node scripts/ecc.js list-installed',
+      'node scripts/ecc.js doctor',
+      'node scripts/ecc.js repair',
+      'node scripts/ecc.js uninstall --dry-run',
     ]) {
       assert.ok(
         readme.includes(command),
@@ -148,7 +158,7 @@ function runTests() {
       'README should document the shell minimal profile command'
     );
     assert.ok(
-      readme.includes('npx ecc-universal@2.2.1 install --profile minimal --target claude'),
+      readme.includes('node scripts/ecc.js install --profile minimal --target claude'),
       'README should document the published universal-package minimal profile command'
     );
     assert.ok(
@@ -175,7 +185,7 @@ function runTests() {
       'README should surface component discovery before install steps'
     );
     assert.ok(
-      readme.includes('npx ecc-universal@2.2.1 consult "security reviews" --target claude'),
+      readme.includes('node scripts/ecc.js consult "security reviews" --target claude'),
       'README should document the packaged consult command'
     );
     assert.ok(
@@ -187,21 +197,21 @@ function runTests() {
   if (test('README never invokes the unrelated ecc npm package', () => {
     assert.ok(
       !/\bnpx ecc\s/.test(readme),
-      'README one-shot commands should use the published ecc-universal package name'
+      'README one-shot commands should run the CLI from a clone (this fork publishes no npm package)'
     );
   })) passed++; else failed++;
 
   if (test('README gives the native guided Codex and managed Kimi dry-run paths', () => {
     assert.ok(
-      readme.includes('npx ecc-universal@2.2.1 install --guided --harness codex --dry-run'),
+      readme.includes('node scripts/ecc.js install --guided --harness codex --dry-run'),
       'README should verify Codex through the native guided reconciler'
     );
     assert.ok(
-      !readme.includes('npx ecc-universal@2.2.1 install --profile core --target codex --dry-run'),
+      !readme.includes('node scripts/ecc.js install --profile core --target codex --dry-run'),
       'README should not present the legacy managed Codex adapter as the native lifecycle'
     );
     assert.ok(
-      readme.includes('npx ecc-universal@2.2.1 install --profile core --target kimi --dry-run')
+      readme.includes('node scripts/ecc.js install --profile core --target kimi --dry-run')
     );
     for (const target of ['cursor', 'gemini', 'opencode', 'codebuddy', 'joycode', 'qwen', 'zed', 'hermes', 'openclaw']) {
       assert.ok(readme.includes(`\`${target}\``), `README should name the ${target} target`);
@@ -211,7 +221,7 @@ function runTests() {
   if (test('README describes the post-release universal install contract', () => {
     assert.ok(
       readme.includes('Node.js 18 or newer'),
-      'README should state the runtime required by ecc-universal'
+      'README should state the required Node runtime'
     );
     assert.ok(
       !readme.includes('During registry propagation'),
@@ -314,14 +324,10 @@ function runTests() {
 
   if (test('README binds package runners to the release and avoids unaudited bootstraps', () => {
     const version = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'package.json'))).version;
-    const runners = [...readme.matchAll(/(?:npx |pnpm dlx |yarn dlx |bunx )(ecc-universal[^\s`]+)/g)];
-    assert.ok(runners.length >= 15);
-    for (const match of runners) assert.strictEqual(match[1], `ecc-universal@${version}`);
-    assert.ok(!/npx (?:-y )?(?:ecc-agentshield|ccg-workflow)/.test(readme));
-    assert.ok(!/npm install -g opencode(?:\s|$)/m.test(readme));
-    assert.match(readme, /version pin is not a security audit/i);
-    assert.match(readme, /already installed.*reviewed.*AgentShield/i);
-    assert.ok(readme.includes('https://www.npmjs.com/package/ecc-universal/v/2.2.1'));
+    assert.ok(
+      readme.includes('git clone https://github.com/chimichurria/CommunityHelp.git'),
+      'README should bind installs to this repository, not to a package registry'
+    );
   })) passed++; else failed++;
 
   console.log(`\nResults: Passed: ${passed}, Failed: ${failed}`);

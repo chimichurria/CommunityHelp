@@ -41,7 +41,7 @@ claude plugin list --json
 claude plugin marketplace list --json
 ```
 
-Treat a single existing `ecc@ecc` installation as a reconfiguration. Do not
+Treat a single existing `communityhelp@communityhelp` installation as a reconfiguration. Do not
 interpret Claude's provider-owned "Open home page" control as installation
 evidence. Stop and report the recovery returned by setup for multiple ECC
 scopes, a legacy/manual install, malformed settings, or a marketplace collision;
@@ -119,7 +119,7 @@ the selected values. Then independently run:
 claude plugin list --json
 ```
 
-Continue only when exactly one enabled `ecc@ecc` entry exists at the selected
+Continue only when exactly one enabled `communityhelp@communityhelp` entry exists at the selected
 scope. When `$CLAUDE_PLUGIN_ROOT` is available, pass the successful setup
 `action` (`installed`, `updated`, `migrated`, `resumed`, or
 `already-migrated`) to the bundled renderer:
@@ -149,7 +149,7 @@ claim those profiles map to Codex.
 If the ECC marketplace is missing, add it. Otherwise refresh its snapshot:
 
 ```bash
-codex plugin marketplace add affaan-m/ECC
+codex plugin marketplace add chimichurria/CommunityHelp
 codex plugin marketplace upgrade ecc --json
 ```
 
@@ -157,7 +157,7 @@ Ask for one confirmation, then install or idempotently refresh the installed
 cache and verify it:
 
 ```bash
-codex plugin add ecc@ecc --json
+codex plugin add communityhelp@communityhelp --json
 codex plugin list --json
 ```
 

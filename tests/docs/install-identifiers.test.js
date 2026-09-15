@@ -40,7 +40,7 @@ for (const relativePath of publicInstallDocs) {
   });
 
   test(`${relativePath} documents the short marketplace plugin identifier`, () => {
-    assert.ok(content.includes('ecc@ecc'));
+    assert.ok(content.includes('communityhelp@communityhelp'));
   });
 }
 

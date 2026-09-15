@@ -115,7 +115,9 @@ Codex、Hermes 等 harness 之间传递上下文。常规搜索只召回 `projec
 `PATH`。请先单独安装 ECC npm 运行时：
 
 ```bash
-npm install -g ecc-universal
+# CommunityHelp is not on npm. Link the CLI from your clone:
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp && npm install --ignore-scripts && npm link
 ecc memory --help
 command -v ecc-memory-mcp
 ```
@@ -135,13 +137,13 @@ command -v ecc-memory-mcp
 
 ```bash
 # 添加市场
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # 安装插件
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
-> 安装名称说明：较早的帖子里可能还会出现较长的旧标识符。Anthropic 的 marketplace/plugin 安装是按规范化插件标识符寻址的，因此 ECC 现在统一为 `ecc@ecc`，让工具名和 slash command 命名空间保持简短。
+> 安装名称说明：较早的帖子里可能还会出现较长的旧标识符。Anthropic 的 marketplace/plugin 安装是按规范化插件标识符寻址的，因此 ECC 现在统一为 `communityhelp@communityhelp`，让工具名和 slash command 命名空间保持简短。
 
 ### 第二步：仅在需要时安装规则
 
@@ -193,7 +195,7 @@ Copy-Item -Recurse rules/typescript "$HOME/.claude/rules/"
 # /plan "添加用户认证"
 
 # 查看可用命令
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **完成！** 你现在可以使用 68 个代理、292 个技能和 94 个命令。
@@ -583,10 +585,10 @@ Claude Code v2.1+ 会**按照约定自动加载**已安装插件中的 `hooks/ho
 
 ```bash
 # 将此仓库添加为市场
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # 安装插件
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 或直接添加到你的 `~/.claude/settings.json`：
@@ -602,7 +604,7 @@ Claude Code v2.1+ 会**按照约定自动加载**已安装插件中的 `hooks/ho
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```

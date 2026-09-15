@@ -222,10 +222,10 @@ npx ecc-universal consult "security reviews" --target claude
 
 ```bash
 # Добавьте marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Установите плагин
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### Примечание об именовании и миграции
@@ -233,10 +233,10 @@ npx ecc-universal consult "security reviews" --target claude
 У ECC теперь три публичных идентификатора, и они не взаимозаменяемы:
 
 - исходный репозиторий GitHub: `affaan-m/everything-claude-code`
-- идентификатор Claude marketplace/plugin: `ecc@ecc`
+- идентификатор Claude marketplace/plugin: `communityhelp@communityhelp`
 - npm-пакет: `ecc-universal`
 
-Это сделано намеренно. Установки Anthropic marketplace/plugin ключуются каноническим идентификатором плагина, поэтому ECC использует `ecc@ecc`, чтобы имена инструментов и пространства имен slash-команд оставались достаточно короткими для строгих валидаторов Desktop/API. Старые публикации могут всё ещё показывать прежний длинный marketplace-идентификатор; считайте его только устаревшим alias. Отдельно npm-пакет остался `ecc-universal`, поэтому npm-установки и marketplace-установки намеренно используют разные имена.
+Это сделано намеренно. Установки Anthropic marketplace/plugin ключуются каноническим идентификатором плагина, поэтому ECC использует `communityhelp@communityhelp`, чтобы имена инструментов и пространства имен slash-команд оставались достаточно короткими для строгих валидаторов Desktop/API. Старые публикации могут всё ещё показывать прежний длинный marketplace-идентификатор; считайте его только устаревшим alias. Отдельно npm-пакет остался `ecc-universal`, поэтому npm-установки и marketplace-установки намеренно используют разные имена.
 
 ### Шаг 2: Установите правила (обязательно)
 
@@ -346,7 +346,7 @@ ECC удаляет только файлы, записанные в его insta
 # /plan "Добавить аутентификацию пользователей"
 
 # Проверить доступные команды
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **Готово.** Теперь у вас есть доступ к 50 агентам, 185 навыкам и 68 устаревшим совместимым заглушкам команд.
@@ -763,10 +763,10 @@ Duplicate hooks file detected: ./hooks/hooks.json resolves to already-loaded fil
 
 ```bash
 # Добавить этот репозиторий как marketplace
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Установить плагин
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 Или добавьте напрямую в `~/.claude/settings.json`:
@@ -782,7 +782,7 @@ Duplicate hooks file detected: ./hooks/hooks.json resolves to already-loaded fil
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```
@@ -1010,7 +1010,7 @@ e2e-testing skill                             → e2e-runner: тесты кри�
 <summary><b>Как проверить, какие агенты/команды установлены?</b></summary>
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 Показывает всех доступных агентов, команды и навыки из плагина.

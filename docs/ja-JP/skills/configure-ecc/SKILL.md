@@ -36,7 +36,7 @@ claude plugin list --json
 claude plugin marketplace list --json
 ```
 
-`ecc@ecc` が 1 つのみ既存する場合は再設定として扱います。Claude が所有する
+`communityhelp@communityhelp` が 1 つのみ既存する場合は再設定として扱います。Claude が所有する
 "Open home page" コントロールをインストールの根拠にしません。setup が複数の ECC スコープ、
 旧式/手動導入、不正な設定、marketplace 衝突を報告したら停止し、返された復旧方法を示します。
 削除対象を推測しません。
@@ -109,7 +109,7 @@ npx --yes --package ecc-universal ecc setup --mode claude-plugin \
 claude plugin list --json
 ```
 
-選択スコープに有効な `ecc@ecc` が正確に 1 件ある場合のみ続行します。`$CLAUDE_PLUGIN_ROOT` があるときは、
+選択スコープに有効な `communityhelp@communityhelp` が正確に 1 件ある場合のみ続行します。`$CLAUDE_PLUGIN_ROOT` があるときは、
 成功した setup の `action`（`installed`、`updated`、`migrated`、`resumed`、
 `already-migrated`）を内蔵レンダラーへ渡します。
 
@@ -134,14 +134,14 @@ Codex はその明示的な信頼を求めます。Codex にその信頼判断�
 ECC marketplace がない場合は追加し、既存ならスナップショットを更新します。
 
 ```bash
-codex plugin marketplace add affaan-m/ECC
+codex plugin marketplace add chimichurria/CommunityHelp
 codex plugin marketplace upgrade ecc --json
 ```
 
 1 回だけ確認し、インストールまたは導入済みキャッシュの再現可能な更新を行い、検証します。
 
 ```bash
-codex plugin add ecc@ecc --json
+codex plugin add communityhelp@communityhelp --json
 codex plugin list --json
 ```
 

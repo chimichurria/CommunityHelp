@@ -130,10 +130,10 @@ Claude Code, Codex ve Kimi Code için incelenebilir çoklu harness kurulumu ve e
 
 ```bash
 # Marketplace ekle
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Plugin'i kur
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### Adım 2: Rule'ları Kurun (Gerekli)
@@ -178,7 +178,7 @@ Manuel kurulum talimatları için `rules/` klasöründeki README'ye bakın.
 # /plan "Kullanıcı kimlik doğrulaması ekle"
 
 # Mevcut command'ları kontrol edin
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **Bu kadar!** Artık 28 agent, 116 skill ve 59 command'a erişiminiz var.
@@ -360,7 +360,7 @@ Nereden başlayacağınızdan emin değil misiniz? Bu hızlı referansı kullan�
 <summary><b>Hangi agent/command'ların kurulu olduğunu nasıl kontrol ederim?</b></summary>
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 Bu, plugin'den mevcut tüm agent'ları, command'ları ve skill'leri gösterir.

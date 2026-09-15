@@ -265,10 +265,10 @@ npx ecc-universal install --profile minimal --target claude --with capability:ma
 
 ```bash
 # Marketplace hinzufügen
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Plugin installieren
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 ### Hinweis zu Benennung + Migration
@@ -276,10 +276,10 @@ npx ecc-universal install --profile minimal --target claude --with capability:ma
 ECC hat jetzt drei öffentliche Bezeichner, und sie sind nicht austauschbar:
 
 - GitHub-Quell-Repo: `affaan-m/ECC`
-- Claude-Marketplace-/Plugin-Bezeichner: `ecc@ecc`
+- Claude-Marketplace-/Plugin-Bezeichner: `communityhelp@communityhelp`
 - npm-Paket: `ecc-universal`
 
-Das ist beabsichtigt. Anthropic-Marketplace-/Plugin-Installationen werden über einen kanonischen Plugin-Bezeichner gekeyt, daher verwendet ECC `ecc@ecc`, um Tool-Namen und Slash-Command-Namespaces kurz genug für strenge Desktop-/API-Validatoren zu halten. Ältere Beiträge zeigen möglicherweise noch den früheren langen Marketplace-Bezeichner; behandle diesen lediglich als Legacy-Alias. Das npm-Paket blieb davon getrennt bei `ecc-universal`, daher verwenden npm-Installationen und Marketplace-Installationen absichtlich unterschiedliche Namen.
+Das ist beabsichtigt. Anthropic-Marketplace-/Plugin-Installationen werden über einen kanonischen Plugin-Bezeichner gekeyt, daher verwendet ECC `communityhelp@communityhelp`, um Tool-Namen und Slash-Command-Namespaces kurz genug für strenge Desktop-/API-Validatoren zu halten. Ältere Beiträge zeigen möglicherweise noch den früheren langen Marketplace-Bezeichner; behandle diesen lediglich als Legacy-Alias. Das npm-Paket blieb davon getrennt bei `ecc-universal`, daher verwenden npm-Installationen und Marketplace-Installationen absichtlich unterschiedliche Namen.
 
 ### Schritt 2: Rules nur installieren, wenn du sie brauchst
 
@@ -389,7 +389,7 @@ Falls du Methoden gestapelt hast, räume in dieser Reihenfolge auf:
 # /plan "Benutzerauthentifizierung hinzufügen"
 
 # Verfügbare Commands prüfen
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 **Das war's!** Du hast nun Zugriff auf 60 Agents, 232 Skills und 75 Legacy-Command-Shims.
@@ -824,10 +824,10 @@ Der einfachste Weg, dieses Repo zu nutzen - als Claude-Code-Plugin installieren:
 
 ```bash
 # Dieses Repo als Marketplace hinzufügen
-/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
 
 # Das Plugin installieren
-/plugin install ecc@ecc
+/plugin install communityhelp@communityhelp
 ```
 
 Oder füge es direkt zu deiner `~/.claude/settings.json` hinzu:
@@ -843,7 +843,7 @@ Oder füge es direkt zu deiner `~/.claude/settings.json` hinzu:
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```
@@ -1078,7 +1078,7 @@ e2e-testing skill                             → e2e-runner: Tests kritischer B
 <summary><b>Wie prüfe ich, welche Agents/Commands installiert sind?</b></summary>
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 
 Dies zeigt alle verfügbaren Agents, Commands und Skills aus dem Plugin.
