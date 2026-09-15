@@ -11,7 +11,7 @@ metadata:
 一次，以非交互方式执行，验证，最后才显示欢迎信息。不要把 ECC 克隆到
 临时目录，也不要手动复制插件组件。
 
-在用户自己操作的终端中，规范入口是 `ecc setup` 和 `npx ecc-universal setup`。
+在用户自己操作的终端中，规范入口是 `ecc setup` 和 `node scripts/ecc.js setup`。
 在工具内请改用下方参数完整的非交互命令。
 
 ## 按当前工具分流

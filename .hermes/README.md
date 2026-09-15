@@ -18,4 +18,4 @@ bash ./install.sh --target hermes --profile minimal
 ## Notes
 
 - Hermes config files (`config.yaml`, `.env`, etc.) are **not** touched by ECC install.
-- Use `npx ecc-universal doctor --target hermes` to check install health.
+- Use `node scripts/ecc.js doctor --target hermes` to check install health.

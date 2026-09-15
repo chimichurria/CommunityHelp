@@ -564,17 +564,17 @@ node scripts/uninstall.js
 Для налаштування плагіна Claude Code, оновлень, зміни рівня та зміни профілю хуків:
 
 ```bash
-npx ecc-universal setup
+node scripts/ecc.js setup
 ```
 
 Реліз 2.2 підтримуватиме те саме кероване налаштування через сучасні пакетні бігуни:
 
 | Пакетний бігун | Команда керованого налаштування |
 |---|---|
-| npm / npx | `npx ecc-universal setup` |
-| pnpm | `pnpm dlx ecc-universal setup` |
-| Yarn 2+ | `yarn dlx ecc-universal setup` |
-| Bun | `bunx ecc-universal setup` |
+| npm / npx | `node scripts/ecc.js setup` |
+| pnpm | `node scripts/ecc.js setup` |
+| Yarn 2+ | `node scripts/ecc.js setup` |
+| Bun | `node scripts/ecc.js setup` |
 
 Yarn Classic 1 не надає `yarn dlx`; використовуйте `npx`, встановіть пакет глобально, або оновіть Yarn для тимчасового одноразового запуску після публікації 2.2.
 
@@ -583,7 +583,7 @@ Yarn Classic 1 не надає `yarn dlx`; використовуйте `npx`, �
 Щоб налаштувати більше одного кодового агента в одному переглянутому потоці, використовуйте мультиоболонковий майстер:
 
 ```bash
-npx ecc-universal install --guided
+node scripts/ecc.js install --guided
 ```
 
 Він дозволяє обрати будь-яку комбінацію Claude Code, Codex та Kimi Code, показує кожен канал встановлення та призначення, попередньо перевіряє кожен вибір перед першим записом та запитує одне фінальне підтвердження.
@@ -597,7 +597,7 @@ npx ecc-universal install --guided
 Для автоматизації зробіть кожен вибір, специфічний для провайдера, явним:
 
 ```bash
-npx ecc-universal install --guided \
+node scripts/ecc.js install --guided \
   --harness claude --harness codex --harness kimi \
   --claude-scope local --claude-hooks standard \
   --profile core --yes
@@ -606,16 +606,16 @@ npx ecc-universal install --guided \
 Перевірте нативний керований шлях Codex та керований шлях Kimi без запису:
 
 ```bash
-npx ecc-universal install --guided --harness codex --dry-run
-npx ecc-universal install --profile core --target kimi --dry-run
+node scripts/ecc.js install --guided --harness codex --dry-run
+node scripts/ecc.js install --profile core --target kimi --dry-run
 ```
 
 Додаткові команди з назвою пакета також стануть доступні через псевдонім 2.2:
 
 ```bash
-npx ecc-universal consult "security reviews" --target claude
-npx ecc-universal install --profile minimal --target claude --with capability:machine-learning
-npx ecc-universal doctor --target kimi
+node scripts/ecc.js consult "security reviews" --target claude
+node scripts/ecc.js install --profile minimal --target claude --with capability:machine-learning
+node scripts/ecc.js doctor --target kimi
 ```
 
 Не використовуйте `npx ecc-install --profile minimal --target claude`: `ecc-install` — це назва бінарного файлу всередині `ecc-universal`, а не окремо опублікований пакет npm.
@@ -892,7 +892,7 @@ ECC також постачає розширені керовані адапте
 Сховище пам'яті ECC надає Claude, Codex, Hermes, OpenClaw, Kimi та іншим оболонкам єдиний локальний, доступний для перегляду формат Markdown для тривалого контексту та передавання. Пам'ять проєкту та команди живе під `.ecc/memory/`; пам'ять користувача живе під `~/.ecc/memory/`.
 
 ```bash
-npm install -g ecc-universal
+npm link   # from a CommunityHelp clone
 ecc memory init --scope project
 ecc memory search "authentication migration" --target-harness codex
 ecc memory doctor
@@ -910,7 +910,7 @@ ecc memory doctor
 Встановлення лише навичок, мінімальні, ручні та встановлення через плагін Claude не розміщують середовище виконання Сховища пам'яті на `PATH`. Встановіть середовище виконання npm окремо перед використанням CLI чи опційного MCP-сервера:
 
 ```bash
-npm install -g ecc-universal
+npm link   # from a CommunityHelp clone
 ecc memory --help
 command -v ecc-memory-mcp
 ```

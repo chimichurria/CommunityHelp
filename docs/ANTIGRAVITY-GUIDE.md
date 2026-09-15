@@ -15,7 +15,7 @@ from the project you want to configure:
 
 ```bash
 npm view ecc-universal version
-npx ecc-universal@2.2.0 install --profile minimal --target antigravity
+node scripts/ecc.js install --profile minimal --target antigravity
 ```
 
 ### Source checkout alternative

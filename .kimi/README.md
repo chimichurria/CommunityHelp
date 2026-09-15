@@ -21,7 +21,7 @@ bash ./install.sh --target kimi --profile minimal
 
 - The `kimi` target installs into the project-level `./.kimi-code/` directory.
 - Kimi Code CLI's user config (`~/.kimi-code/config.toml`) is **not** touched by the project installer.
-- Use `npx ecc-universal doctor --target kimi` to check install health.
+- Use `node scripts/ecc.js doctor --target kimi` to check install health.
 - The ECC adapter verified against Kimi Code 0.31.x does not configure or map provider lifecycle hooks. Provider hook availability is separate from this adapter's compatibility contract.
 - Kimi Code provider configuration remains separate. Use the [official providers and models guide](https://moonshotai.github.io/kimi-cli/en/configuration/providers.html) for Kimi API, OpenAI-compatible, Anthropic, or other supported endpoints.
 - Kimi Code's [Agent Skills guide](https://moonshotai.github.io/kimi-cli/en/customization/skills.html) documents the current project discovery contract.

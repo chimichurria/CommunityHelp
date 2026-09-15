@@ -163,7 +163,7 @@ npm install        # veya: pnpm install | yarn install | bun install
 # .\install.ps1 --target antigravity typescript
 
 # Yayımlanmış npm paketinin entry point'i de çapraz platform çalışır
-npx ecc-universal install typescript
+node scripts/ecc.js install typescript
 ```
 
 Manuel kurulum talimatları için `rules/` klasöründeki README'ye bakın.

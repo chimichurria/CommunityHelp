@@ -161,7 +161,7 @@ npm install        # ou: pnpm install | yarn install | bun install
 # .\install.ps1 --target antigravity typescript
 
 # O ponto de entrada do pacote npm publicado também funciona multiplataforma
-npx ecc-universal install typescript
+node scripts/ecc.js install typescript
 ```
 
 ### Passo 3: Começar a Usar

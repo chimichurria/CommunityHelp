@@ -1,23 +1,33 @@
 **Idioma:** [English](../../README.md) | [Português (Brasil)](../pt-BR/README.md) | [简体中文](../../README.zh-CN.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Türkçe](../tr/README.md) | [Русский](../ru/README.md) | [Tiếng Việt](../vi-VN/README.md) | [ไทย](../th/README.md) | [Deutsch](../de-DE/README.md) | **Español** | [Українська](../uk-UA/README.md)
 
-# ECC
+# CommunityHelp
 
-![ECC - el sistema operativo nativo del harness para trabajo agentivo](../../assets/hero.png)
+**Un sistema de ingeniería para tu agente de IA — que además te enseña a usarlo.**
 
-[![Stars](https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Fstars&style=flat)](https://github.com/affaan-m/ECC/stargazers)
-[![Forks](https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Fforks&style=flat)](https://github.com/affaan-m/ECC/network/members)
-[![Contributors](https://img.shields.io/github/contributors/affaan-m/ECC?style=flat)](https://github.com/affaan-m/ECC/graphs/contributors)
-[![npm ecc-universal](https://img.shields.io/npm/dw/ecc-universal?label=ecc-universal%20weekly%20downloads&logo=npm)](https://www.npmjs.com/package/ecc-universal)
-[![npm ecc-agentshield](https://img.shields.io/npm/dw/ecc-agentshield?label=ecc-agentshield%20weekly%20downloads&logo=npm)](https://www.npmjs.com/package/ecc-agentshield)
-[![GitHub App Install](https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Finstalls&logo=github)](https://github.com/marketplace/ecc-tools)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-![Shell](https://img.shields.io/badge/-Shell-4EAA25?logo=gnu-bash&logoColor=white)
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white)
-![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white)
-![Go](https://img.shields.io/badge/-Go-00ADD8?logo=go&logoColor=white)
-![Java](https://img.shields.io/badge/-Java-ED8B00?logo=openjdk&logoColor=white)
-![Perl](https://img.shields.io/badge/-Perl-39457E?logo=perl&logoColor=white)
-![Markdown](https://img.shields.io/badge/-Markdown-000000?logo=markdown&logoColor=white)
+> [!NOTE]
+> **Esto es un fork.** CommunityHelp está construido sobre
+> [Everything Claude Code](https://github.com/affaan-m/ecc) de **Affaan Mustafa**
+> (MIT), bifurcado en `8321021c` / v2.2.1, y mantenido por
+> [ChimichurrIA](https://chimichurria.com). El autor original no respalda este
+> fork ni es responsable de él. No le envíes issues ni reportes de seguridad
+> sobre CommunityHelp. Ver [NOTICE.md](../../NOTICE.md).
+
+<!-- -->
+
+> [!WARNING]
+> **Esta traducción no se mantiene.** Se heredó del proyecto original y va a
+> quedar desactualizada. El [README en inglés](../../README.md) es el canónico.
+
+**Lo que hace distinto a este fork:** enseña. Detecta cuándo un prompt te va a
+costar un turno —sin criterio de aceptación, sin archivos concretos, tres tareas
+apiladas en una— y te lo dice *antes* de gastarlo, en tu idioma. Después se
+calla: cada lección deja de aparecer cuando demostrás que ya no cometés ese
+error. Ver [`skills/ai-literacy-coach/`](../../skills/ai-literacy-coach/SKILL.md).
+
+**Tus datos no salen de tu máquina.** El coach no escribe ni una palabra de tus
+prompts en disco, ningún hook toca la red, y contribuir mejoras es opt-in con
+confirmación explícita. Ver [PRIVACY.md](../../PRIVACY.md), que lista cada punto
+de salida posible. Corré `/privacy-audit` para auditar tu propia instalación.
 
 > **182K+ estrellas** | **28K+ forks** | **170+ contribuidores** | **12+ ecosistemas de lenguajes** | **Flujos de trabajo de agentes multi-harness**
 
@@ -212,7 +222,7 @@ La mayoría de los usuarios de Claude Code deben usar exactamente un método de 
 
 - **Opción recomendada por defecto:** instala el plugin de Claude Code, luego copia solo las carpetas de reglas que realmente necesites.
 - **Usa el instalador manual solo si** quieres un control más granular, deseas evitar completamente la ruta del plugin o tu build de Claude Code tiene problemas para resolver la entrada del marketplace autoalojado.
-- **No combines métodos de instalación.** La configuración rota más común es: `/plugin install` primero, luego `install.sh --profile full` o `npx ecc-universal install --profile full` después.
+- **No combines métodos de instalación.** La configuración rota más común es: `/plugin install` primero, luego `install.sh --profile full` o `node scripts/ecc.js install --profile full` después.
 
 Si ya combinaste múltiples instalaciones y hay duplicados, salta directamente a [Restablecer / Desinstalar ECC](#restablecer--desinstalar-ecc).
 
@@ -227,7 +237,7 @@ Si los hooks te parecen demasiado globales o solo quieres las reglas, agentes, c
 ```powershell
 .\install.ps1 --profile minimal --target claude
 # o
-npx ecc-universal install --profile minimal --target claude
+node scripts/ecc.js install --profile minimal --target claude
 ```
 
 Este perfil excluye intencionalmente `hooks-runtime`.
@@ -249,7 +259,7 @@ Añade hooks después solo si quieres aplicación en tiempo de ejecución:
 Si no estás seguro de qué perfil o componente de ECC instalar, consulta al asesor empaquetado desde cualquier proyecto:
 
 ```bash
-npx ecc-universal consult "security reviews" --target claude
+node scripts/ecc.js consult "security reviews" --target claude
 ```
 
 Devuelve los componentes coincidentes, los perfiles relacionados y los comandos de vista previa/instalación. Usa el comando de vista previa antes de instalar si quieres inspeccionar el plan de archivos exacto.
@@ -257,8 +267,8 @@ Devuelve los componentes coincidentes, los perfiles relacionados y los comandos 
 Para flujos de trabajo de ML/MLOps en producción, mantén la instalación opt-in y con alcance de componentes:
 
 ```bash
-npx ecc-universal consult "mlops training model deployment" --target claude
-npx ecc-universal install --profile minimal --target claude --with capability:machine-learning
+node scripts/ecc.js consult "mlops training model deployment" --target claude
+node scripts/ecc.js install --profile minimal --target claude --with capability:machine-learning
 ```
 
 ### Paso 1: Instalar el Plugin (Recomendado)
@@ -287,7 +297,7 @@ Esto es intencional. Las instalaciones del marketplace/plugin de Anthropic se id
 
 > ADVERTENCIA: **Importante:** Los plugins de Claude Code no pueden distribuir `rules` automáticamente.
 >
-> Si ya instalaste ECC mediante `/plugin install`, **no ejecutes `./install.sh --profile full`, `.\install.ps1 --profile full`, ni `npx ecc-universal install --profile full` después**. El plugin ya carga las skills, comandos y hooks de ECC. Ejecutar el instalador completo tras una instalación del plugin copia esas mismas superficies en tus directorios de usuario y puede crear skills duplicadas más comportamiento duplicado en tiempo de ejecución.
+> Si ya instalaste ECC mediante `/plugin install`, **no ejecutes `./install.sh --profile full`, `.\install.ps1 --profile full`, ni `node scripts/ecc.js install --profile full` después**. El plugin ya carga las skills, comandos y hooks de ECC. Ejecutar el instalador completo tras una instalación del plugin copia esas mismas superficies en tus directorios de usuario y puede crear skills duplicadas más comportamiento duplicado en tiempo de ejecución.
 >
 > Para instalaciones de plugin, copia manualmente solo los directorios `rules/` que quieras bajo `~/.claude/rules/ecc/`. Empieza con `rules/common` más un pack de lenguaje o framework que uses realmente. No copies todos los directorios de reglas a menos que quieras explícitamente todo ese contexto en Claude.
 >
@@ -322,7 +332,7 @@ Copy-Item -Recurse rules/typescript "$HOME/.claude/rules/ecc/"
 
 # Ruta de instalación completamente manual (usa esto en lugar de /plugin install)
 # .\install.ps1 --profile full
-# npx ecc-universal install --profile full
+# node scripts/ecc.js install --profile full
 ```
 
 Para instrucciones de instalación manual consulta el README en la carpeta `rules/`. Al copiar reglas manualmente, copia el directorio completo del lenguaje (por ejemplo `rules/common` o `rules/golang`), no los archivos dentro de él, para que las referencias relativas sigan funcionando y los nombres de archivo no colisionen.
@@ -338,7 +348,7 @@ Usa esto solo si estás omitiendo intencionalmente la ruta del plugin:
 ```powershell
 .\install.ps1 --profile full
 # o
-npx ecc-universal install --profile full
+node scripts/ecc.js install --profile full
 ```
 
 Si eliges esta ruta, detente aquí. No ejecutes también `/plugin install`.

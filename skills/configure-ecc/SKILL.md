@@ -13,7 +13,7 @@ and show the welcome only after success. Never clone ECC into a temporary
 directory or copy plugin components by hand.
 
 For a human-operated terminal, the canonical entry points are `ecc setup` and
-`npx ecc-universal setup`. Inside a harness, use the explicit non-interactive
+`node scripts/ecc.js setup`. Inside a harness, use the explicit non-interactive
 commands below instead.
 
 ## Route by the current harness
