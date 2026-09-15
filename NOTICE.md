@@ -118,6 +118,15 @@ Stated so nobody rediscovers them as surprises:
 - **`.cursor/skills/` and `.agents/skills/` contain copies of canonical skills**
   that had already drifted upstream. Deduplicating them is real work that was
   out of scope here.
+- **The packed-artifact release lifecycle test lost its PATH-hijack coverage.**
+  Upstream's `tests/ci/packed-artifact-lifecycle.js` installed the Itô
+  capability specifically to also test that a hostile `ito` binary placed on
+  `PATH` could not hijack the packed CLI's `ito` bridge. Both are gone in this
+  fork -- the Itô skills, and the `ito` subcommand itself, removed from
+  `scripts/ecc.js`. The install/status/drift/doctor/repair/uninstall cycle is
+  preserved against `capability:prediction-markets`, the nearest surviving
+  multi-module capability; the PATH-hijack test has no remaining surface and
+  was not replaced with a substitute.
 - **`.github/workflows/reusable-release.yml` is an orphaned npm-publishing
   template.** Nothing invokes it — a `workflow_call` workflow only runs when
   another workflow calls it, and none does — so it cannot fire. It is left

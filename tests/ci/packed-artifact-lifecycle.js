@@ -9,10 +9,34 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 const { spawnSync } = require('child_process');
 
-// Derived from package.json rather than hardcoded: this file ran against
-// `ecc-universal` upstream and would reject `communityhelp-3.0.0.tgz` on its
-// path pattern alone, failing the release before anything was tested.
-const PACKAGE_NAME = require(path.join(__dirname, '..', '..', 'package.json')).name;
+// NOT hardcoded, and NOT read from a relative package.json.
+//
+// Upstream hardcoded `ecc-universal`, which rejected `communityhelp-3.0.0.tgz`
+// outright. My first fix read package.json via `__dirname/../..`, which works
+// locally and fails in CI: the release workflow uploads THIS FILE as part of
+// the artifact, so at release time it executes from
+// `release-artifacts/tests/ci/` where that relative path has no package.json.
+//
+// The workflow passes the name explicitly. The fallback derives it from the
+// archive filename by stripping a trailing `-<version>`, which keeps a plain
+// local `node tests/ci/packed-artifact-lifecycle.js` working.
+function resolvePackageName(environment = process.env) {
+  const explicit = String(environment.ECC_RELEASE_PACKAGE_NAME || '').trim();
+  if (explicit) return explicit;
+
+  const file = path.basename(String(environment.ECC_RELEASE_PACKAGE || ''));
+  const withoutExt = file.replace(/\.tgz$/, '');
+  const stripped = withoutExt.replace(/-\d[0-9A-Za-z.+-]*$/, '');
+  if (stripped && stripped !== withoutExt) return stripped;
+
+  try {
+    return require(path.join(__dirname, '..', '..', 'package.json')).name;
+  } catch {
+    throw new Error('Cannot resolve the package name: set ECC_RELEASE_PACKAGE_NAME');
+  }
+}
+
+const PACKAGE_NAME = resolvePackageName();
 const HASH_PATTERN = /^[a-f0-9]{64}$/i;
 const PACKAGE_PATH_PATTERN = new RegExp(
   `^release-artifacts/${PACKAGE_NAME.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-[0-9A-Za-z.+-]+\\.tgz$`
@@ -688,71 +712,48 @@ function runLifecycle(options) {
       'guided Kimi uninstall must preserve user-owned files'
     );
 
-    const itoInstallArgs = [
+    // Upstream exercised this scenario with `capability:ito-compute`, which this
+    // fork removed along with the Itô skill family, and a PATH-hijack test
+    // against the `ito` CLI bridge, which this fork also removed entirely from
+    // scripts/ecc.js. There is no `ito` subcommand left to hijack. Substituted
+    // with `capability:prediction-markets`, the nearest surviving multi-module
+    // capability, to keep exercising install/status/drift/doctor/repair/uninstall
+    // against a real packed target. The PATH-hijack coverage itself has no
+    // remaining surface in this fork and is not replaced with a substitute.
+    const substituteInstallArgs = [
       'install',
       '--profile', 'core',
-      '--with', 'capability:ito-compute',
       '--with', 'capability:prediction-markets',
       '--target', 'cursor',
       '--enable-hooks',
       '--json',
     ];
     parseJsonOutput(
-      runCli(itoInstallArgs),
-      'initial Itô install'
+      runCli(substituteInstallArgs),
+      'initial capability install'
     );
     assert.ok(fs.existsSync(statePath), 'initial install must write Cursor install-state');
     const initialState = JSON.parse(fs.readFileSync(statePath, 'utf8'));
     const initialLedger = getOperationLedger(initialState);
     assert.ok(
-      initialState.operations.some(operation => operation.moduleId === 'ito-compute'),
-      'installed ledger must include the Itô compute module'
-    );
-    assert.ok(
       initialState.operations.some(operation => operation.moduleId === 'prediction-market-skills'),
-      'installed ledger must include the Itô baskets module'
+      'installed ledger must include the prediction-market-skills module'
     );
     for (const relativePath of [
-      'skills/ito-baskets/SKILL.md',
-      'skills/ito-baskets/agents/openai.yaml',
-      'skills/ito-baskets/scripts/ito-baskets.js',
-      'skills/ito-compute/SKILL.md',
-      'skills/ito-compute/agents/openai.yaml',
-      'skills/ito-inference/SKILL.md',
-      'skills/ito-training/SKILL.md',
+      'skills/prediction-market-oracle-research/SKILL.md',
+      'skills/prediction-market-risk-review/SKILL.md',
     ]) {
       const installedPath = path.join(cursorRoot, relativePath);
       const installedStat = fs.lstatSync(installedPath);
-      assert.ok(installedStat.isFile(), `packed Itô asset is not a file: ${relativePath}`);
-      assert.ok(!installedStat.isSymbolicLink(), `packed Itô asset is a symlink: ${relativePath}`);
-      assert.ok(installedStat.size > 0, `packed Itô asset is empty: ${relativePath}`);
+      assert.ok(installedStat.isFile(), `packed asset is not a file: ${relativePath}`);
+      assert.ok(!installedStat.isSymbolicLink(), `packed asset is a symlink: ${relativePath}`);
+      assert.ok(installedStat.size > 0, `packed asset is empty: ${relativePath}`);
     }
-    const hostileBin = path.join(tempRoot, 'hostile-bin');
-    const hostileItoSentinel = path.join(tempRoot, 'hostile-ito-spawned');
-    fs.mkdirSync(hostileBin, { recursive: true });
-    const hostileIto = path.join(hostileBin, process.platform === 'win32' ? 'ito.cmd' : 'ito');
-    if (process.platform === 'win32') {
-      fs.writeFileSync(hostileIto, `@echo hostile>"${hostileItoSentinel}"\r\n`, 'utf8');
-    } else {
-      fs.writeFileSync(hostileIto, `#!${process.execPath}\nrequire('fs').writeFileSync(${JSON.stringify(hostileItoSentinel)}, 'spawned');\n`, 'utf8');
-      fs.chmodSync(hostileIto, 0o755);
-    }
-    const itoStatus = runCli(['ito', 'status'], {
-      expectedStatus: 1,
-      env: {
-        ...environment,
-        PATH: `${hostileBin}${path.delimiter}${environment.PATH || environment.Path || ''}`,
-        ITO_API_KEY: 'must-not-reach-hostile-path',
-      },
-    });
-    assert.match(itoStatus.stderr, /canonical ito-compute-cli is unpublished/i);
-    assert.doesNotMatch(itoStatus.stderr, /npx|npm exec|npm link|install -g/i);
-    assert.ok(!fs.existsSync(hostileItoSentinel), 'packed Itô bridge executed a PATH collision');
     const managedSnapshot = getManagedOperationSnapshot(initialState, cursorRoot);
     assert.ok(managedSnapshot.length > 0, 'initial install must create managed Cursor files');
 
     parseJsonOutput(
-      runCli(itoInstallArgs),
+      runCli(substituteInstallArgs),
       'repeat install'
     );
     const repeatState = JSON.parse(fs.readFileSync(statePath, 'utf8'));

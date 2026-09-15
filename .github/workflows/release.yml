@@ -146,6 +146,9 @@ jobs:
         env:
           ECC_RELEASE_PACKAGE: release-artifacts/${{ needs.verify.outputs.package_file }}
           ECC_RELEASE_SHA256: ${{ needs.verify.outputs.package_sha256 }}
+          # The runner script executes from INSIDE the downloaded artifact, where
+          # there is no package.json to read the name from. Passed explicitly.
+          ECC_RELEASE_PACKAGE_NAME: ${{ needs.verify.outputs.package_name }}
         run: node release-artifacts/tests/ci/packed-artifact-lifecycle.js
 
   publish:

@@ -263,33 +263,33 @@ test('packed lifecycle validates canonical Antigravity and OpenCode installs', (
   assert.match(lifecycleRunnerSource, /!fs\.existsSync\(installedSkillPath\)/);
 });
 
-test('packed lifecycle installs and verifies the opt-in Ito distribution surface', () => {
+// Upstream's Itô distribution surface (skills, the `ito` CLI bridge, and its
+// PATH-hijack resistance test) does not exist in this fork: the four Itô
+// skills were removed, and `ito` is no longer a subcommand in scripts/ecc.js.
+// The lifecycle runner substitutes `capability:prediction-markets`, the
+// nearest surviving multi-module capability, to keep exercising a real
+// install/status/drift/doctor/repair/uninstall cycle against a packed target.
+// The PATH-hijack coverage has no remaining surface in this fork and is not
+// replaced with a substitute -- recorded in NOTICE.md.
+test('packed lifecycle installs and verifies a real multi-module capability', () => {
   assert.match(
     lifecycleRunnerSource,
-    /'--profile', 'core'[\s\S]*'--with', 'capability:ito-compute'[\s\S]*'--with', 'capability:prediction-markets'/
+    /'--profile', 'core'[\s\S]*'--with', 'capability:prediction-markets'/
   );
-  for (const moduleId of ['ito-compute', 'prediction-market-skills']) {
-    assert.match(lifecycleRunnerSource, new RegExp(`moduleId === '${moduleId}'`));
-  }
+  assert.match(lifecycleRunnerSource, /moduleId === 'prediction-market-skills'/);
   for (const installedPath of [
-    'skills/ito-baskets/SKILL.md',
-    'skills/ito-baskets/agents/openai.yaml',
-    'skills/ito-baskets/scripts/ito-baskets.js',
-    'skills/ito-compute/SKILL.md',
-    'skills/ito-compute/agents/openai.yaml',
-    'skills/ito-inference/SKILL.md',
-    'skills/ito-training/SKILL.md',
+    'skills/prediction-market-oracle-research/SKILL.md',
+    'skills/prediction-market-risk-review/SKILL.md',
   ]) {
     assert.match(lifecycleRunnerSource, new RegExp(installedPath.replaceAll('.', '\\.')));
   }
-  assert.match(lifecycleRunnerSource, /\['ito', 'status'\]/);
-  assert.match(lifecycleRunnerSource, /canonical ito-compute-cli is unpublished/i);
-  assert.match(lifecycleRunnerSource, /npx\|npm exec\|npm link\|install -g/i);
   assert.match(lifecycleRunnerSource, /installedStat\.isFile\(\)/);
   assert.match(lifecycleRunnerSource, /installedStat\.size > 0/);
-  assert.match(lifecycleRunnerSource, /hostileItoSentinel/);
-  assert.match(lifecycleRunnerSource, /must-not-reach-hostile-path/);
-  assert.match(lifecycleRunnerSource, /packed Itô bridge executed a PATH collision/);
+
+  // The removed Itô surface must not reappear by accident.
+  assert.doesNotMatch(lifecycleRunnerSource, /'--with', 'capability:ito-compute'/);
+  assert.doesNotMatch(lifecycleRunnerSource, /\['ito', 'status'\]/);
+  assert.doesNotMatch(lifecycleRunnerSource, /hostileItoSentinel/);
 });
 
 console.log(`\nPassed: ${passed}`);
