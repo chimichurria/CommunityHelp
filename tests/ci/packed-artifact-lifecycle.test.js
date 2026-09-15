@@ -27,13 +27,13 @@ console.log('\n=== Testing packed-artifact lifecycle runner ===\n');
 
 test('resolves package and hash from explicit environment variables', () => {
   const options = lifecycle.parseEnvironment({
-    ECC_RELEASE_PACKAGE: 'release-artifacts/ecc-universal-2.2.0.tgz',
+    ECC_RELEASE_PACKAGE: 'release-artifacts/communityhelp-3.0.0.tgz',
     ECC_RELEASE_SHA256: 'a'.repeat(64),
   }, '/workspace');
 
   assert.strictEqual(
     options.packagePath,
-    path.resolve('/workspace', 'release-artifacts/ecc-universal-2.2.0.tgz')
+    path.resolve('/workspace', 'release-artifacts/communityhelp-3.0.0.tgz')
   );
   assert.strictEqual(options.expectedSha256, 'a'.repeat(64));
 });
@@ -45,15 +45,15 @@ test('rejects missing, malformed, and non-tgz release inputs', () => {
     ECC_RELEASE_SHA256: 'a'.repeat(64),
   }, '/workspace'), /\.tgz/);
   assert.throws(() => lifecycle.parseEnvironment({
-    ECC_RELEASE_PACKAGE: 'release-artifacts/ecc-universal-2.2.0.tgz',
+    ECC_RELEASE_PACKAGE: 'release-artifacts/communityhelp-3.0.0.tgz',
     ECC_RELEASE_SHA256: 'not-a-hash',
   }, '/workspace'), /SHA-256/);
   assert.throws(() => lifecycle.parseEnvironment({
-    ECC_RELEASE_PACKAGE: '../release-artifacts/ecc-universal-2.2.0.tgz',
+    ECC_RELEASE_PACKAGE: '../release-artifacts/communityhelp-3.0.0.tgz',
     ECC_RELEASE_SHA256: 'a'.repeat(64),
   }, '/workspace'), /release-artifacts/);
   assert.throws(() => lifecycle.parseEnvironment({
-    ECC_RELEASE_PACKAGE: '/tmp/ecc-universal-2.2.0.tgz',
+    ECC_RELEASE_PACKAGE: '/tmp/communityhelp-3.0.0.tgz',
     ECC_RELEASE_SHA256: 'a'.repeat(64),
   }, '/workspace'), /release-artifacts/);
 });

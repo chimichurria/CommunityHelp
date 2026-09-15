@@ -79,6 +79,13 @@ Bu repository yalnızca ham kodu içerir. Rehberler her şeyi açıklıyor.
 
 ## Yenilikler
 
+### v3.0.0 — CommunityHelp çatallanması (Eyl 2026)
+
+- **AI okuryazarlığı koçu:** prompt gönderilirken öğretir, iki dilli (İspanyolca/İngilizce), siz geliştikçe konu konu sessizleşen bir sıklıkla.
+- **Güvenlik:** dosyalarınızı yeniden yazan, kayıt defterinden araç indiren veya ek bir çağrıya transkript gönderen hook'lar artık opt-in.
+- **Gizlilik:** koç prompt metninizi asla diske yazmaz. `PRIVACY.md` dosyasına bakın.
+- **npm'de yayınlanmaz.** Bir klondan veya eklenti marketplace'inden kurun.
+
 ### v2.2.1 — Rehberli Çoklu Harness Kurulumu (Ağu 2026)
 
 Claude Code, Codex ve Kimi Code için incelenebilir çoklu harness kurulumu ve eşitlenmiş npm komut girişi eklendi.

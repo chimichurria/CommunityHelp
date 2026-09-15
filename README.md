@@ -767,13 +767,25 @@ The `ito-compute-cli` package is currently unpublished. Build it locally from th
 
 ## What's New
 
-Current release: **2.2.1** (2026-08-31). Highlights of the 2.2 line:
+Current release: **3.0.0** (2026-09-15) — the first CommunityHelp release.
 
-- Guided, manifest-driven setup across Claude Code, Codex, and Kimi Code, with install-state ownership, doctor, repair, and uninstall.
-- Native Antigravity install, a thin Pi adapter, and the packed-artifact release gate tested on Linux, macOS, and Windows.
-- Plan Canvas browser review, the unified memory vault (`ecc memory`), and the Itô compute skill family.
+- **The AI-literacy coach.** A `UserPromptSubmit` hook that teaches prompting at
+  submit time, bilingual, with a cadence that goes quiet topic by topic as you
+  improve. This is the reason the fork exists.
+- **Defaults that no longer act on your machine without asking.** Three hooks
+  that rewrote your files, fetched tools from the registry, or spent your tokens
+  are now opt-in.
+- **A published privacy posture.** [PRIVACY.md](PRIVACY.md) lists every place
+  data can leave, and `/privacy-audit` lets you verify your own install.
+- **Breaking:** four skills removed, three hook defaults changed, no npm
+  package. See [docs/releases/3.0.0/release-notes.md](docs/releases/3.0.0/release-notes.md).
 
-Full history: [CHANGELOG.md](CHANGELOG.md). Per-release notes and evidence live under [docs/releases/](docs/releases/).
+Why 3.0.0 and not 2.2.2: this fork removed skills and changed default hook
+behavior. Those are breaking changes, and sharing a version number with
+upstream's 2.2.1 would have made it impossible to tell the two apart.
+
+Full history: [CHANGELOG.md](CHANGELOG.md). Per-release notes live under
+[docs/releases/](docs/releases/); anything before 3.0.0 is upstream's.
 
 ### v2.0.0: The Agent Harness Operating System (Jun 2026)
 

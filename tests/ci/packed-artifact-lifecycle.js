@@ -9,9 +9,14 @@ const path = require('path');
 const { pathToFileURL } = require('url');
 const { spawnSync } = require('child_process');
 
-const PACKAGE_NAME = 'ecc-universal';
+// Derived from package.json rather than hardcoded: this file ran against
+// `ecc-universal` upstream and would reject `communityhelp-3.0.0.tgz` on its
+// path pattern alone, failing the release before anything was tested.
+const PACKAGE_NAME = require(path.join(__dirname, '..', '..', 'package.json')).name;
 const HASH_PATTERN = /^[a-f0-9]{64}$/i;
-const PACKAGE_PATH_PATTERN = /^release-artifacts\/ecc-universal-[0-9A-Za-z.+-]+\.tgz$/;
+const PACKAGE_PATH_PATTERN = new RegExp(
+  `^release-artifacts/${PACKAGE_NAME.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-[0-9A-Za-z.+-]+\\.tgz$`
+);
 
 function parseEnvironment(environment = process.env, cwd = process.cwd()) {
   const packageValue = environment.ECC_RELEASE_PACKAGE;

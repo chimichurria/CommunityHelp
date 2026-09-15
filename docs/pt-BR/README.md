@@ -79,6 +79,13 @@ Este repositório contém apenas o código. Os guias explicam tudo.
 
 ## O Que Há de Novo
 
+### v3.0.0 — Fork CommunityHelp (Set 2026)
+
+- **Coach de alfabetização em IA:** ensina a escrever prompts no momento do envio, bilíngue (espanhol/inglês), com cadência que silencia por tema conforme você melhora.
+- **Segurança:** hooks que reescreviam seus arquivos, baixavam ferramentas do registro ou enviavam transcrição a uma chamada extra agora são opt-in.
+- **Privacidade:** o coach nunca grava texto dos seus prompts em disco. Veja `PRIVACY.md`.
+- **Não publicado no npm.** Instale a partir de um clone ou do marketplace de plugins.
+
 ### v2.2.1 — Instalação Guiada para Múltiplos Harnesses (Ago 2026)
 
 Adiciona uma instalação revisável para Claude Code, Codex e Kimi Code, com uma entrada de comando npm sincronizada.

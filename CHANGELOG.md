@@ -2,8 +2,47 @@
 
 ## Unreleased
 
+## 3.0.0 - 2026-09-15
+
+First CommunityHelp release. Fork of [Everything Claude Code](https://github.com/affaan-m/ecc)
+(MIT, (c) Affaan Mustafa) at `8321021c` / v2.2.1. Full notes:
+[docs/releases/3.0.0/release-notes.md](docs/releases/3.0.0/release-notes.md).
+
+Versioned 3.0.0 rather than 2.2.2 because skills were removed and default hook
+behavior changed, and because sharing a version number with upstream's 2.2.1
+made the two indistinguishable.
+
+### Added
+
+- **AI-literacy coach** (`skills/ai-literacy-coach`): a `UserPromptSubmit` hook that teaches prompting at submit time. Eight heuristics, bilingual notes in Spanish and English, and an adaptive cadence that retires each lesson once the person demonstrably stops making that mistake. Measured marginal cost p50 ~5 ms, enforced as a regression test.
+- Commands `/coach-status`, `/coach-mute`, `/coach-evolve`, `/coach-contribute`, and `/privacy-audit`.
+- `PRIVACY.md`: the complete data-egress inventory - every destination, whether it is opt-in, and whether it carries user content.
+- `NOTICE.md`: fork attribution, what was removed and why, and the inherited issues that were not fixed.
+- Learner profile derived from local coach history, stored outside any repository.
+
+### Changed
+
+- **BREAKING:** the `Stop` auto-format hook moved from the default `standard` profile to `strict` only. It rewrote the user's source files as a side effect of a hook they never invoked.
+- **BREAKING:** the formatter and `tsc` registry fallback now requires `ECC_ALLOW_TOOL_DOWNLOAD=1`. It fetched and executed packages from the registry during an automatic hook.
+- **BREAKING:** the LLM session summary now requires `ECC_LLM_SUMMARY=1`. It sent up to 7 KB of transcript to a second inference call and spent the user's tokens.
+- **BREAKING:** plugin slug is `communityhelp@communityhelp`; the package is private and not published to npm.
+- `SECURITY.md` routes vulnerability reports to this repository instead of upstream, where they would have reached the wrong person. The four translated copies had the same defect.
+- `release.yml` no longer publishes to npm or queries the registry; a tag produces a GitHub Release, the whole distribution surface for a plugin.
+
+### Removed
+
+- **BREAKING:** four Itô Markets skills (`ito-baskets`, `ito-compute`, `ito-inference`, `ito-training`) - the upstream author's employer and sponsor; two shipped as admittedly non-functional scaffolds.
+- **BREAKING:** the InsAIts security monitor, which asserted "no data leaves your machine" while calling a third-party SDK with full tool input.
+- Sponsorship and commercial-tier plumbing, the maintainer-only Discord bot, and the release/announce workflows requiring secrets a fork cannot have.
+
 ### Fixed
 
+- **Context leak on `UserPromptSubmit`.** Hook stdout is injected into the model's context on that event, and the shared runner echoed raw stdin on all five fail-open paths - so a disabled or failing prompt-time hook would have dumped the whole payload, session id and transcript path included, into the conversation on every prompt. Latent upstream, which registered no hook on that event.
+- `scripts/ecc.js` required a module removed with the Itô bridge, breaking the main CLI entry point.
+- 57 files, including every translated README, instructed users to run `npx ecc-universal`, which installs upstream's package rather than this fork.
+- `hookEventName` was hardcoded to `PreToolUse` in the additionalContext builder; Claude Code discards a mismatched event, so any new-event hook emitted nothing.
+- A dead documentation link to a video that `.gitignore` deliberately excludes, in English, Spanish, and Turkish.
+- Two byte-identical duplicate images (2 MB) and a third unreferenced copy of a 700-line Python module.
 - Claude settings updates now tolerate a missing Windows device ID while retaining full-precision inode checks and strict matching when both device IDs are available.
 
 ## 2.2.0 - 2026-08-25
