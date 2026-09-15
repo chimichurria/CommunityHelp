@@ -21,10 +21,6 @@ const AGENTS_PATH = path.join(ROOT, 'AGENTS.md');
 const README_ZH_CN_PATH = path.join(ROOT, 'README.zh-CN.md');
 const DOCS_ZH_CN_README_PATH = path.join(ROOT, 'docs', 'zh-CN', 'README.md');
 const DOCS_ZH_CN_AGENTS_PATH = path.join(ROOT, 'docs', 'zh-CN', 'AGENTS.md');
-// docs/tr/AGENTS.md states the LIVE catalog, but upstream left it out of the
-// managed set, so its counts drifted silently on every catalog change and a
-// separate test caught it after the fact. Managed here instead.
-const DOCS_TR_AGENTS_PATH = path.join(ROOT, 'docs', 'tr', 'AGENTS.md');
 const PLUGIN_JSON_PATH = path.join(ROOT, '.claude-plugin', 'plugin.json');
 const MARKETPLACE_JSON_PATH = path.join(ROOT, '.claude-plugin', 'marketplace.json');
 const WRITE_MODE = process.argv.includes('--write');
@@ -563,63 +559,6 @@ function syncCatalogDescription(content, catalog, source, getDescription, setDes
   return `${JSON.stringify(parsed, null, 2)}\n`;
 }
 
-function syncTrAgents(content, catalog) {
-  let nextContent = content;
-
-  nextContent = replaceOrThrow(
-    nextContent,
-    /(\d+)(\s+özel agent,\s*)(\d+)(\s+skill,\s*)(\d+)(\s+command)/i,
-    (_, __, agentsSuffix, ___, skillsSuffix, ____, commandsSuffix) =>
-      `${catalog.agents.count}${agentsSuffix}${catalog.skills.count}${skillsSuffix}${catalog.commands.count}${commandsSuffix}`,
-    'docs/tr/AGENTS.md summary'
-  );
-  nextContent = replaceOrThrow(
-    nextContent,
-    /^(\s*agents\/\s*[\u2014\u2013-]\s*)(\d+)(\s+özel subagent\s*)$/im,
-    (_, prefix, __, suffix) => `${prefix}${catalog.agents.count}${suffix}`,
-    'docs/tr/AGENTS.md project structure (agents)'
-  );
-  nextContent = replaceOrThrow(
-    nextContent,
-    /^(\s*skills\/\s*[\u2014\u2013-]\s*)(\d+)(\s+iş akışı)/im,
-    (_, prefix, __, suffix) => `${prefix}${catalog.skills.count}${suffix}`,
-    'docs/tr/AGENTS.md project structure (skills)'
-  );
-  nextContent = replaceOrThrow(
-    nextContent,
-    /^(\s*commands\/\s*[\u2014\u2013-]\s*)(\d+)(\s+slash command)/im,
-    (_, prefix, __, suffix) => `${prefix}${catalog.commands.count}${suffix}`,
-    'docs/tr/AGENTS.md project structure (commands)'
-  );
-
-  return nextContent;
-}
-
-function parseTrAgentsDocExpectations(content) {
-  const summary = content.match(/(\d+)\s+özel agent,\s*(\d+)\s+skill,\s*(\d+)\s+command/i);
-  if (!summary) {
-    throw new Error('docs/tr/AGENTS.md is missing the catalog summary');
-  }
-  const expectations = [
-    { category: 'agents', mode: 'exact', expected: Number(summary[1]), source: 'docs/tr/AGENTS.md summary' },
-    { category: 'skills', mode: 'exact', expected: Number(summary[2]), source: 'docs/tr/AGENTS.md summary' },
-    { category: 'commands', mode: 'exact', expected: Number(summary[3]), source: 'docs/tr/AGENTS.md summary' },
-  ];
-
-  const tree = [
-    [/^\s*agents\/\s*[\u2014\u2013-]\s*(\d+)\s+özel subagent\s*$/im, 'agents'],
-    [/^\s*skills\/\s*[\u2014\u2013-]\s*(\d+)\s+iş akışı/im, 'skills'],
-    [/^\s*commands\/\s*[\u2014\u2013-]\s*(\d+)\s+slash command/im, 'commands'],
-  ];
-  for (const [pattern, category] of tree) {
-    const match = content.match(pattern);
-    if (match) {
-      expectations.push({ category, mode: 'exact', expected: Number(match[1]), source: `docs/tr/AGENTS.md project structure (${category})` });
-    }
-  }
-  return expectations;
-}
-
 function createDocumentSpecs(paths = {}) {
   const {
     readmePath = README_PATH,
@@ -627,7 +566,6 @@ function createDocumentSpecs(paths = {}) {
     zhRootReadmePath = README_ZH_CN_PATH,
     zhDocsReadmePath = DOCS_ZH_CN_README_PATH,
     zhDocsAgentsPath = DOCS_ZH_CN_AGENTS_PATH,
-    trDocsAgentsPath = DOCS_TR_AGENTS_PATH,
     pluginJsonPath = PLUGIN_JSON_PATH,
     marketplaceJsonPath = MARKETPLACE_JSON_PATH,
   } = paths;
@@ -657,11 +595,6 @@ function createDocumentSpecs(paths = {}) {
       filePath: zhDocsAgentsPath,
       parseExpectations: parseZhAgentsDocExpectations,
       syncContent: syncZhAgents,
-    },
-    {
-      filePath: trDocsAgentsPath,
-      parseExpectations: parseTrAgentsDocExpectations,
-      syncContent: syncTrAgents,
     },
     {
       filePath: pluginJsonPath,
