@@ -29,7 +29,15 @@ for (const pattern of staleReleaseCopy) {
 }
 
 assert.match(readme, /ECC 2\.2 includes guided package setup/i);
-assert.match(readme, /npm view ecc-universal version/);
+// Upstream asserted the README documents `npm view ecc-universal version`, its
+// way of checking the published release. This fork publishes no npm package, so
+// that command would query UPSTREAM's registry entry. The equivalent freshness
+// check here is the clone the install instructions actually use.
+assert.match(readme, /git clone https:\/\/github\.com\/chimichurria\/CommunityHelp\.git/);
+assert.doesNotMatch(
+  readme.replace(/^>.*$/gm, ''),  // warnings about upstream's package are allowed
+  /npm view ecc-universal/,
+);
 
 for (const source of [changelog, releaseNotes, nasikoSkill, modules, components]) {
   assert.doesNotMatch(source, /Nasiko integration/i);
