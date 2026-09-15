@@ -133,5 +133,57 @@ test('profile levels rise only through graduation', () => {
     'evidence alone floors the level at 1; it does not raise it');
 });
 
+// --- CLI surface -----------------------------------------------------------
+// Covered as a CLI because `npm run coverage` uses c8 --all over scripts/**:
+// rendering and argument handling count even when the analysis is tested.
+
+const { spawnSync } = require('child_process');
+const EVOLVE = path.join(__dirname, '..', '..', 'scripts', 'coach-evolve.js');
+
+function runCli(args = []) {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'coach-evolve-cli-'));
+  try {
+    return spawnSync(process.execPath, [EVOLVE, ...args], {
+      encoding: 'utf8',
+      env: { ...process.env, HOME: home },
+    });
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+}
+
+test('--report renders without crashing on an empty history', () => {
+  const r = runCli(['--report']);
+  assert.strictEqual(r.status, 0, r.stderr);
+  assert.ok(r.stdout.includes('Coach evolution report'));
+});
+
+test('--report says so when there is not enough history to judge', () => {
+  const r = runCli(['--report']);
+  assert.ok(/Not enough history/i.test(r.stdout),
+    'a report built on no data should say so rather than read as findings');
+});
+
+test('--report states plainly that it applies nothing', () => {
+  const r = runCli(['--report']);
+  assert.ok(/applies nothing/i.test(r.stdout),
+    'the propose-only contract must be visible to the person reading the report');
+});
+
+test('--json emits a schema-tagged proposal', () => {
+  const r = runCli(['--json']);
+  assert.strictEqual(r.status, 0, r.stderr);
+  const proposal = JSON.parse(r.stdout);
+  assert.strictEqual(proposal.schema, 'ecc.coach-evolution-proposal.v1');
+  assert.ok(Array.isArray(proposal.items));
+  assert.match(proposal.day, /^\d{4}-\d{2}-\d{2}$/, 'day must be no finer than a date');
+});
+
+test('the default invocation renders the report', () => {
+  const r = runCli([]);
+  assert.strictEqual(r.status, 0, r.stderr);
+  assert.ok(r.stdout.includes('Coach evolution report'));
+});
+
 console.log(`\nResults: Passed: ${passed}, Failed: ${failed}`);
 process.exit(failed > 0 ? 1 : 0);
