@@ -24,7 +24,7 @@ Por ejemplo: mi agente está conectado mediante una capa de gateway a WhatsApp. 
 
 Incluso el jailbreak de Good Rudi del que la gente se ríe (es gracioso, no lo niego) apunta a la misma clase de problema: intentos repetidos, eventualmente una revelación sensible, superficialmente gracioso pero el fallo subyacente es serio — digo, la cosa está pensada para niños, extrapola un poco de aquí y rápidamente llegarás a la conclusión de por qué esto podría ser catastrófico. El mismo patrón va mucho más lejos cuando el modelo está conectado a herramientas reales y permisos reales.
 
-[Video: Exploit Bad Rudi](../../assets/images/security/badrudi-exploit.mp4) — good rudi (personaje de IA animado de grok para niños) es explotado con un jailbreak de prompt después de intentos repetidos para revelar información sensible. Es un ejemplo humorístico pero las posibilidades van mucho más lejos.
+Video: Exploit Bad Rudi (video not distributed with this repository) — good rudi (personaje de IA animado de grok para niños) es explotado con un jailbreak de prompt después de intentos repetidos para revelar información sensible. Es un ejemplo humorístico pero las posibilidades van mucho más lejos.
 
 WhatsApp es solo un ejemplo. Los adjuntos de correo electrónico son un vector enorme. Un atacante envía un PDF con un prompt incrustado; tu agente lee el adjunto como parte del trabajo, y ahora texto que debería haber permanecido como datos útiles se ha convertido en instrucción maliciosa. Las capturas de pantalla y escaneos son igual de malos si haces OCR en ellos. El propio trabajo de inyección de prompts de Anthropic menciona explícitamente texto oculto e imágenes manipuladas como material de ataque real.
 

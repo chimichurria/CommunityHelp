@@ -102,14 +102,14 @@ opt-in con confirmación explícita. Ver [PRIVACY.md](PRIVACY.md).
 
 ## What's included
 
-Access to 68 agents, 289 skills, and 98 legacy command shims, plus hooks, rules,
+Access to 68 agents, 289 skills, and 99 legacy command shims, plus hooks, rules,
 memory, continuous learning, and the AI-literacy coach.
 
 | Included         |       Count | What it gives you                                                                    |
 | ---------------- | ----------: | ------------------------------------------------------------------------------------ |
 | Agents           |   68 agents | Planning, review, build repair, security, architecture, and domain work              |
 | Skills           |  289 skills | TDD, research, security, docs, frontend, data, ML, operations, and more              |
-| Commands         | 98 commands | Convenient entry points while the catalog moves to a skills-first surface            |
+| Commands         | 99 commands | Convenient entry points while the catalog moves to a skills-first surface            |
 | Hooks and memory |     Runtime | Enforcement, session summaries, continuous learning, instincts, and context controls |
 | Rules            |   Selective | Always-loaded standards you choose by language or project                            |
 | AI-literacy coach |   Built in | Teaches prompting at submit time, bilingual, adaptive, local-only                    |

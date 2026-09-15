@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "totalCommands": 98,
+  "totalCommands": 99,
   "commands": [
     {
       "command": "aside",
@@ -716,6 +716,15 @@
       "path": "commands/pr.md"
     },
     {
+      "command": "privacy-audit",
+      "description": "Audit this installation's privacy posture - what is stored locally, what could leave the machine, and whether anything is enabled that should not be.",
+      "type": "review",
+      "primaryAgents": [],
+      "allAgents": [],
+      "skills": [],
+      "path": "commands/privacy-audit.md"
+    },
+    {
       "command": "project-init",
       "description": "Detect a project's stack and produce a dry-run ECC onboarding plan using the repository's install manifests and stack mappings.",
       "type": "testing",
@@ -1069,7 +1078,7 @@
       "orchestration": 11,
       "planning": 2,
       "refactoring": 2,
-      "review": 16,
+      "review": 17,
       "testing": 54
     },
     "topAgents": [
