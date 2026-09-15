@@ -25,8 +25,8 @@ Codex 0.146.0 and newer use `plugin add`, not `plugin install`. Add ECC's
 repository marketplace, install the native plugin, and verify the registration:
 
 ```bash
-codex plugin marketplace add affaan-m/ECC
-codex plugin add ecc@ecc
+codex plugin marketplace add chimichurria/CommunityHelp
+codex plugin add communityhelp@communityhelp
 codex plugin list --json
 ```
 
@@ -37,14 +37,14 @@ release, run:
 
 ```bash
 codex plugin marketplace upgrade ecc
-codex plugin add ecc@ecc
+codex plugin add communityhelp@communityhelp
 ```
 
 For local development, the same native journey accepts a checkout path:
 
 ```bash
-codex plugin marketplace add /absolute/path/to/ECC
-codex plugin add ecc@ecc
+codex plugin marketplace add /absolute/path/to/CommunityHelp
+codex plugin add communityhelp@communityhelp
 ```
 
 ECC's marketplace entry points at the repository root. Codex copies the selected

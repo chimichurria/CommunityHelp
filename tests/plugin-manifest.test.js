@@ -219,7 +219,7 @@ test('claude plugin.json version matches package.json', () => {
 });
 
 test('claude plugin.json uses short plugin slug', () => {
-  assert.strictEqual(claudePlugin.name, 'ecc');
+  assert.strictEqual(claudePlugin.name, 'communityhelp');
 });
 
 test('claude plugin.json does NOT have agents field (unsupported by Claude Code validator)', () => {
@@ -292,8 +292,8 @@ test('claude marketplace.json keeps only Claude-supported top-level keys', () =>
 
 test('claude marketplace.json has plugins array with the published plugin entry', () => {
   assert.ok(Array.isArray(claudeMarketplace.plugins) && claudeMarketplace.plugins.length > 0, 'Expected plugins array');
-  assert.strictEqual(claudeMarketplace.name, 'ecc');
-  assert.strictEqual(claudeMarketplace.plugins[0].name, 'ecc');
+  assert.strictEqual(claudeMarketplace.name, 'communityhelp');
+  assert.strictEqual(claudeMarketplace.plugins[0].name, 'communityhelp');
 });
 
 test('claude marketplace.json plugin version matches package.json', () => {
@@ -320,7 +320,7 @@ test('codex plugin.json has name field', () => {
 });
 
 test('codex plugin.json uses short plugin slug', () => {
-  assert.strictEqual(codexPlugin.name, 'ecc');
+  assert.strictEqual(codexPlugin.name, 'communityhelp');
 });
 
 test('codex plugin.json has version field', () => {
@@ -442,8 +442,8 @@ test('codex plugin.json has interface.displayName', () => {
 });
 
 test('codex plugin.json uses canonical ECC repo and display name', () => {
-  assert.strictEqual(codexPlugin.repository, 'https://github.com/affaan-m/ECC');
-  assert.strictEqual(codexPlugin.interface.displayName, 'ECC');
+  assert.strictEqual(codexPlugin.repository, 'https://github.com/chimichurria/CommunityHelp');
+  assert.strictEqual(codexPlugin.interface.displayName, 'CommunityHelp');
 });
 
 test('codex plugin presentation assets exist and ship in npm package', () => {
@@ -510,7 +510,7 @@ test('marketplace.json has name field', () => {
 });
 
 test('marketplace.json uses short marketplace slug', () => {
-  assert.strictEqual(marketplace.name, 'ecc');
+  assert.strictEqual(marketplace.name, 'communityhelp');
 });
 
 test('marketplace.json has plugins array with at least one entry', () => {
@@ -528,7 +528,7 @@ test('marketplace.json plugin entries have required fields', () => {
 });
 
 test('marketplace.json plugin entry uses short plugin slug', () => {
-  assert.strictEqual(marketplace.plugins[0].name, 'ecc');
+  assert.strictEqual(marketplace.plugins[0].name, 'communityhelp');
 });
 
 test('marketplace.json plugin version matches package.json', () => {
@@ -665,8 +665,8 @@ test('user-facing docs do not use the legacy non-URL marketplace add form', () =
 test('.codex-plugin README uses current marketplace add flow', () => {
   const readme = fs.readFileSync(path.join(repoRoot, '.codex-plugin', 'README.md'), 'utf8');
   assert.ok(readme.includes('codex plugin marketplace add'), 'Expected .codex-plugin README to document codex plugin marketplace add');
-  assert.ok(readme.includes('codex plugin marketplace add affaan-m/ECC'), 'Expected .codex-plugin README to document the canonical ECC repo marketplace source');
-  assert.ok(readme.includes('codex plugin add ecc@ecc'), 'Expected .codex-plugin README to document the current Codex install command');
+  assert.ok(readme.includes('codex plugin marketplace add chimichurria/CommunityHelp'), 'Expected .codex-plugin README to document the CommunityHelp repo marketplace source');
+  assert.ok(readme.includes('codex plugin add communityhelp@communityhelp'), 'Expected .codex-plugin README to document the current Codex install command');
   assert.ok(readme.includes('codex plugin list --json'), 'Expected .codex-plugin README to document a machine-checkable verification command');
   assert.ok(readme.includes('safe to run again'), 'Expected .codex-plugin README to explain idempotent marketplace and plugin registration');
   assert.ok(/does not\s+use Claude's `user`, `project`, or `local` install scopes/.test(readme), 'Expected .codex-plugin README to distinguish Codex plugin state from Claude scopes');

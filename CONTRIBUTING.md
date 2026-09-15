@@ -52,7 +52,7 @@ Slash commands that invoke useful workflows:
 
 ```bash
 # 1. Fork and clone
-gh repo fork affaan-m/ECC --clone
+gh repo fork chimichurria/CommunityHelp --clone
 cd ECC
 
 # 2. Create a branch
@@ -511,7 +511,7 @@ Run `npm test` locally. It is the same gauntlet CI runs, and it catches almost e
 
 ## Questions?
 
-- **Issues:** [github.com/affaan-m/ECC/issues](https://github.com/affaan-m/ECC/issues)
+- **Issues:** [github.com/chimichurria/CommunityHelp/issues](https://github.com/chimichurria/CommunityHelp/issues)
 - **X/Twitter:** [@affaanmustafa](https://x.com/affaanmustafa)
 
 ---

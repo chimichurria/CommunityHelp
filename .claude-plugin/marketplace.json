@@ -1,24 +1,24 @@
 {
-  "name": "ecc",
+  "name": "communityhelp",
   "owner": {
-    "name": "Affaan Mustafa",
-    "email": "me@affaanmustafa.com"
+    "name": "ChimichurrIA",
+    "url": "https://chimichurria.com"
   },
   "metadata": {
     "description": "Harness-native ECC skills, hooks, rules, MCP conventions, and operator workflows"
   },
   "plugins": [
     {
-      "name": "ecc",
+      "name": "communityhelp",
       "source": "./",
       "description": "Harness-native ECC operator layer - 68 agents, 292 skills, 94 legacy command shims, reusable hooks, rules, selective install profiles, and production-ready workflows for Claude Code, Codex, OpenCode, Cursor, and related agent harnesses",
       "version": "2.2.1",
       "author": {
-        "name": "Affaan Mustafa",
-        "email": "me@affaanmustafa.com"
+        "name": "ChimichurrIA",
+        "url": "https://chimichurria.com"
       },
-      "homepage": "https://ecc.tools",
-      "repository": "https://github.com/affaan-m/ECC",
+      "homepage": "https://github.com/chimichurria/CommunityHelp",
+      "repository": "https://github.com/chimichurria/CommunityHelp",
       "license": "MIT",
       "keywords": [
         "agents",

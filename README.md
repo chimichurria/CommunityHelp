@@ -1,20 +1,14 @@
+<h1 align="center">CommunityHelp</h1>
+
 <p align="center">
-  <img src="assets/hero.png" alt="ECC - the agent harness operating system" width="100%" />
+  <strong>An engineering system for your AI agent — that also teaches you to use it.</strong><br />
+  <sub>Un sistema de ingeniería para tu agente de IA — que además te enseña a usarlo.</sub>
 </p>
 
 <p align="center">
-  <a href="https://www.star-history.com/affaan-m/ecc">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=affaan-m/ECC&type=trending&theme=dark" />
-      <img src="https://api.star-history.com/badge?repo=affaan-m/ECC&type=trending" alt="GitHub Trending Repository of the Day" height="46" />
-    </picture>
-  </a>
-  <a href="https://www.star-history.com/affaan-m/ecc">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=affaan-m/ECC&type=rank&theme=dark" />
-      <img src="https://api.star-history.com/badge?repo=affaan-m/ECC&type=rank" alt="Star History Global Rank" height="46" />
-    </picture>
-  </a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-17db98.svg" alt="MIT license" /></a>
+  <a href="PRIVACY.md"><img src="https://img.shields.io/badge/privacy-local--first-ff8335.svg" alt="Local-first privacy" /></a>
+  <a href="NOTICE.md"><img src="https://img.shields.io/badge/fork%20of-affaan--m%2Fecc-5f6469.svg" alt="Fork of affaan-m/ecc" /></a>
 </p>
 
 <p align="center">
@@ -34,127 +28,91 @@
   <a href="docs/uk-UA/README.md">Українська</a>
 </p>
 
-<p align="center">
-  <a href="https://discord.gg/36yGMHGFbR"><img src="https://img.shields.io/discord/1496644400590094540?logo=discord&logoColor=white&label=Discord&color=5865F2" alt="Discord" /></a>
-  <a href="https://ecc.tools"><img src="https://img.shields.io/badge/Website-ecc.tools-E07856?logo=googlechrome&logoColor=white" alt="Website" /></a>
-  <a href="https://github.com/apps/ecc-tools"><img src="https://img.shields.io/badge/GitHub%20App-ECC%20Tools-181717?logo=github&logoColor=white" alt="GitHub App" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license" /></a>
-</p>
+<sub><em>Translations are inherited from upstream and are <strong>not maintained here</strong> — they will drift. English is canonical.</em></sub>
 
-<p align="center">
-  <a href="https://github.com/affaan-m/ECC/stargazers"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Fstars&style=flat" alt="Stars" /></a>
-  <a href="https://github.com/affaan-m/ECC/network/members"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Fforks&style=flat" alt="Forks" /></a>
-  <a href="https://github.com/affaan-m/ECC/graphs/contributors"><img src="https://img.shields.io/github/contributors/affaan-m/ECC?style=flat" alt="Contributors" /></a>
-  <a href="https://github.com/marketplace/ecc-tools"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Finstalls&logo=github" alt="GitHub App installs" /></a>
-</p>
+---
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/ecc-universal"><img src="https://img.shields.io/npm/dw/ecc-universal?label=ecc-universal&logo=npm" alt="ecc-universal npm downloads" /></a>
-  <a href="https://www.npmjs.com/package/ecc-agentshield"><img src="https://img.shields.io/npm/dw/ecc-agentshield?label=ecc-agentshield&logo=npm" alt="ecc-agentshield npm downloads" /></a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/-Shell-4EAA25?logo=gnu-bash&logoColor=white" alt="Shell" />
-  <img src="https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/-Go-00ADD8?logo=go&logoColor=white" alt="Go" />
-  <img src="https://img.shields.io/badge/-Java-ED8B00?logo=openjdk&logoColor=white" alt="Java" />
-  <img src="https://img.shields.io/badge/-Perl-39457E?logo=perl&logoColor=white" alt="Perl" />
-  <img src="https://img.shields.io/badge/-Markdown-000000?logo=markdown&logoColor=white" alt="Markdown" />
-</p>
+> [!NOTE]
+> **This is a fork.** CommunityHelp is built on [Everything Claude Code](https://github.com/affaan-m/ecc)
+> by **Affaan Mustafa** (MIT), forked at `8321021c` / v2.2.1, and maintained by
+> [ChimichurrIA](https://chimichurria.com). The upstream author does not endorse
+> this fork and is not responsible for it. Do not send issues or security reports
+> about CommunityHelp upstream. See [NOTICE.md](NOTICE.md) for exactly what was
+> changed and why.
 
 > [!WARNING]
-> **Official sources only.** Install ECC only from verified channels: the GitHub repository [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC), the npm packages [`ecc-universal`](https://www.npmjs.com/package/ecc-universal) and [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield), the [GitHub App](https://github.com/apps/ecc-tools), the plugin slug `ecc@ecc`, and the project website [ecc.tools](https://ecc.tools). Third-party re-uploads and unofficial mirrors are not maintained or reviewed by the project and may contain malware.
+> **Official sources only.** There is exactly one: the GitHub repository
+> [github.com/chimichurria/CommunityHelp](https://github.com/chimichurria/CommunityHelp)
+> and the plugin slug `communityhelp@communityhelp`. This fork is **not published to
+> npm** — anything on npm claiming to be CommunityHelp is not ours. Third-party
+> mirrors are not reviewed by this project and may contain malware.
 
-## Install with Claude Code
+## What this is
 
-Use the [guided setup](#install-ecc) or [native plugin commands](#claude-code-details). Both install the same `ecc@ecc` plugin. Choose one and do not stack a full manual Claude install on top.
-
-<div align="center">
-
-<table aria-label="ECC primary links">
-<tr>
-<td width="33%" align="center">
-  <a href="https://ecc.tools/pricing">
-    <img src="assets/images/community/ecc-tools-mark.svg" height="42" alt="ECC Tools" /><br />
-    <strong>ECC Pro + GitHub App</strong>
-  </a><br />
-  <sub><a href="https://github.com/apps/ecc-tools">Install free</a> · <a href="https://ecc.tools/pricing">Private repos from $19/seat/mo</a></sub>
-</td>
-<td width="33%" align="center">
-  <a href="https://github.com/sponsors/affaan-m">
-    <img src="assets/images/community/heart.svg" height="42" alt="" /><br />
-    <strong>Sponsor ECC</strong>
-  </a><br />
-  <sub>Fund the open-source project</sub>
-</td>
-<td width="33%" align="center">
-  <a href="https://discord.gg/36yGMHGFbR">
-    <img src="assets/images/community/discord.svg" height="42" alt="Discord" /><br />
-    <strong>Community</strong>
-  </a><br />
-  <sub>Discord · Q&amp;A · Show and Tell</sub>
-</td>
-</tr>
-</table>
-
-</div>
-
-<sub>**OSS stays free.** This repo is MIT-licensed forever. ECC Pro is the hosted GitHub App for private repos. <a href="https://github.com/sponsors/affaan-m">Sponsors</a> and <a href="https://ecc.tools/pricing">Pro subscribers</a> fund the work. That's why a single maintainer ships weekly across 7 harnesses.</sub>
-
-<div align="center">
-
-<sub><strong>Partners &amp; sponsors</strong></sub>
-
-<p align="center" aria-label="Partners and sponsors">
-  <a href="https://www.coderabbit.ai" title="CodeRabbit"><img src="assets/images/sponsors/coderabbit.png" height="54" alt="CodeRabbit" /></a>&nbsp;&nbsp;&nbsp;
-  <a href="https://www.greptile.com/go/ecc" title="Greptile"><img src="assets/images/sponsors/greptile.png" height="54" alt="Greptile" /></a>&nbsp;&nbsp;&nbsp;
-  <a href="https://www.atlascloud.ai/?utm_source=github&amp;utm_medium=link&amp;utm_campaign=ECC" title="Atlas Cloud"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/images/sponsors/atlascloud-dark.svg" /><img src="assets/images/sponsors/atlascloud.svg" width="154" alt="Atlas Cloud" /></picture></a>&nbsp;&nbsp;&nbsp;
-  <a href="https://platform.kimi.ai?aff=ecc" title="Moonshot AI - Kimi"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/images/sponsors/moonshot-dark.png" /><img src="assets/images/sponsors/moonshot.png" width="132" alt="Moonshot AI - Kimi" /></picture></a>&nbsp;&nbsp;&nbsp;
-  <a href="https://compute.itomarkets.com" title="Itô Markets"><picture><source media="(prefers-color-scheme: light)" srcset="assets/images/sponsors/ito-transparent-light.png" /><img src="assets/images/sponsors/ito-transparent.png" width="96" alt="Itô Markets" /></picture></a>
-</p>
-
-<sub><strong>Community sponsors:</strong> <a href="https://github.com/mikejmorgan-ai">Mike Morgan</a> · <a href="https://github.com/jasonwu513">@jasonwu513</a> · <a href="https://github.com/1anter">@1anter</a> · <a href="https://github.com/massimotodaro">@massimotodaro</a> · <a href="https://github.com/meadmccabe">@meadmccabe</a></sub>
-
-<sub><a href="https://github.com/sponsors/affaan-m"><strong>Become a Sponsor</strong></a> · <a href="SPONSORS.md">Sponsor Tiers</a> · <a href="SPONSORING.md">Sponsorship Program</a></sub>
-
-</div>
-
-<p align="center"><a href="#install-ecc">Jump to install ↓</a></p>
-
-# ECC
-
-Your agent can write code, but ECC gives it a coordinated engineering system and toolbox: it plans before it builds, verifies changes with tests, reviews its own work from a fresh context, remembers what matters, and turns repeated wins into reusable skills and workflows.
+Your agent can write code, but it rebuilds its process from scratch in every
+prompt. This gives it a coordinated engineering system instead: it plans before
+it builds, verifies changes with tests, reviews its own work from a fresh
+context, remembers what matters, and turns repeated wins into reusable skills.
 
 ```text
 plan -> test -> implement -> review -> verify -> remember -> improve
 ```
 
-Instead of rebuilding that process in every prompt, you install it once and make it part of how your agent works.
+**And it teaches.** Most tools assume you already know how to prompt well.
+This one notices when a prompt is going to cost you a turn — no acceptance
+criteria, no file anchors, three tasks stacked into one — and says so *before*
+the turn is spent, in Spanish or English, matching whatever you wrote in. Then
+it gets quieter: each lesson stops firing once you have demonstrably stopped
+making that mistake. See [`skills/ai-literacy-coach/`](skills/ai-literacy-coach/SKILL.md).
 
-> Optimize the context window. Persist everything else.
+## What it does with your data
 
-ECC is MIT-licensed open source. It works best with Claude Code today, has a supported Codex sync path, and provides capability-limited adapters for Cursor, OpenCode, Gemini, Zed, GitHub Copilot, Antigravity, Qwen, and other harnesses. See the [support status matrix](#platform-support) before assuming feature parity.
+Nothing leaves your machine unless you explicitly send it.
 
-Access to 68 agents, 292 skills, and 94 legacy command shims, plus hooks, rules, memory, continuous learning, and AgentShield security scanning. The agents are specialized for planning, review, build repair, security, architecture, and domain work.
+- The coach **never writes prompt text to disk** — only rule IDs, integer
+  counters, and coarse buckets. This is enforced by a whitelist rebuild inside
+  the writer, not promised in a doc.
+- **No hook performs network I/O.** Every outbound path is opt-in and lives in a
+  command *you* invoke.
+- Contributing improvements back to this repo is opt-in, shows you the complete
+  anonymized payload first, and requires typing a confirmation word.
+
+[PRIVACY.md](PRIVACY.md) lists every place data can possibly leave, whether it
+is opt-in, and whether it carries your content. Run `/privacy-audit` to check
+your own install without reading 53 hook scripts.
+
+## Qué es esto (Español)
+
+Tu agente sabe escribir código, pero rehace su proceso desde cero en cada
+prompt. Esto le da un sistema de ingeniería: planifica antes de construir,
+verifica con tests, revisa su propio trabajo desde contexto limpio, recuerda lo
+que importa, y convierte lo que funcionó en skills reutilizables.
+
+**Y enseña.** La mayoría de las herramientas asumen que ya sabés promptear.
+Esta detecta cuándo un prompt te va a costar un turno — sin criterio de
+aceptación, sin archivos concretos, tres tareas apiladas en una — y te lo dice
+*antes* de gastarlo, en tu idioma. Después se calla: cada lección deja de
+aparecer cuando demostrás que ya no cometés ese error.
+
+**Tus datos no salen de tu máquina.** El coach no escribe ni una palabra de tus
+prompts en disco, ningún hook toca la red, y contribuir mejoras al repo es
+opt-in con confirmación explícita. Ver [PRIVACY.md](PRIVACY.md).
+
+## What's included
+
+Access to 68 agents, 292 skills, and 94 legacy command shims, plus hooks, rules,
+memory, continuous learning, and the AI-literacy coach.
 
 | Included         |       Count | What it gives you                                                                    |
 | ---------------- | ----------: | ------------------------------------------------------------------------------------ |
 | Agents           |   68 agents | Planning, review, build repair, security, architecture, and domain work              |
 | Skills           |  292 skills | TDD, research, security, docs, frontend, data, ML, operations, and more              |
-| Commands         | 94 commands | Convenient entry points while ECC moves to a skills-first surface                    |
+| Commands         | 94 commands | Convenient entry points while the catalog moves to a skills-first surface            |
 | Hooks and memory |     Runtime | Enforcement, session summaries, continuous learning, instincts, and context controls |
 | Rules            |   Selective | Always-loaded standards you choose by language or project                            |
-| AgentShield      |    Included | Scanning for prompts, hooks, MCP config, permissions, secrets, and agent files       |
+| AI-literacy coach |   Built in | Teaches prompting at submit time, bilingual, adaptive, local-only                    |
 
-<p align="center">
-  <a href="https://www.star-history.com/affaan-m/ecc">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/star-history-dark.svg" />
-      <img src="assets/star-history-light.svg" alt="ECC star history: first 40,000 stars, January 18 to February 7, 2026" width="100%" />
-    </picture>
-  </a>
-</p>
+<p align="center"><a href="#install-ecc">Jump to install ↓</a></p>
 
 ## Install ECC
 
@@ -168,48 +126,48 @@ Access to 68 agents, 292 skills, and 94 legacy command shims, plus hooks, rules,
 For Claude Code plugin setup, updates, scope changes, and hook-profile changes:
 
 ```bash
-npx ecc-universal@2.2.1 setup
+node scripts/ecc.js setup
 ```
 
-If npm reports a version or cache error, confirm the registry version before retrying:
+> [!IMPORTANT]
+> **CommunityHelp is not published to npm.** Upstream ECC publishes `ecc-universal`;
+> that package is the upstream author's and is **not this fork**. Running
+> `npx ecc-universal` installs upstream code, not the code in this repository.
+> Install from a clone or from the Claude Code plugin marketplace instead.
+
+Run the guided setup from a clone:
 
 ```bash
-npm view ecc-universal version
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp
+npm install --ignore-scripts
+node scripts/ecc.js setup
 ```
 
-ECC 2.2 supports the same guided setup through modern package runners:
+`--ignore-scripts` is deliberate: it is how CI installs this repository, and it
+means no package lifecycle script runs on your machine during install. Review
+the checkout before running it — a clone is not a security audit.
 
-| Package runner | Guided setup command |
-|---|---|
-| npm / npx | `npx ecc-universal@2.2.1 setup` |
-| pnpm | `pnpm dlx ecc-universal@2.2.1 setup` |
-| Yarn 2+ | `yarn dlx ecc-universal@2.2.1 setup` |
-| Bun | `bunx ecc-universal@2.2.1 setup` |
-
-The examples select [the published ECC 2.2.1 release](https://www.npmjs.com/package/ecc-universal/v/2.2.1), matching this repository's release version. A version pin is not a security audit or an integrity check. Review the release source and registry integrity before running package code; use a reviewed checkout for unreleased changes.
-
-Yarn Classic 1 does not provide `yarn dlx`; use `npx`, install the package globally, or upgrade Yarn for a temporary one-shot run.
-
-The wizard inventories the official marketplace and every native Claude install scope before making changes, then installs, updates, or safely moves `ecc@ecc` to the scope you choose. Rerun the same command whenever you want to update ECC, change scope, or change its hook profile. This setup wizard currently configures the Claude Code plugin; use the multi-harness wizard below for Codex or Kimi Code.
+The wizard inventories the official marketplace and every native Claude install scope before making changes, then installs, updates, or safely moves `communityhelp@communityhelp` to the scope you choose. Rerun the same command whenever you want to update ECC, change scope, or change its hook profile. This setup wizard currently configures the Claude Code plugin; use the multi-harness wizard below for Codex or Kimi Code.
 
 To configure more than one coding agent in one reviewed flow, use the multi-harness wizard:
 
 ```bash
-npx ecc-universal@2.2.1 install --guided
+node scripts/ecc.js install --guided
 ```
 
 It lets you select any combination of Claude Code, Codex, and Kimi Code, shows each install channel and destination, preflights every selection before the first write, and asks for one final confirmation.
 
 | Harness | Guided install behavior |
 |---|---|
-| Claude Code | Native `ecc@ecc` plugin with one `user`, `project`, or `local` scope and an ECC hook profile |
+| Claude Code | Native `communityhelp@communityhelp` plugin with one `user`, `project`, or `local` scope and an ECC hook profile |
 | Codex | Native Codex marketplace/plugin lifecycle; hook review and trust remain Codex-owned |
 | Kimi Code | Managed project files under `./.kimi-code`; ECC hooks, model/provider settings, and authentication are not configured |
 
 For automation, make every provider-specific choice explicit:
 
 ```bash
-npx ecc-universal@2.2.1 install --guided \
+node scripts/ecc.js install --guided \
   --harness claude --harness codex --harness kimi \
   --claude-scope local --claude-hooks standard \
   --profile core --yes
@@ -218,19 +176,19 @@ npx ecc-universal@2.2.1 install --guided \
 Verify the native guided Codex path and managed Kimi path without writing first:
 
 ```bash
-npx ecc-universal@2.2.1 install --guided --harness codex --dry-run
-npx ecc-universal@2.2.1 install --profile core --target kimi --dry-run
+node scripts/ecc.js install --guided --harness codex --dry-run
+node scripts/ecc.js install --profile core --target kimi --dry-run
 ```
 
 Additional package-name commands are also available through the 2.2 alias:
 
 ```bash
-npx ecc-universal@2.2.1 consult "security reviews" --target claude
-npx ecc-universal@2.2.1 install --profile minimal --target claude --with capability:machine-learning
-npx ecc-universal@2.2.1 doctor --target kimi
+node scripts/ecc.js consult "security reviews" --target claude
+node scripts/ecc.js install --profile minimal --target claude --with capability:machine-learning
+node scripts/ecc.js doctor --target kimi
 ```
 
-Do not use `npx ecc-install --profile minimal --target claude`: `ecc-install` is a binary name inside `ecc-universal`, not a separately published npm package.
+Do not use `npx ecc-install`: `ecc-install` is a binary name inside the package, not a separately published npm package. Run `node scripts/install-apply.js` from your clone instead.
 
 ECC also ships advanced managed adapters for `cursor`, `antigravity`, `gemini`, `opencode`, `codebuddy`, `joycode`, `qwen`, `zed`, `hermes`, and `openclaw`. Those targets still use their documented `ecc install --target ...` paths until each adapter has passed the guided collision, update, repair, and uninstall lifecycle matrix. Neither wizard silently installs into every detected harness.
 
@@ -250,15 +208,15 @@ You can use ECC with Claude Code, Codex, and other harnesses at the same time. C
 
 If you already layered multiple installs and things look duplicated, skip straight to [Reset / Uninstall ECC](#reset--uninstall-ecc).
 
-**Install trouble?** Open the short [install or runtime problem form](https://github.com/affaan-m/ECC/issues/new?template=install-problem.yml), or run `ecc feedback`. ECC never uploads diagnostics automatically.
+**Install trouble?** Open the short [install or runtime problem form](https://github.com/chimichurria/CommunityHelp/issues/new?template=install-problem.yml), or run `ecc feedback`. ECC never uploads diagnostics automatically.
 
 ### Claude Code details
 
 Alternatively, run Claude Code's native plugin commands inside Claude Code:
 
 ```text
-/plugin marketplace add https://github.com/affaan-m/ECC
-/plugin install ecc@ecc
+/plugin marketplace add https://github.com/chimichurria/CommunityHelp
+/plugin install communityhelp@communityhelp
 ```
 
 The native path installs ECC's skills, agents, commands, and plugin-managed hooks. If you choose it, stop there. Do not also run a full manual install into Claude Code.
@@ -270,8 +228,8 @@ After ECC is installed, `/ecc:configure-ecc` is the namespaced in-Claude reconfi
 Claude Code plugins cannot distribute `rules`, so add only the rule packs you actually want:
 
 ```bash
-git clone https://github.com/affaan-m/ECC.git
-cd ECC
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp
 mkdir -p ~/.claude/rules/ecc
 cp -R rules/common ~/.claude/rules/ecc/
 cp -R rules/typescript ~/.claude/rules/ecc/  # replace with your stack
@@ -290,12 +248,12 @@ Add directly to your `~/.claude/settings.json`:
     "ecc": {
       "source": {
         "source": "github",
-        "repo": "affaan-m/ECC"
+        "repo": "chimichurria/CommunityHelp"
       }
     }
   },
   "enabledPlugins": {
-    "ecc@ecc": true
+    "communityhelp@communityhelp": true
   }
 }
 ```
@@ -304,17 +262,19 @@ This gives you the same result as the two `/plugin` commands above.
 </details>
 
 <details>
-<summary><strong>Naming + migration note (ecc@ecc, affaan-m/ECC, ecc-universal)</strong></summary>
+<summary><strong>Naming note (communityhelp@communityhelp, chimichurria/CommunityHelp)</strong></summary>
 
-ECC has three public identifiers, and they are not interchangeable:
+CommunityHelp has exactly two public identifiers:
 
-- GitHub source repo: `affaan-m/ECC`
-- Claude marketplace/plugin identifier: `ecc@ecc`
-- npm package: `ecc-universal`
+- GitHub source repo: `chimichurria/CommunityHelp`
+- Claude marketplace/plugin identifier: `communityhelp@communityhelp`
 
-This is intentional. Anthropic marketplace/plugin installs are keyed by a canonical plugin identifier, so ECC uses `ecc@ecc` to keep tool names and slash-command namespaces short enough for strict Desktop/API validators. Older posts may still show the former long marketplace identifier; treat that as a legacy alias only. Separately, the npm package stayed on `ecc-universal`, so npm installs and marketplace installs intentionally use different names.
+There is **no npm package**. The upstream `ecc-universal` package belongs to the
+upstream author and is not this fork.
 
-npm releases are cut per version tag, not per commit, so `ecc-universal` tracks releases (2.1, 2.2, ...) rather than every push to `main`. Install from git if you want the bleeding edge.
+Marketplace/plugin installs are keyed by a canonical plugin identifier, kept short so tool names and slash-command namespaces pass strict Desktop/API validators.
+
+This fork ships from `main`; install from git.
 
 If your local Claude setup was wiped or reset, that does not mean you need to repurchase anything. Start with `node scripts/ecc.js list-installed`, then run `node scripts/ecc.js doctor` and `node scripts/ecc.js repair` before reinstalling. That usually restores ECC-managed files without rebuilding your setup.
 </details>
@@ -324,19 +284,19 @@ If your local Claude setup was wiped or reset, that does not mean you need to re
 Current Codex releases can install ECC as a native repo-marketplace plugin. The marketplace entry uses the repository root so Codex's cache receives the manifest together with all referenced skills, MCP configuration, hook runtime, scripts, and assets:
 
 ```bash
-codex plugin marketplace add affaan-m/ECC
-codex plugin add ecc@ecc
+codex plugin marketplace add chimichurria/CommunityHelp
+codex plugin add communityhelp@communityhelp
 codex plugin list --json
 node scripts/codex/check-plugin-cache.js
 ```
 
-Both add commands are idempotent. To refresh later, run `codex plugin marketplace upgrade ecc` followed by `codex plugin add ecc@ecc`. Codex stores one enabled plugin state in the active `CODEX_HOME`; it does not offer Claude's `user`, `project`, and `local` scopes. Its native hooks require an explicit trust decision and do not use Claude's four ECC hook profiles. Inside Codex, invoke `$configure-ecc` for the guided provider-aware flow.
+Both add commands are idempotent. To refresh later, run `codex plugin marketplace upgrade ecc` followed by `codex plugin add communityhelp@communityhelp`. Codex stores one enabled plugin state in the active `CODEX_HOME`; it does not offer Claude's `user`, `project`, and `local` scopes. Its native hooks require an explicit trust decision and do not use Claude's four ECC hook profiles. Inside Codex, invoke `$configure-ecc` for the guided provider-aware flow.
 
 The older `scripts/sync-ecc-to-codex.sh` path is a deprecated compatibility option for users who intentionally need copied and merged configuration in `~/.codex`; it is not required for the native plugin. New sync runs write an ownership manifest so cleanup can preserve modified user files. Run Codex once first so `~/.codex/config.toml` exists, then:
 
 ```bash
-git clone https://github.com/affaan-m/ECC.git
-cd ECC
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp
 npm install
 bash scripts/sync-ecc-to-codex.sh
 ```
@@ -362,8 +322,8 @@ For repo navigation, surface ownership, and PR diff packet guidance, read the [C
 Clone ECC once, then choose the target that matches your harness:
 
 ```bash
-git clone https://github.com/affaan-m/ECC.git
-cd ECC
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp
 ```
 
 | Harness | Install or setup | Notes |
@@ -399,7 +359,7 @@ Deep per-harness notes (feature parity, hook adapters, limitations) live in [Pla
 Use this when you want ECC's rules, agents, commands, platform config, and core workflows without runtime hooks:
 
 ```bash
-npx ecc-universal@2.2.1 install --profile minimal --target claude
+node scripts/ecc.js install --profile minimal --target claude
 ```
 
 From a source checkout, the equivalent command is:
@@ -503,16 +463,16 @@ Rules are always-loaded context, so begin with `common` and one pack for the sta
 Use this only when you are intentionally skipping the plugin path:
 
 ```bash
-git clone https://github.com/affaan-m/ECC.git
-cd ECC
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp
 ./install.sh --profile full
 ```
 
 Windows:
 
 ```powershell
-git clone https://github.com/affaan-m/ECC.git
-cd ECC
+git clone https://github.com/chimichurria/CommunityHelp.git
+cd CommunityHelp
 .\install.ps1 --profile full
 ```
 
@@ -584,11 +544,11 @@ If you installed from the universal package, run these commands from the same
 project directory used for installation:
 
 ```bash
-npx ecc-universal@2.2.1 list-installed
-npx ecc-universal@2.2.1 doctor
-npx ecc-universal@2.2.1 repair
-npx ecc-universal@2.2.1 uninstall --dry-run
-npx ecc-universal@2.2.1 uninstall
+node scripts/ecc.js list-installed
+node scripts/ecc.js doctor
+node scripts/ecc.js repair
+node scripts/ecc.js uninstall --dry-run
+node scripts/ecc.js uninstall
 ```
 
 From a source checkout, inspect the managed state before reinstalling:
@@ -607,7 +567,7 @@ node scripts/uninstall.js --dry-run
 node scripts/uninstall.js
 ```
 
-If you are leaving, the uninstall command prints an optional [20-second feedback form](https://github.com/affaan-m/ECC/issues/new?template=quick-feedback.yml). It is a public GitHub issue, never blocks uninstall, and ECC does not upload diagnostics. You can also run `ecc feedback` at any time to see the problem, feedback, and feature routes.
+If you are leaving, the uninstall command prints an optional [20-second feedback form](https://github.com/chimichurria/CommunityHelp/issues/new?template=quick-feedback.yml). It is a public GitHub issue, never blocks uninstall, and ECC does not upload diagnostics. You can also run `ecc feedback` at any time to see the problem, feedback, and feature routes.
 
 Plugin users should remove the plugin from Claude Code, then delete only the rule folders they manually copied and no longer want. ECC only removes files recorded in its install-state. It does not claim unrelated files in your harness directories.
 
@@ -653,7 +613,7 @@ Manual installs may expose the shorter compatibility form:
 Skills are the primary workflow surface. Commands remain convenient entry points and compatibility shims. Check what is installed with:
 
 ```bash
-/plugin list ecc@ecc
+/plugin list communityhelp@communityhelp
 ```
 </details>
 
@@ -1194,10 +1154,10 @@ ECC's Memory Vault gives Claude, Codex, Hermes, OpenClaw, Kimi, and other harnes
 Skill-only, minimal, manual, and Claude plugin installs do not put the Memory Vault runtime on `PATH`. Install the npm runtime separately before using the CLI or optional MCP server:
 
 ```bash
-npm install -g ecc-universal@2.2.1
-ecc memory init --scope project
-ecc memory search "authentication migration" --target-harness codex
-ecc memory doctor
+# from your CommunityHelp clone:
+node scripts/memory.js init --scope project
+node scripts/memory.js search "authentication migration" --target-harness codex
+node scripts/memory.js doctor
 ```
 
 Memory is unreviewed context, not executable policy. Verify important claims against authoritative sources and promote accepted knowledge into governed project documentation. The optional `ecc-memory-mcp` server exposes the same bounded save, search, read, and doctor surface without enabling itself by default.
@@ -1470,8 +1430,8 @@ ECC provides a supported native Codex marketplace plugin and repo-local configur
 
 ```bash
 # Recommended current install: add ECC's native plugin from the repo marketplace
-codex plugin marketplace add affaan-m/ECC
-codex plugin add ecc@ecc
+codex plugin marketplace add chimichurria/CommunityHelp
+codex plugin add communityhelp@communityhelp
 codex plugin list --json
 
 # Or run Codex CLI in the repo: AGENTS.md and .codex/ are auto-detected
@@ -1583,23 +1543,16 @@ OpenCode's plugin system has 20+ event types:
 
 **Option 1: Use directly**
 ```bash
-cd ECC
+cd CommunityHelp
 opencode
 ```
 
-**Option 2: Install as npm package**
-```bash
-npm install ecc-universal@2.2.1
-```
+**Option 2: Install as npm package — not available for this fork**
 
-Then add to your `opencode.json`:
-```json
-{
-  "plugin": ["ecc-universal"]
-}
-```
-
-That npm plugin entry enables ECC's published OpenCode plugin module (hooks/events and plugin tools). It does **not** automatically add ECC's full command/agent/instruction catalog to your project config.
+Upstream publishes an npm package that OpenCode can load via a `"plugin"` entry.
+CommunityHelp is not published to npm, so use Option 1 (build from a clone)
+instead. Adding `"plugin": ["ecc-universal"]` to your `opencode.json` would load
+**upstream's** module, not this fork's.
 
 For the full ECC OpenCode setup, either:
 - run OpenCode inside this repository, or
@@ -1776,11 +1729,10 @@ Duplicate hooks file detected: ./hooks/hooks.json resolves to already-loaded fil
 
 Install ECC only from official sources:
 
-- GitHub repository: <https://github.com/affaan-m/ECC>
-- Claude Code plugin: `ecc@ecc`
-- npm packages: [`ecc-universal`](https://www.npmjs.com/package/ecc-universal) and [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
-- GitHub App: <https://github.com/apps/ecc-tools>
-- Website: <https://ecc.tools>
+- GitHub repository: <https://github.com/chimichurria/CommunityHelp>
+- Claude Code plugin: `communityhelp@communityhelp`
+- npm: **none** — this fork is not published to npm
+- Maintainer: [ChimichurrIA](https://chimichurria.com)
 
 Scan a project with an already installed, reviewed AgentShield binary (see [runner provenance](#agentshield-runner-provenance)):
 
@@ -1927,7 +1879,7 @@ Run the cache check from an ECC checkout:
 node scripts/codex/check-plugin-cache.js
 ```
 
-If it reports unresolved parent references, refresh the native cache with `codex plugin marketplace upgrade ecc`, run `codex plugin add ecc@ecc` again, and restart Codex. Registration in `codex plugin list` confirms the marketplace entry, while the cache check verifies that the installed manifest can resolve its skills, MCP configuration, and assets. Use `bash scripts/sync-ecc-to-codex.sh` only when you intentionally need the legacy copied-configuration compatibility path.
+If it reports unresolved parent references, refresh the native cache with `codex plugin marketplace upgrade ecc`, run `codex plugin add communityhelp@communityhelp` again, and restart Codex. Registration in `codex plugin list` confirms the marketplace entry, while the cache check verifies that the installed manifest can resolve its skills, MCP configuration, and assets. Use `bash scripts/sync-ecc-to-codex.sh` only when you intentionally need the legacy copied-configuration compatibility path.
 </details>
 
 More answers: [TROUBLESHOOTING.md](TROUBLESHOOTING.md) covers memory, hooks, installation, performance, and common error messages. [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) tracks workarounds for open Claude Code bugs.
@@ -1965,7 +1917,7 @@ ECC Pro adds private-repo analysis, PR-triggered audits, AgentShield-backed scan
 <tr>
 <td width="25%" align="center"><a href="https://ecc.tools/pricing"><strong>ECC Pro</strong><br /><sub>Hosted GitHub App for private repos</sub></a></td>
 <td width="25%" align="center"><a href="https://github.com/sponsors/affaan-m"><strong>Sponsor ECC</strong><br /><sub>Fund the OSS work</sub></a></td>
-<td width="25%" align="center"><a href="https://github.com/affaan-m/ECC/discussions"><strong>Community</strong><br /><sub>Q&amp;A, ideas, and Show and Tell</sub></a></td>
+<td width="25%" align="center"><a href="https://github.com/chimichurria/CommunityHelp/discussions"><strong>Community</strong><br /><sub>Q&amp;A, ideas, and Show and Tell</sub></a></td>
 <td width="25%" align="center"><a href="https://github.com/apps/ecc-tools"><strong>GitHub App</strong><br /><sub>PR audits and hosted workflows</sub></a></td>
 </tr>
 </table>

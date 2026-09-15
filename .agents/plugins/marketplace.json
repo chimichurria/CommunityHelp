@@ -1,11 +1,11 @@
 {
-  "name": "ecc",
+  "name": "communityhelp",
   "interface": {
-    "displayName": "ECC"
+    "displayName": "CommunityHelp"
   },
   "plugins": [
     {
-      "name": "ecc",
+      "name": "communityhelp",
       "version": "2.2.1",
       "source": {
         "source": "local",

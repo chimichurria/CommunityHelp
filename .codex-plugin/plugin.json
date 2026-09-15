@@ -1,14 +1,13 @@
 {
-  "name": "ecc",
+  "name": "communityhelp",
   "version": "2.2.1",
   "description": "Harness-native ECC workflows for Codex: shared skills, production-ready MCP configs, and selective-install-aligned conventions for TDD, security scanning, code review, and autonomous development.",
   "author": {
-    "name": "Affaan Mustafa",
-    "email": "me@affaanmustafa.com",
-    "url": "https://x.com/affaanmustafa"
+    "name": "ChimichurrIA",
+    "url": "https://chimichurria.com"
   },
-  "homepage": "https://ecc.tools",
-  "repository": "https://github.com/affaan-m/ECC",
+  "homepage": "https://github.com/chimichurria/CommunityHelp",
+  "repository": "https://github.com/chimichurria/CommunityHelp",
   "license": "MIT",
   "keywords": [
     "codex",
@@ -24,20 +23,20 @@
   "mcpServers": "./.mcp.json",
   "hooks": "./hooks/codex-hooks.json",
   "interface": {
-    "displayName": "ECC",
+    "displayName": "CommunityHelp",
     "shortDescription": "281 ECC skills plus MCP configs for TDD, security, code review, and autonomous development.",
     "longDescription": "ECC is a harness-native operator system for Codex and adjacent agent harnesses. It packages reusable skills, MCP configs, TDD workflows, security scanning, code review, architecture decisions, operator workflows, and release gates in one installable plugin.",
-    "developerName": "Affaan Mustafa",
+    "developerName": "ChimichurrIA",
     "category": "Coding",
     "capabilities": [
       "Interactive",
       "Read",
       "Write"
     ],
-    "websiteURL": "https://ecc.tools",
+    "websiteURL": "https://github.com/chimichurria/CommunityHelp",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
     "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
-    "brandColor": "#E07856",
+    "brandColor": "#ff8335",
     "composerIcon": "./assets/ecc-icon.svg",
     "logo": "./assets/hero.png",
     "screenshots": [],
