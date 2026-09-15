@@ -141,8 +141,16 @@ one rule, `/coach-evolve` proposes improvements from your local history,
    `node tests/hooks/coach-robustness.test.js`.
 
 `RULE_IDS` is frozen at module load and is the whitelist the state writer
-enforces, so a rule that is not in `rules.js` can never write to disk. Keep
-`applies` genuinely broader than `matches`, or graduation will be meaningless.
+enforces, so a rule that is not in `rules.js` can never write to disk.
+
+**`applies` must be genuinely broader than `matches`.** If the two are the same
+predicate, `applies && !matches` is never true, so `cleanStreak` never
+increments and the rule nags forever no matter how well the person learns. This
+is an easy mistake -- `unused-ecc-component` shipped with it -- so
+`tests/hooks/coach-cadence.test.js` runs every rule against a corpus and fails
+if any rule has no reachable clean case. If your new rule trips it, either the
+predicates collapse (a real bug) or the corpus lacks a prompt that exercises
+your rule cleanly (add one).
 
 Rules are a starting hypothesis, not received wisdom. `/coach-evolve` reports
 which ones never fire (pure latency) and which fire often without ever

@@ -108,16 +108,20 @@ function extractFeatures(promptText, options = {}) {
   const wordCount = analyzed.split(/\s+/).filter(Boolean).length;
   const isQuestion = analyzed.includes('?') || analyzed.includes('¿');
 
+  // `skillHint` means "a known keyword matched, so tooling is RELEVANT here".
+  // `namesComponent` means "they already named it, so there is no defect".
+  // Keeping these separate is what lets the rule graduate: if both collapsed
+  // into one flag, `applies && !matches` could never be true and the rule would
+  // nag forever, no matter how well the person learned.
   let skillHint = null;
+  let namesComponent = false;
   const hints = options.hints;
   if (hints) {
     for (const keyword of Object.keys(hints)) {
       if (lower.includes(keyword)) {
         const entry = hints[keyword];
-        // Do not suggest a component the prompt already names.
-        if (!lower.includes(String(entry.component).toLowerCase())) {
-          skillHint = { component: entry.component, kind: entry.kind };
-        }
+        skillHint = { component: entry.component, kind: entry.kind };
+        namesComponent = lower.includes(String(entry.component).toLowerCase());
         break;
       }
     }
@@ -137,6 +141,7 @@ function extractFeatures(promptText, options = {}) {
     wantsPlan: RE.wantsPlan.test(analyzed),
     clauseCount: countClauses(analyzed),
     skillHint,
+    namesComponent,
     lang: detectLanguage(analyzed),
   };
 }

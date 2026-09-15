@@ -168,5 +168,38 @@ test('a broken rule predicate cannot break selection', () => {
   assert.strictEqual(result.rule, null);
 });
 
+test('every rule CAN graduate: applies must be broader than matches', () => {
+  // A rule whose applies and matches are the same predicate can never satisfy
+  // `applies && !matches`, so its cleanStreak never increments and it nags
+  // forever regardless of how well the person learns. unused-ecc-component had
+  // exactly this defect. Guard the whole table against it.
+  const { RULES } = require('../../scripts/lib/coach/rules');
+  const { extractFeatures } = require('../../scripts/lib/coach/features');
+  const hints = { ...require('../../scripts/lib/coach/component-hints.json') };
+  delete hints.__comment;
+
+  // A corpus wide enough that a well-formed prompt exists for every rule.
+  const corpus = [
+    'arregla todo el codigo',
+    'fix everything in the whole codebase',
+    'add a retry in `src/api/client.ts`; done when the existing test passes',
+    'What does this file do?',
+    'refactor the parser and then update docs and also add tests',
+    'use the tdd-workflow skill to write a test for `src/parser.ts`; done when it passes',
+    'design the approach first: options and trade-offs for the cache layer',
+    'write a test for the parser',
+    // Multi-clause AND asks for a plan: the clean case for better-as-plan-mode.
+    'plan this out: refactor the parser and then update the docs and also add tests',
+  ].map(p => extractFeatures(p, { hints }));
+
+  const cannotGraduate = [];
+  for (const rule of RULES) {
+    const canBeCleanWhileApplicable = corpus.some(f => rule.applies(f) && !rule.matches(f));
+    if (!canBeCleanWhileApplicable) cannotGraduate.push(rule.id);
+  }
+  assert.deepStrictEqual(cannotGraduate, [],
+    'these rules can never be satisfied, so they can never graduate');
+});
+
 console.log(`\nResults: Passed: ${passed}, Failed: ${failed}`);
 process.exit(failed > 0 ? 1 : 0);

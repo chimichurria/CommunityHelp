@@ -102,8 +102,11 @@ const RULES = Object.freeze([
     id: 'unused-ecc-component',
     topic: 'tooling',
     severity: 3,
+    // applies: tooling is relevant to this prompt.
+    // matches: and they did not name the component.
+    // These must differ, or the rule can never graduate -- see features.js.
     applies: f => f.skillHint !== null,
-    matches: f => f.skillHint !== null,
+    matches: f => f.skillHint !== null && !f.namesComponent,
     note: {
       en: {
         short: 'There is a skill for this: {component}. Naming it loads instructions written for exactly this task.',
