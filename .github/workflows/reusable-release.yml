@@ -131,7 +131,7 @@ jobs:
         id: pack
         run: |
           npm pack --json > npm-pack.json
-          node -e "const crypto = require('crypto'); const fs = require('fs'); const data = JSON.parse(fs.readFileSync('npm-pack.json', 'utf8')); const entries = Array.isArray(data) ? data : [data]; const file = entries.find(entry => /^ecc-universal-[0-9A-Za-z.+-]+\.tgz$/.test(entry?.filename || ''))?.filename; if (!file) throw new Error('Unexpected packed filename'); const archives = fs.readdirSync('.').filter(name => name.endsWith('.tgz')); if (archives.length !== 1 || archives[0] !== file) throw new Error('Expected exactly one packed archive'); const digest = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'); fs.appendFileSync(process.env.GITHUB_OUTPUT, 'package_file=' + file + '\npackage_sha256=' + digest + '\n')"
+          node -e "const crypto = require('crypto'); const fs = require('fs'); const data = JSON.parse(fs.readFileSync('npm-pack.json', 'utf8')); const entries = Array.isArray(data) ? data : [data]; const pkg = require('./package.json'); const expected = pkg.name.replace(/^@/, '').replace(/\//g, '-') + '-' + pkg.version + '.tgz'; const file = entries.find(entry => entry?.filename === expected)?.filename; if (!file) throw new Error('Unexpected packed filename'); const archives = fs.readdirSync('.').filter(name => name.endsWith('.tgz')); if (archives.length !== 1 || archives[0] !== file) throw new Error('Expected exactly one packed archive'); const digest = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'); fs.appendFileSync(process.env.GITHUB_OUTPUT, 'package_file=' + file + '\npackage_sha256=' + digest + '\n')"
 
       - name: Upload release artifacts
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -206,7 +206,7 @@ jobs:
         env:
           ECC_RELEASE_PACKAGE: ${{ needs.verify.outputs.package_file }}
           ECC_RELEASE_SHA256: ${{ needs.verify.outputs.package_sha256 }}
-        run: node -e "const crypto = require('crypto'); const fs = require('fs'); const file = process.env.ECC_RELEASE_PACKAGE; const expected = process.env.ECC_RELEASE_SHA256; if (!/^ecc-universal-[0-9A-Za-z.+-]+\.tgz$/.test(file || '')) throw new Error('Unexpected packed filename'); if (!/^[a-f0-9]{64}$/.test(expected || '')) throw new Error('Invalid packed SHA-256'); const archives = fs.readdirSync('.').filter(name => name.endsWith('.tgz')); if (archives.length !== 1 || archives[0] !== file) throw new Error('Expected exactly one downloaded archive'); const actual = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'); if (actual !== expected) throw new Error('Downloaded publish artifact SHA-256 mismatch')"
+        run: node -e "const crypto = require('crypto'); const fs = require('fs'); const file = process.env.ECC_RELEASE_PACKAGE; const expected = process.env.ECC_RELEASE_SHA256; if (!/^[0-9A-Za-z._-]+-[0-9A-Za-z.+-]+\.tgz$/.test(file || '')) throw new Error('Unexpected packed filename'); if (!/^[a-f0-9]{64}$/.test(expected || '')) throw new Error('Invalid packed SHA-256'); const archives = fs.readdirSync('.').filter(name => name.endsWith('.tgz')); if (archives.length !== 1 || archives[0] !== file) throw new Error('Expected exactly one downloaded archive'); const actual = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'); if (actual !== expected) throw new Error('Downloaded publish artifact SHA-256 mismatch')"
 
       - name: Publish npm package
         if: needs.verify.outputs.already_published != 'true'

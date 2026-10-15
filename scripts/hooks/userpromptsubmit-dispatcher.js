@@ -84,9 +84,6 @@ function run(raw, ctx = {}) {
   }
   if (typeof prompt !== 'string' || prompt.trim().length === 0) return nothing();
 
-  const started = process.hrtime.bigint();
-  const elapsedMs = () => Number(process.hrtime.bigint() - started) / 1e6;
-
   try {
     const pluginRoot = ctx.pluginRoot || path.resolve(__dirname, '..', '..');
     const libDir = path.join(pluginRoot, 'scripts', 'lib', 'coach');
@@ -95,8 +92,14 @@ function run(raw, ctx = {}) {
     const { selectRule, applyOutcome } = require(path.join(libDir, 'cadence.js'));
     const { renderNote, readIdentityHints } = require(path.join(libDir, 'note.js'));
     const { RULES_BY_ID } = require(path.join(libDir, 'rules.js'));
+    const hints = loadHints(pluginRoot);
 
-    const features = extractFeatures(prompt, { hints: loadHints(pluginRoot) });
+    // The clock starts after loading: a cold process pays that cost whether or not the coach
+    // bails, so counting it only made slow machines (Windows, Node 18) never record a prompt.
+    const started = process.hrtime.bigint();
+    const elapsedMs = () => Number(process.hrtime.bigint() - started) / 1e6;
+
+    const features = extractFeatures(prompt, { hints });
 
     // Slow disk or a pathological prompt must not tax the user: bail before
     // doing any I/O, leaving state untouched.

@@ -156,7 +156,8 @@ for (const workflowPath of workflowPaths) {
     assert.match(publish, /name:\s*Verify artifact before publish/);
     assert.match(publish, /ECC_RELEASE_SHA256:\s*\$\{\{ needs\.verify\.outputs\.package_sha256 \}\}/);
     assert.match(publish, /createHash\(['"]sha256['"]\)/);
-    assert.match(publish, /ecc-universal-\[0-9A-Za-z\.\+-\]/);
+    assert.match(publish, /\^\[0-9A-Za-z\._-\]\+-\[0-9A-Za-z\.\+-\]\+\\\.tgz\$/);
+    assert.doesNotMatch(publish, /ecc-universal-/);
     assert.ok(
       publish.indexOf('name: Verify artifact before publish')
         < publish.indexOf('name: Create GitHub Release'),
@@ -179,6 +180,9 @@ test('pull-request CI packs once and exports the exact installer artifact identi
   assert.match(pack, /package_sha256:\s*\$\{\{ steps\.pack\.outputs\.package_sha256 \}\}/);
   assert.match(pack, /createHash\(['"]sha256['"]\)/);
   assert.match(pack, /name:\s*ecc-ci-installer-artifact/);
+  // The fork publishes as `communityhelp`: the archive name must follow package.json, not upstream's.
+  assert.match(pack, /require\('\.\/package\.json'\)/);
+  assert.doesNotMatch(pack, /ecc-universal-/);
 });
 
 test('pull-request CI runs the same packed installer on Linux, macOS, and Windows', () => {
