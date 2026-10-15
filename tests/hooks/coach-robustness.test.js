@@ -173,6 +173,28 @@ test('minimal verbosity selects the short note', () => {
 
 // ---- latency -------------------------------------------------------------
 
+test('a slow cold start still records the prompt (the budget covers prompt work, not module loading)', () => {
+  // Windows runners on Node 18 spend more than HARD_BUDGET_MS just loading the coach
+  // modules; when that counted against the budget, no prompt was ever recorded there.
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'coach-cold-'));
+  try {
+    const libDir = path.join(root, 'scripts', 'lib');
+    fs.cpSync(path.join(__dirname, '..', '..', 'scripts', 'lib', 'coach'), path.join(libDir, 'coach'), { recursive: true });
+    fs.copyFileSync(path.join(__dirname, '..', '..', 'scripts', 'lib', 'atomic-write.js'), path.join(libDir, 'atomic-write.js'));
+    const features = path.join(libDir, 'coach', 'features.js');
+    const stall = `\n{ const until = Date.now() + ${dispatcher.HARD_BUDGET_MS * 2}; while (Date.now() < until) {} }\n`;
+    fs.appendFileSync(features, stall);
+
+    withTempHome(home => {
+      dispatcher.run(payload('fix the bug'), { pluginRoot: root });
+      const state = JSON.parse(fs.readFileSync(path.join(home, '.claude', 'state', 'coach-state.json'), 'utf8'));
+      assert.strictEqual(state.promptsSeen, 1);
+    });
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('marginal cost stays inside the published budget', () => {
   withTempHome(() => {
     const corpus = [
