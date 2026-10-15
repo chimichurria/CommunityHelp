@@ -148,6 +148,12 @@ function main() {
     }],
     ["npm pack --ignore-scripts publishes the reduced runtime surface (prepack not tested)", () => {
       const cache = fs.mkdtempSync(path.join(os.tmpdir(), "ecc-pack-surface-"))
+      // Other suites run Python and leave bytecode behind; plant some so the exclusion is always exercised.
+      const bytecodeDir = path.join(repoRoot, "scripts", "lib", "__pycache__")
+      const hadBytecodeDir = fs.existsSync(bytecodeDir)
+      const bytecodeProbe = path.join(bytecodeDir, "npm-publish-surface-probe.cpython-312.pyc")
+      fs.mkdirSync(bytecodeDir, { recursive: true })
+      fs.writeFileSync(bytecodeProbe, "")
       let result
       try {
         result = runNpm(["pack", "--dry-run", "--json", "--ignore-scripts", "--offline", "--cache", cache], {
@@ -159,6 +165,7 @@ function main() {
         })
       } finally {
         fs.rmSync(cache, { recursive: true, force: true })
+        fs.rmSync(hadBytecodeDir ? bytecodeProbe : bytecodeDir, { recursive: true, force: true })
       }
       assert.strictEqual(result.status, 0, result.error?.message || result.stderr)
 
