@@ -314,8 +314,10 @@ async function main() {
       store: staleStore,
       version: '9.9.9-test',
       idleTimeoutMs: 0,
-      thinkingStaleMs: 40,
-      typingExpiryMs: 20,
+      // Wide enough that the HTTP round trips between setting a state and reading it back
+      // fit inside the window on a loaded CI runner; the waits below are well past both.
+      thinkingStaleMs: 400,
+      typingExpiryMs: 200,
       presenceSweepMs: 0
     });
     const bound = await staleCanvas.listen(0);
@@ -323,7 +325,7 @@ async function main() {
 
     await request(bound.port, 'POST', `/api/session/${opened.key}/typing`, { body: { state: 'typing' } });
     assert.strictEqual(staleCanvas.presenceFor(opened.key), 'typing');
-    await new Promise(resolve => setTimeout(resolve, 60));
+    await new Promise(resolve => setTimeout(resolve, 600));
     assert.strictEqual(staleCanvas.presenceFor(opened.key), 'waiting');
 
     // An abandoned agent decays to queued so the human is never told a
@@ -333,7 +335,7 @@ async function main() {
       body: { items: [{ kind: 'chat', text: 'still there?' }] }
     });
     assert.strictEqual(staleCanvas.presenceFor(opened.key), 'thinking');
-    await new Promise(resolve => setTimeout(resolve, 60));
+    await new Promise(resolve => setTimeout(resolve, 600));
     assert.strictEqual(staleCanvas.presenceFor(opened.key), 'queued');
     await staleCanvas.close();
   })) passed++; else failed++;

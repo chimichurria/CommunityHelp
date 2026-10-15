@@ -156,7 +156,8 @@ for (const workflowPath of workflowPaths) {
     assert.match(publish, /name:\s*Verify artifact before publish/);
     assert.match(publish, /ECC_RELEASE_SHA256:\s*\$\{\{ needs\.verify\.outputs\.package_sha256 \}\}/);
     assert.match(publish, /createHash\(['"]sha256['"]\)/);
-    assert.match(publish, /ecc-universal-\[0-9A-Za-z\.\+-\]/);
+    assert.match(publish, /\^\[0-9A-Za-z\._-\]\+-\[0-9A-Za-z\.\+-\]\+\\\.tgz\$/);
+    assert.doesNotMatch(publish, /ecc-universal-/);
     assert.ok(
       publish.indexOf('name: Verify artifact before publish')
         < publish.indexOf('name: Create GitHub Release'),
